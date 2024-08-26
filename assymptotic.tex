@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Worst-Case Analysis and Time Complexity in Insertion Sort}
+
+\subsection*{1. Filling in the Summation}
+\begin{itemize}
+    \item When analyzing an algorithm like insertion sort, you derive the summation to represent the total number of operations (e.g., comparisons or shifts) in the worst-case scenario.
+    \item For insertion sort, the worst-case occurs when the array is sorted in reverse order, requiring the maximum number of shifts for each element.
+\end{itemize}
+
+\subsection*{2. Worst-Case Analysis and Summation}
+\begin{itemize}
+    \item The summation you derive, such as:
+    \[
+    \sum_{j=2}^{n} j = \frac{n(n+1)}{2} - 1
+    \]
+    represents the total number of operations in the worst case.
+    \item This sum grows quadratically as \(n\) increases because the highest order term in the expansion is \(n^2\).
+\end{itemize}
+
+\subsection*{3. Quadratic Function and Time Complexity}
+\begin{itemize}
+    \item The expression \(an^2 + bn + c\) represents the total number of operations as a function of \(n\), where:
+    \begin{itemize}
+        \item \(a\), \(b\), and \(c\) are constants that depend on the specific costs of the operations.
+        \item The \(n^2\) term dominates as \(n\) becomes large.
+    \end{itemize}
+    \item Therefore, the time complexity is considered \(O(n^2)\), meaning that the algorithm's running time increases quadratically with the size of the input array \(n\).
+\end{itemize}
+
+\subsection*{4. Asymptotic Notation (\(O(n^2)\))}
+\begin{itemize}
+    \item The \(O(n^2)\) notation is used to describe the upper bound of the time complexity in the worst-case scenario.
+    \item It ignores lower-order terms (like \(bn\) and \(c\)) and constant factors because, asymptotically, the \(n^2\) term dominates as \(n\) becomes large.
+\end{itemize}
+
+\subsection*{Putting It Together}
+\begin{itemize}
+    \item \textbf{Insertion Sort's Worst-Case}: The worst-case time complexity for insertion sort is \(O(n^2)\), which means that the number of operations grows quadratically with the size of the input.
+    \item \textbf{Why Quadratic}: Because the total number of operations can be expressed as a quadratic function \(an^2 + bn + c\), the \(n^2\) term dominates for large \(n\), leading to \(O(n^2)\).
+\end{itemize}
+
+\subsection*{Summary}
+\begin{itemize}
+    \item \textbf{Summation}: Used to calculate the total number of operations in the algorithm.
+    \item \textbf{Quadratic Function}: Represents the worst-case scenario.
+    \item \textbf{Time Complexity}: \(O(n^2)\), indicating the running time grows quadratically with the input size.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Zero-Based Indexing and Summation in Insertion Sort}
+
+\subsection*{Key Points}
+
+\begin{itemize}
+    \item \textbf{Zero-Based Indexing}:
+    \begin{itemize}
+        \item In languages like C or Rust, arrays start at index 0. The first element is \texttt{arr[0]}, the second element is \texttt{arr[1]}, and so on.
+        \item When implementing the insertion sort algorithm, the loops typically start from index 1 (the second element) when considering comparisons or shifts, because the first element at index 0 is already considered "sorted."
+    \end{itemize}
+    \item \textbf{Summation in Zero-Based Context}:
+    \begin{itemize}
+        \item If you are analyzing the loop starting from the second element (\texttt{arr[1]}), you would still sum over the indices, but the summation index would correspond to the position in the array starting from 1 rather than 2.
+    \end{itemize}
+    \item \textbf{Impact on the Formula}:
+    \begin{itemize}
+        \item The theoretical formula \(\sum_{j=2}^{n} j = \frac{n(n+1)}{2} - 1\) assumes 1-based indexing where \(j\) starts from 2.
+        \item In zero-based indexing, if you start the summation from \(j = 1\) (which corresponds to the second element in a zero-based array), the formula would be adjusted accordingly to reflect that shift:
+        \[
+        \sum_{j=1}^{n-1} j = \frac{(n-1)n}{2}
+        \]
+        \item This reflects the sum of the first \(n-1\) natural numbers, which corresponds to the valid indices of an array with \(n\) elements.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Example in C or Rust}
+
+For an array of size \(n = 5\):
+
+\begin{itemize}
+    \item \textbf{Zero-Based Indexing}:
+    \begin{itemize}
+        \item Indices: \(0, 1, 2, 3, 4\)
+        \item If you start summing from \(j = 1\) (the second element): \(1 + 2 + 3 + 4\)
+        \item The sum is still:
+        \[
+        \frac{(n-1)n}{2} = \frac{4 \times 5}{2} = 10
+        \]
+    \end{itemize}
+    \item \textbf{Theoretical Summation}:
+    \begin{itemize}
+        \item This would correspond to the sum of the first \(4\) natural numbers in zero-based indexing, which aligns with summing from index 1 to \(n-1\).
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Summary}
+
+\begin{itemize}
+    \item \textbf{Zero-Based Indexing}: The indexing affects the starting point of your loops and summations, but the core idea behind the summation formulas remains the same.
+    \item \textbf{Adjusted Formula}: For zero-based arrays, if you’re summing starting from the second element, the summation formula can be adjusted to reflect the zero-based index (starting from \(j = 1\) instead of \(j = 2\)).
+\end{itemize}
+
+\end{document}
