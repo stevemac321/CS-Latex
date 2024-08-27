@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\begin{document}
+
+\title{C++ Features to Study}
+\author{}
+\date{}
+\maketitle
+
+\section*{Introduction}
+This document lists key C++ features to study, with a focus on threading and safety enhancements, organized by C++ version. Each feature is accompanied by a brief description to guide your study.
+
+\section*{C++11 Features}
+\begin{itemize}
+    \item \textbf{std::thread} \\
+    Introduces threading support in the standard library, enabling concurrent execution of code.
+    
+    \item \textbf{std::mutex, std::lock, std::unique\_lock} \\
+    Provides mechanisms for managing access to shared resources and preventing race conditions.
+    
+    \item \textbf{std::async, std::future, std::promise} \\
+    Introduces asynchronous programming facilities, allowing tasks to run asynchronously and return results via futures.
+    
+    \item \textbf{std::atomic} \\
+    Introduces atomic operations to ensure thread safety without using mutexes, providing a performance boost in some cases.
+    
+    \item \textbf{std::unique\_ptr, std::shared\_ptr} \\
+    Introduces smart pointers to automate memory management and reduce the risk of memory leaks and dangling pointers.
+    
+    \item \textbf{move semantics and rvalue references} \\
+    Enhances performance by enabling efficient transfer of resources, minimizing unnecessary copying.
+\end{itemize}
+
+\section*{C++14 Features}
+\begin{itemize}
+    \item \textbf{std::shared\_timed\_mutex} \\
+    Extends mutex capabilities with timed locking, allowing threads to attempt locking for a specific duration.
+    
+    \item \textbf{Relaxed constexpr} \\
+    Allows more complex expressions to be evaluated at compile-time, enhancing the flexibility of `constexpr` functions.
+    
+    \item \textbf{Generic lambdas} \\
+    Simplifies the use of lambdas by allowing them to accept parameters of any type, promoting code reuse.
+\end{itemize}
+
+\section*{C++17 Features}
+\begin{itemize}
+    \item \textbf{std::shared\_mutex} \\
+    Introduces shared mutexes that allow multiple readers or one writer, improving concurrency control in read-heavy scenarios.
+    
+    \item \textbf{std::scoped\_lock} \\
+    Provides a convenient way to lock multiple mutexes simultaneously, preventing deadlocks.
+    
+    \item \textbf{std::optional} \\
+    Represents optional values, reducing the risk of null pointer dereferencing and clarifying intent.
+    
+    \item \textbf{std::variant} \\
+    Provides a type-safe union, allowing a variable to hold one of several specified types.
+    
+    \item \textbf{std::any} \\
+    Allows storing values of any type with runtime type information, promoting flexibility.
+    
+    \item \textbf{std::byte} \\
+    Introduces a type-safe representation of byte data, clarifying the intent when working with raw memory.
+\end{itemize}
+
+\section*{C++20 Features}
+\begin{itemize}
+    \item \textbf{std::jthread} \\
+    A more convenient thread class that automatically joins upon destruction, reducing the risk of resource leaks.
+    
+    \item \textbf{std::atomic\_ref} \\
+    Introduces atomic operations for non-atomic data, allowing atomic operations on shared resources without altering their type.
+    
+    \item \textbf{Coroutines} \\
+    Enables writing asynchronous code in a synchronous style, simplifying the management of asynchronous tasks.
+    
+    \item \textbf{Concepts} \\
+    Introduces constraints for templates, improving the readability and safety of template code.
+    
+    \item \textbf{Ranges} \\
+    Provides a new way to work with sequences of data, offering a safer and more expressive alternative to traditional iterators.
+    
+    \item \textbf{Modules} \\
+    Facilitates better modularization of code, reducing compilation times and improving code organization.
+\end{itemize}
+
+\section*{C++23 Features}
+\begin{itemize}
+    \item \textbf{std::expected} \\
+    A safer alternative to `std::optional` for error handling, providing a way to represent either a value or an error.
+    
+    \item \textbf{Enhanced constexpr} \\
+    Expands `constexpr` capabilities, allowing more complex logic and data structures to be evaluated at compile time.
+    
+    \item \textbf{std::span} \\
+    Provides a view over a contiguous sequence of elements, offering safer and more expressive access to array data.
+\end{itemize}
+
+\section*{Additional Resources}
+\begin{itemize}
+    \item \href{https://en.cppreference.com/w/}{cppreference.com} \\
+    Comprehensive reference for C++ features, including details on the latest standards.
+    
+    \item \href{https://clang.llvm.org/}{Clang Website} \\
+    Lists C++ features supported by the Clang compiler, useful for understanding what is available and implemented.
+\end{itemize}
+
+\end{document}
