@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\section*{Code Explanation}
+
+\begin{verbatim}
+for i in 0..bit_count {
+    let a_bit = (a >> i) & T::from(1);
+    let b_bit = (b >> i) & T::from(1);
+
+    let sum_bit = a_bit ^ b_bit ^ c_in;
+    carry = (a_bit & b_bit) | (b_bit & c_in) | (c_in & a_bit);
+
+    sum |= sum_bit << i;
+    c_in = carry;
+}
+\end{verbatim}
+
+\section*{Step-by-Step Breakdown}
+
+\subsection*{1. Loop Initialization}
+The loop runs from \(i = 0\) to \(i < \text{bit\_count}\), iterating over each bit position.
+
+\subsection*{2. Extracting Bits}
+\begin{itemize}
+    \item \texttt{let a\_bit = (a >> i) \& T::from(1);}
+    \begin{itemize}
+        \item \((a >> i)\) shifts the bits of \(a\) to the right by \(i\) positions.
+        \item \(\& T::from(1)\) isolates the least significant bit (LSB) after the shift, effectively extracting the bit at position \(i\) from \(a\).
+    \end{itemize}
+    \item \texttt{let b\_bit = (b >> i) \& T::from(1);}
+    \begin{itemize}
+        \item Similarly, this extracts the bit at position \(i\) from \(b\).
+    \end{itemize}
+\end{itemize}
+
+\subsection*{3. Calculating the Sum Bit}
+\begin{itemize}
+    \item \texttt{let sum\_bit = a\_bit \(\oplus\) b\_bit \(\oplus\) c\_in;}
+    \begin{itemize}
+        \item \(\oplus\) is the bitwise XOR operator.
+        \item The sum bit is calculated using the XOR of \(a\_bit\), \(b\_bit\), and the carry-in (\(c\_in\)). This is because XOR of two bits gives the sum without carry.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{4. Calculating the Carry}
+\begin{itemize}
+    \item \texttt{carry = (a\_bit \(\land\) b\_bit) | (b\_bit \(\land\) c\_in) | (c\_in \(\land\) a\_bit);}
+    \begin{itemize}
+        \item \(\land\) is the bitwise AND operator.
+        \item \(|\) is the bitwise OR operator.
+        \item The carry is calculated using the AND of pairs of bits and the carry-in. This ensures that the carry is set if any two of the three bits (\(a\_bit\), \(b\_bit\), \(c\_in\)) are \(1\).
+    \end{itemize}
+\end{itemize}
+
+\subsection*{5. Updating the Sum}
+\begin{itemize}
+    \item \texttt{sum |= sum\_bit << i;}
+    \begin{itemize}
+        \item \texttt{sum\_bit << i} shifts the sum bit to the correct position.
+        \item \(|=\) is the bitwise OR assignment operator, which updates the \texttt{sum} by setting the bit at position \(i\) to \texttt{sum\_bit}.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{6. Updating the Carry-In}
+\begin{itemize}
+    \item \texttt{c\_in = carry;}
+    \begin{itemize}
+        \item The carry-out from the current bit position becomes the carry-in for the next bit position.
+    \end{itemize}
+\end{itemize}
+
+\section*{Example}
+Let's use some example values to illustrate:
+
+\begin{itemize}
+    \item \(a\_bit = 1\)
+    \item \(b\_bit = 0\)
+    \item \(c\_in = 1\)
+\end{itemize}
+
+For the XOR operation:
+\begin{enumerate}
+    \item \(a\_bit \oplus b\_bit\) results in \(1 \oplus 0 = 1\).
+    \item \(1 \oplus c\_in\) results in \(1 \oplus 1 = 0\).
+\end{enumerate}
+
+For the OR operation:
+\begin{enumerate}
+    \item \((a\_bit \land b\_bit)\) results in \(1 \land 0 = 0\).
+    \item \((b\_bit \land c\_in)\) results in \(0 \land 1 = 0\).
+    \item \((c\_in \land a\_bit)\) results in \(1 \land 1 = 1\).
+    \item Combining these with OR: \(0 | 0 | 1 = 1\).
+\end{enumerate}
+
+\end{document}

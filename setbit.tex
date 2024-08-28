@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\section*{Step-by-Step Process}
+
+\subsection*{1. Create the Mask}
+We start with \(1\) and shift it left by \texttt{pos} positions.
+\[
+1U \ll 6 \quad \text{(shifting 1 left by 6 positions)}
+\]
+\[
+\begin{array}{c}
+00000001 \quad \text{(1 in binary)} \\
+\ll 6 \\
+\hline
+01000000 \quad \text{(This is the mask with a 1 at position 6)}
+\end{array}
+\]
+
+\subsection*{2. Invert the Mask}
+Next, we invert the mask using the ones complement operator (\(\sim\)).
+\[
+\sim(01000000)
+\]
+\[
+\begin{array}{c}
+01000000 \quad \text{(Original mask)} \\
+\sim \\
+\hline
+10111111 \quad \text{(Inverted mask)}
+\end{array}
+\]
+
+\subsection*{3. Apply the Mask to Clear the Bit}
+Now, we use the bitwise AND assignment (\&=) operator with the inverted mask to clear the bit at position 6 in \texttt{vec}.
+\[
+\texttt{vec} \&= 10111111
+\]
+\[
+\begin{array}{c}
+00001111 \quad \texttt{(vec)} \\
+\& \\
+10111111 \quad \texttt{(Inverted mask)} \\
+\hline
+00001111 \quad \texttt{(Result after clearing the bit at position 6)}
+\end{array}
+\]
+
+\section*{Summary}
+\begin{itemize}
+    \item \textbf{Mask Creation}: \(1U \ll 6\) results in \(01000000\).
+    \item \textbf{Mask Inversion}: \(\sim(01000000)\) results in \(10111111\).
+    \item \textbf{Bit Clearing}: \(\texttt{vec} \&= 10111111\) results in \(00001111\).
+\end{itemize}
+
+\end{document}
