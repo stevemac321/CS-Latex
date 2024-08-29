@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\begin{document}
+
+\section*{Merge Sort: Understanding Recursion and the Merge Function}
+
+\subsection*{Overview of Merge Sort}
+Merge sort is a classic divide-and-conquer algorithm that sorts an array by recursively splitting it into smaller subarrays, sorting these subarrays, and then merging them back together. The process is broken down into three key phases:
+
+\begin{enumerate}
+    \item \textbf{Divide:} The array is repeatedly split into two halves until each subarray contains only one element.
+    \item \textbf{Conquer:} The subarrays are recursively sorted, which is trivial for one-element subarrays.
+    \item \textbf{Combine:} The sorted subarrays are merged back together to form the final sorted array.
+\end{enumerate}
+
+\subsection*{1. Divide}
+In the divide phase, the array is split recursively into two halves until the base case is reached, where each subarray contains only a single element:
+
+\[
+\text{Divide: } \{38, 27, 43, 3, 9, 82, 10\} \rightarrow \{38, 27, 43\} \quad \{3, 9, 82, 10\}
+\]
+
+This division continues until:
+
+\[
+\{38, 27, 43\} \rightarrow \{38\}, \{27, 43\} \quad \text{and} \quad \{3, 9, 82, 10\} \rightarrow \{3, 9\}, \{82, 10\}
+\]
+
+\subsection*{2. Conquer}
+During the conquer phase, the recursion reaches its base case, where the subarrays contain only one element. These one-element subarrays are inherently sorted:
+
+\[
+\{38\}, \{27\}, \{43\}, \{3\}, \{9\}, \{82\}, \{10\}
+\]
+
+The recursion now begins to unwind, and the merging process begins.
+
+\subsection*{3. Combine (The Merge Function)}
+The merge function is where the real work of sorting occurs. As the recursion unwinds, the merge function combines two sorted subarrays into a single sorted array. Here’s how it works:
+
+\subsubsection*{a. Inputs to the Merge Function}
+The merge function takes in:
+\begin{itemize}
+    \item \textbf{Left Subarray:} The first sorted half of the array.
+    \item \textbf{Right Subarray:} The second sorted half of the array.
+    \item \textbf{Auxiliary Array:} (Optional) Temporarily holds the merged elements.
+\end{itemize}
+
+\subsubsection*{b. Initialization}
+\begin{itemize}
+    \item Two pointers/indices, \(i = 0\) and \(j = 0\), are initialized for the left and right subarrays, respectively.
+    \item A third pointer \(k = 0\) is initialized to track the position in the merged array.
+\end{itemize}
+
+\subsubsection*{c. Merging Process}
+The merging process involves comparing elements from the left and right subarrays and placing the smaller one into the merged array. This is done in a loop:
+
+\begin{itemize}
+    \item Compare the elements \( \text{left}[i] \) and \( \text{right}[j] \).
+    \item If \( \text{left}[i] \leq \text{right}[j] \), place \( \text{left}[i] \) in the merged array and move \(i\) and \(k\) forward.
+    \item If \( \text{right}[j] \) is smaller, place \( \text{right}[j] \) in the merged array and move \(j\) and \(k\) forward.
+    \item Continue until one subarray is fully merged.
+\end{itemize}
+
+\subsubsection*{d. Handling Remaining Elements}
+If there are remaining elements in either subarray after the loop:
+\begin{itemize}
+    \item Copy all remaining elements from the left subarray, if any, into the merged array.
+    \item Copy all remaining elements from the right subarray, if any, into the merged array.
+\end{itemize}
+
+\subsubsection*{e. Example of the Merge Process}
+Consider two sorted subarrays:
+\[
+\text{Left: } \{27, 38, 43\}, \quad \text{Right: } \{3, 9, 10, 82\}
+\]
+
+The merge function works as follows:
+\begin{enumerate}
+    \item Compare \(27\) (left) and \(3\) (right): \(3\) is smaller, so it’s placed in the merged array.
+    \item Compare \(27\) (left) and \(9\) (right): \(9\) is smaller, so it’s placed in the merged array.
+    \item Compare \(27\) (left) and \(10\) (right): \(10\) is smaller, so it’s placed in the merged array.
+    \item Compare \(27\) (left) and \(82\) (right): \(27\) is smaller, so it’s placed in the merged array.
+    \item Compare \(38\) (left) and \(82\) (right): \(38\) is smaller, so it’s placed in the merged array.
+    \item Compare \(43\) (left) and \(82\) (right): \(43\) is smaller, so it’s placed in the merged array.
+    \item Finally, \(82\) (the only element left) is placed in the merged array.
+\end{enumerate}
+The final merged array is:
+\[
+\{3, 9, 10, 27, 38, 43, 82\}
+\]
+
+\subsection*{Role of Recursion and Stack Unwinding}
+As the recursion stack unwinds, the merge function is called repeatedly, each time merging progressively larger sorted subarrays until the entire array is sorted. The division step ensures that each merge operation involves only sorted subarrays, making the merging process straightforward and efficient.
+
+\subsection*{Efficiency of Merge Sort}
+The efficiency of merge sort lies in its ability to merge two sorted subarrays in linear time, \(O(n)\), where \(n\) is the total number of elements in the subarrays. Since the overall process involves \(O(\log n)\) levels of recursion, the total time complexity of merge sort is \(O(n \log n)\).
+
+\end{document}
