@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\section*{Merge Sort Time Complexity Analysis}
+
+\begin{itemize}
+    \item Merge sort has a time complexity of \(O(n \log n)\).
+    \item The outer function that the user calls drives the recursion.
+    \item The recursive part contributes the \(\log n\) factor.
+    \begin{itemize}
+        \item For example, if \(n = 8\):
+        \begin{itemize}
+            \item The first recursion breaks 8 into 2 parts of 4.
+            \item The next recursion breaks each 4 into 2 parts of 2.
+            \item The recursion bottoms out when the subarrays are of size one.
+        \end{itemize}
+    \end{itemize}
+    \item When the stack unwinds, the merge work is done:
+    \begin{itemize}
+        \item Merging the 1's into 2's.
+        \item Then the 2's into 4's.
+        \item Finally, the 4's into the final 8.
+    \end{itemize}
+    \item The merge operation contributes the \(n\) factor.
+    \item The recursive iterations are counted, representing the number of "deployments."
+    \item For example, you don't count \(1 + 4 + 4 + 2 + 2 + 2 + 2 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1\) bottom, then \(2 + 2 + 2 + 2\), \(4 + 4\) to 8.
+    \item These counts are not factored into Big O notation because they are constants.
+    \item In Big O notation, constants and lower-order terms are ignored, focusing on the dominant term, which is \(O(n \log n)\).
+\end{itemize}
+
+\end{document}
