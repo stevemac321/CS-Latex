@@ -1,100 +1,56 @@
 \documentclass{article}
 \usepackage{amsmath}
-\usepackage{amsfonts}
+
 \begin{document}
 
-\section*{Merge Sort: Understanding Recursion and the Merge Function}
+\section*{Merge Sort Time Complexity Analysis}
 
-\subsection*{Overview of Merge Sort}
-Merge sort is a classic divide-and-conquer algorithm that sorts an array by recursively splitting it into smaller subarrays, sorting these subarrays, and then merging them back together. The process is broken down into three key phases:
-
-\begin{enumerate}
-    \item \textbf{Divide:} The array is repeatedly split into two halves until each subarray contains only one element.
-    \item \textbf{Conquer:} The subarrays are recursively sorted, which is trivial for one-element subarrays.
-    \item \textbf{Combine:} The sorted subarrays are merged back together to form the final sorted array.
-\end{enumerate}
-
-\subsection*{1. Divide}
-In the divide phase, the array is split recursively into two halves until the base case is reached, where each subarray contains only a single element:
-
-\[
-\text{Divide: } \{38, 27, 43, 3, 9, 82, 10\} \rightarrow \{38, 27, 43\} \quad \{3, 9, 82, 10\}
-\]
-
-This division continues until:
-
-\[
-\{38, 27, 43\} \rightarrow \{38\}, \{27, 43\} \quad \text{and} \quad \{3, 9, 82, 10\} \rightarrow \{3, 9\}, \{82, 10\}
-\]
-
-\subsection*{2. Conquer}
-During the conquer phase, the recursion reaches its base case, where the subarrays contain only one element. These one-element subarrays are inherently sorted:
-
-\[
-\{38\}, \{27\}, \{43\}, \{3\}, \{9\}, \{82\}, \{10\}
-\]
-
-The recursion now begins to unwind, and the merging process begins.
-
-\subsection*{3. Combine (The Merge Function)}
-The merge function is where the real work of sorting occurs. As the recursion unwinds, the merge function combines two sorted subarrays into a single sorted array. Here’s how it works:
-
-\subsubsection*{a. Inputs to the Merge Function}
-The merge function takes in:
+\subsection*{Overview}
 \begin{itemize}
-    \item \textbf{Left Subarray:} The first sorted half of the array.
-    \item \textbf{Right Subarray:} The second sorted half of the array.
-    \item \textbf{Auxiliary Array:} (Optional) Temporarily holds the merged elements.
+    \item Merge sort has a time complexity of \( \mathcal{O}(n \log n) \).
+    \item The outer function that the user calls drives the recursion.
+    \item The recursive part contributes the \( \log n \) factor.
+        \begin{itemize}
+            \item For example, if \( n = 8 \):
+            \begin{itemize}
+                \item The first recursion breaks 8 into 2 parts of 4.
+                \item The next recursion breaks each 4 into 2 parts of 2.
+                \item The recursion bottoms out when the subarrays are of size one.
+            \end{itemize}
+        \end{itemize}
+    \item When the stack unwinds, the merge work is done:
+        \begin{itemize}
+            \item Merging the 1’s into 2’s.
+            \item Then the 2’s into 4’s.
+            \item Finally, the 4’s into the final 8.
+        \end{itemize}
+    \item The merge operation contributes the \( n \) factor.
+    \item The recursive iterations are counted, representing the number of "deployments."
+    \item For example, you don’t count the individual operations in each deployment like \(1+4+4+2+2+2+2+1+1+1+1+1+1+1+1\). Instead, you sum up the operations across all levels, which simplifies to \( n \log n \).
+    \item These counts are not factored into Big-O notation because they are constants.
+    \item In Big-O notation, constants and lower-order terms are ignored, focusing on the dominant term, which is \( \mathcal{O}(n \log n) \).
 \end{itemize}
 
-\subsubsection*{b. Initialization}
-\begin{itemize}
-    \item Two pointers/indices, \(i = 0\) and \(j = 0\), are initialized for the left and right subarrays, respectively.
-    \item A third pointer \(k = 0\) is initialized to track the position in the merged array.
-\end{itemize}
-
-\subsubsection*{c. Merging Process}
-The merging process involves comparing elements from the left and right subarrays and placing the smaller one into the merged array. This is done in a loop:
+\subsection*{Recursion Tree Analysis}
 
 \begin{itemize}
-    \item Compare the elements \( \text{left}[i] \) and \( \text{right}[j] \).
-    \item If \( \text{left}[i] \leq \text{right}[j] \), place \( \text{left}[i] \) in the merged array and move \(i\) and \(k\) forward.
-    \item If \( \text{right}[j] \) is smaller, place \( \text{right}[j] \) in the merged array and move \(j\) and \(k\) forward.
-    \item Continue until one subarray is fully merged.
+    \item Consider the recurrence relation \( T(n) = 2T(n/2) + cn \).
+    \item \( T(n) \) represents the total time complexity for sorting an array of size \( n \).
+    \item \( 2T(n/2) \) represents the time complexity for the two recursive calls. Since we are dividing the array into two halves, each of size \( n/2 \), the total cost of these two recursive calls is \( 2T(n/2) \).
+    \item \( cn \) represents the time complexity of merging the two sorted halves back together, which is \( \mathcal{O}(n) \). Here, \( c \) is a constant representing the cost of merging per element.
+    \item The recursion tree has \( \log n \) levels.
+        \begin{itemize}
+            \item At the root level (level 0), the work is \( cn \).
+            \item At level 1, the work is \( cn \), since it sums up to \( 2 \times c(n/2) = cn \).
+            \item This pattern continues for all levels, contributing \( cn \) work at each level.
+        \end{itemize}
+    \item The total work across all levels is \( cn \times \log n \), resulting in \( \mathcal{O}(n \log n) \) as the overall time complexity.
 \end{itemize}
 
-\subsubsection*{d. Handling Remaining Elements}
-If there are remaining elements in either subarray after the loop:
+\subsection*{Summary}
 \begin{itemize}
-    \item Copy all remaining elements from the left subarray, if any, into the merged array.
-    \item Copy all remaining elements from the right subarray, if any, into the merged array.
+    \item The correct interpretation of the recursion tree and the cost \( T(n) = 2T(n/2) + cn \) is that the total work done across all levels sums to \( \mathcal{O}(n \log n) \), where each level contributes \( \mathcal{O}(n) \) work, and there are \( \log n \) levels.
+    \item The constant \( c \) represents the cost per element during the merge step, and it's factored into each level's cost but is omitted in Big-O notation.
 \end{itemize}
-
-\subsubsection*{e. Example of the Merge Process}
-Consider two sorted subarrays:
-\[
-\text{Left: } \{27, 38, 43\}, \quad \text{Right: } \{3, 9, 10, 82\}
-\]
-
-The merge function works as follows:
-\begin{enumerate}
-    \item Compare \(27\) (left) and \(3\) (right): \(3\) is smaller, so it’s placed in the merged array.
-    \item Compare \(27\) (left) and \(9\) (right): \(9\) is smaller, so it’s placed in the merged array.
-    \item Compare \(27\) (left) and \(10\) (right): \(10\) is smaller, so it’s placed in the merged array.
-    \item Compare \(27\) (left) and \(82\) (right): \(27\) is smaller, so it’s placed in the merged array.
-    \item Compare \(38\) (left) and \(82\) (right): \(38\) is smaller, so it’s placed in the merged array.
-    \item Compare \(43\) (left) and \(82\) (right): \(43\) is smaller, so it’s placed in the merged array.
-    \item Finally, \(82\) (the only element left) is placed in the merged array.
-\end{enumerate}
-The final merged array is:
-\[
-\{3, 9, 10, 27, 38, 43, 82\}
-\]
-
-\subsection*{Role of Recursion and Stack Unwinding}
-As the recursion stack unwinds, the merge function is called repeatedly, each time merging progressively larger sorted subarrays until the entire array is sorted. The division step ensures that each merge operation involves only sorted subarrays, making the merging process straightforward and efficient.
-
-\subsection*{Efficiency of Merge Sort}
-The efficiency of merge sort lies in its ability to merge two sorted subarrays in linear time, \(O(n)\), where \(n\) is the total number of elements in the subarrays. Since the overall process involves \(O(\log n)\) levels of recursion, the total time complexity of merge sort is \(O(n \log n)\).
 
 \end{document}
