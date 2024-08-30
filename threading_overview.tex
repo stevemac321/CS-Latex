@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\begin{document}
+
+\title{Survey of Concurrency, Parallelism, and Asynchrony}
+\author{Your Name}
+\date{\today}
+\maketitle
+
+\section*{Introduction}
+This document provides a comprehensive overview of key concepts related to concurrency, parallelism, and asynchrony, with a focus on how these terms are used in the context of threading, task management, and the associated hardware and OS support.
+
+\section*{Terminology}
+
+\subsection*{Concurrency}
+\textbf{Definition}: Concurrency refers to the ability of a system to handle multiple tasks at once. This does not necessarily mean that the tasks are executed simultaneously; rather, the system switches between tasks, making progress on each over time.
+
+\textbf{Key Characteristics}:
+\begin{itemize}
+    \item Concurrency can be achieved on a single-core CPU through context switching, where the operating system rapidly switches between tasks.
+    \item Concurrency is useful in scenarios where tasks involve waiting, such as I/O operations, allowing other tasks to make progress in the meantime.
+\end{itemize}
+
+\textbf{Examples}:
+\begin{itemize}
+    \item \texttt{std::thread} in C++ allows for concurrent execution of code, where each thread can perform tasks independently.
+    \item Rust's \texttt{async/await} syntax, where multiple asynchronous tasks can be executed concurrently within a single thread.
+\end{itemize}
+
+\textbf{OS/Hardware Support}:
+\begin{itemize}
+    \item The operating system's scheduler manages the execution of concurrent tasks by rapidly switching between them, giving the illusion of simultaneous execution.
+    \item Concurrency does not require multiple cores, but it benefits from them.
+\end{itemize}
+
+\subsection*{Parallelism}
+\textbf{Definition}: Parallelism involves executing multiple tasks simultaneously, typically on multiple processors or cores. True parallelism requires hardware support in the form of multi-core CPUs or multiple CPUs.
+
+\textbf{Key Characteristics}:
+\begin{itemize}
+    \item Parallelism is ideal for CPU-bound tasks where tasks can be divided into smaller subtasks that can be executed simultaneously.
+    \item Parallelism improves performance by utilizing multiple cores to perform computations at the same time.
+\end{itemize}
+
+\textbf{Examples}:
+\begin{itemize}
+    \item In C++, \texttt{std::thread} can be used to run threads in parallel if there are enough CPU cores available.
+    \item Rust's \texttt{Rayon} library provides parallel iterators that enable data parallelism, allowing operations like \texttt{map} and \texttt{reduce} to run in parallel.
+\end{itemize}
+
+\textbf{OS/Hardware Support}:
+\begin{itemize}
+    \item The operating system schedules threads across multiple cores or processors, enabling true parallel execution.
+    \item Modern CPUs with multiple cores or simultaneous multithreading (SMT) support parallel execution of threads.
+\end{itemize}
+
+\subsection*{Asynchrony}
+\textbf{Definition}: Asynchrony refers to the ability to initiate tasks that can be executed independently of the main program flow, allowing the program to continue executing without blocking. Asynchronous tasks may be executed concurrently or in parallel, depending on the implementation.
+
+\textbf{Key Characteristics}:
+\begin{itemize}
+    \item True asynchrony often requires non-blocking system calls, where the operating system or hardware handles tasks in the background, freeing the main program to perform other operations.
+    \item Asynchrony is crucial for I/O-bound tasks, such as network communication or file I/O, where waiting for operations to complete would otherwise block the program.
+\end{itemize}
+
+\textbf{Examples}:
+\begin{itemize}
+    \item In C++, \texttt{std::async} can be used to run functions asynchronously, with different launch policies (\texttt{std::launch::async} or \texttt{std::launch::deferred}).
+    \item In Rust, asynchronous tasks are created using \texttt{async/await}, with executors like \texttt{tokio} or \texttt{async-std} managing the execution.
+\end{itemize}
+
+\textbf{OS/Hardware Support}:
+\begin{itemize}
+    \item Asynchronous I/O operations are supported by the OS through non-blocking I/O APIs, such as POSIX AIO or Windows Overlapped I/O.
+    \item Hardware interrupts can also trigger asynchronous behavior, allowing the CPU to respond to external events (e.g., network packets) without blocking.
+\end{itemize}
+
+\section*{Categories of Threading Primitives}
+
+\subsection*{Thread-Based}
+\textbf{Definition}: Thread-based concurrency involves creating and managing threads, where each thread represents a separate path of execution within a process.
+
+\textbf{Examples}:
+\begin{itemize}
+    \item \texttt{std::thread} in C++ and \texttt{std::thread::spawn} in Rust are used to create new threads.
+    \item These threads can run concurrently or in parallel, depending on the number of available CPU cores.
+\end{itemize}
+
+\subsection*{Task-Based}
+\textbf{Definition}: Task-based concurrency abstracts the notion of threads, allowing developers to focus on defining tasks that are executed by an underlying thread pool or executor.
+
+\textbf{Examples}:
+\begin{itemize}
+    \item \texttt{std::async} in C++ launches tasks that are executed by the system, potentially on separate threads.
+    \item In Rust, the \texttt{tokio} and \texttt{async-std} runtimes manage task execution, allowing tasks to be executed asynchronously.
+\end{itemize}
+
+\subsection*{Atomic Operations}
+\textbf{Definition}: Atomic operations are low-level operations that are guaranteed to be performed without interruption, ensuring thread safety without the need for locks.
+
+\textbf{Examples}:
+\begin{itemize}
+    \item In C++, \texttt{std::atomic} provides atomic operations on basic data types, ensuring safe concurrent access.
+    \item Rust's \texttt{std::sync::atomic} module provides similar functionality for atomic operations in Rust.
+\end{itemize}
+
+\textbf{OS/Hardware Support}:
+\begin{itemize}
+    \item Atomic operations are typically supported by CPU instructions, such as Compare-And-Swap (CAS), which ensure that the operation is completed atomically.
+\end{itemize}
+
+\section*{OS and Hardware Support}
+
+\subsection*{Operating System Support}
+\textbf{Concurrency and Parallelism}:
+\begin{itemize}
+    \item The OS scheduler manages thread execution, balancing load across available CPU cores.
+    \item The OS provides APIs for creating and managing threads, as well as synchronization primitives like mutexes, semaphores, and condition variables.
+\end{itemize}
+
+\textbf{Asynchronous I/O}:
+\begin{itemize}
+    \item The OS supports asynchronous I/O operations through non-blocking syscalls, allowing programs to initiate I/O operations and continue executing.
+    \item Examples include POSIX AIO on Unix-like systems and Overlapped I/O on Windows.
+\end{itemize}
+
+\subsection*{Hardware Support}
+\textbf{Parallelism}:
+\begin{itemize}
+    \item Multi-core CPUs and multi-processor systems provide the hardware support necessary for parallel execution of threads.
+    \item Simultaneous Multithreading (SMT), such as Intel's Hyper-Threading, allows multiple threads to run on the same core.
+\end{itemize}
+
+\textbf{Atomic Operations}:
+\begin{itemize}
+    \item Modern CPUs provide atomic instructions, such as Compare-And-Swap (CAS), which are used to implement atomic operations in high-level languages.
+    \item Hardware interrupts and DMA (Direct Memory Access) enable asynchronous behavior at the hardware level, allowing the CPU to perform other tasks while I/O operations complete.
+\end{itemize}
+
+\end{document}
