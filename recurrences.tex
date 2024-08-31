@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+
+\title{Understanding Sedgewick's Formula 2.1 and Linear Recursion}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This document reviews the discussions on Sedgewick's formula 2.1 from the 3rd edition of \textit{Algorithms}. The focus is on understanding the concept of linear recursion as described by the formula and how it contrasts with other recursive techniques.
+
+\section{Sedgewick's Formula 2.1}
+
+Formula 2.1 in Sedgewick's book describes a recurrence relation:
+\[
+C(N) = C(N-1) + N
+\]
+for $N \geq 2$ with $C(1) = 1$. Here, $C(N)$ represents the cost or time complexity of solving a problem of size $N$.
+
+\subsection{Explanation of the Terms}
+
+\begin{itemize}
+    \item \textbf{C(N)}: The cost or time complexity of solving the problem for size $N$.
+    \item \textbf{C(N-1)}: The cost of solving a subproblem of size $N-1$.
+    \item \textbf{N}: Represents the additional work done at each level of the recursion, typically proportional to the size of the problem.
+    \item \textbf{C(1) = 1}: The base case, which states that the cost of solving the problem when $N = 1$ is 1 unit of time.
+\end{itemize}
+
+The recurrence relation describes a \textbf{linear recursive process} where each recursive call reduces the problem size by 1, and the total cost is the sum of the costs of these recursive calls.
+
+\section{Linear Recursion}
+
+\subsection{Definition}
+
+Linear recursion refers to a type of recursion where each function call makes exactly one recursive call to solve a subproblem, and the problem size is reduced by a constant amount (typically by 1) with each call. The process is linear because the depth of the recursion tree is proportional to the size of the input.
+
+\subsection{Example: Summing an Array}
+
+Consider a simple example where we recursively sum the elements of an array:
+
+\begin{lstlisting}[language=C++, caption=Summing an Array using Linear Recursion]
+int sum(int arr[], int N) {
+    if (N == 0) {
+        return 0;  // Base case: empty array has a sum of 0
+    } else {
+        return arr[N-1] + sum(arr, N-1);  // Recursively sum the rest of the array
+    }
+}
+\end{lstlisting}
+
+\begin{itemize}
+    \item \textbf{Base Case}: When $N = 0$, the function returns 0.
+    \item \textbf{Recursive Step}: The function processes the last element, adds it to the sum of the remaining elements (which is handled by the recursive call).
+    \item \textbf{Cost}: The cost at each level is constant, and there are $N$ levels, leading to a total time complexity of $O(N)$.
+\end{itemize}
+
+\section{Recursive Descent}
+
+\subsection{Definition}
+
+Recursive descent refers to the process of progressively breaking down a problem into smaller subproblems through recursion. Each recursive call typically reduces the problem size, leading to a "descent" through the levels of recursion.
+
+\subsection{Example: Removing an Element from an Array}
+
+Consider a recursive function that removes the first element of an array and processes the rest:
+
+\begin{lstlisting}[language=C++, caption=Removing the First Element using Linear Recursion]
+void removeFirstElement(int arr[], int N) {
+    if (N == 0) {
+        return;  // Base case: empty array
+    }
+    
+    // Process the first element (e.g., just printing it)
+    std::cout << arr[0] << std::endl;
+    
+    // Recursive call to remove the first element
+    removeFirstElement(arr + 1, N - 1);
+}
+\end{lstlisting}
+
+\begin{itemize}
+    \item \textbf{Base Case}: When $N = 0$, the recursion stops.
+    \item \textbf{Recursive Step}: The function processes the first element and recursively calls itself to handle the rest of the array.
+    \item \textbf{Recursive Breakdown}: The problem size decreases by 1 with each recursive call, leading to a linear sequence of operations.
+\end{itemize}
+
+\section{Key Insights}
+
+\begin{itemize}
+    \item Sedgewick's formula describes the \textbf{recursive breakdown} of a problem, where each step of the recursion performs a small amount of work and then calls itself on a smaller subproblem.
+    \item The recursion described by $C(N) = C(N-1) + N$ is linear in nature because the problem size decreases by 1 with each step, leading to a total time complexity of $O(N^2)$ when unrolled.
+    \item Understanding the concept of \textbf{recursive descent} is crucial for analyzing recursive algorithms, as it highlights how the problem is progressively simplified until it reaches the base case.
+\end{itemize}
+
+\end{document}
