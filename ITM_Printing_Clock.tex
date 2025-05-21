@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{ITM Tracing Configuration Summary}
+\author{STM32F4 Project Setup}
+\date{\today}
+
+\maketitle
+
+\section{System Clock Configuration (CubeMX)}
+\begin{itemize}
+    \item \textbf{System Clock Mux}: Set to \textbf{PLLCLK}.
+    \item \textbf{PLL Source Mux}: Set to \textbf{HSI} (High-Speed Internal clock).
+    \item \textbf{PLL Configuration}: 
+    \begin{itemize}
+        \item \textbf{PLLM}: \texttt{/8} (to divide HSI 16 MHz down to 2 MHz).
+        \item \textbf{PLLN}: \texttt{x168} (to multiply 2 MHz up to 336 MHz).
+        \item \textbf{PLLP}: \texttt{/4} (to divide 336 MHz down to 84 MHz for SYSCLK).
+    \end{itemize}
+    \item \textbf{Final System Clock (SYSCLK)}: \texttt{84 MHz}.
+\end{itemize}
+
+\section{ST-Link Debugger Configuration (uVision)}
+\begin{itemize}
+    \item \textbf{Core Clock}: Set to \texttt{84 MHz}.
+    \item \textbf{Trace Clock}: Set to \texttt{84 MHz}.
+    \item \textbf{SWO Clock}: Set to \texttt{12 MHz} (to match the system).
+    \item \textbf{ITM Port 0}: Enabled for \textbf{ITM tracing}.
+\end{itemize}
+
+\section{Pin Configuration}
+\begin{itemize}
+    \item \textbf{PB3}: Configured for \texttt{SWO} by selecting \texttt{Trace Asynchronous SW} in CubeMX.
+    \item \textbf{PA14}: Automatically set as part of the \texttt{SWD} interface.
+\end{itemize}
+
+\section{ITM Tracing}
+\begin{itemize}
+    \item \textbf{ITM\_SendChar()}: Currently being used for output instead of \texttt{printf}.
+    \item \textbf{MicroLib}: Enabled to ensure compatibility and proper operation of the system.
+\end{itemize}
+
+\end{document}

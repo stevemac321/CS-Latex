@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Programming Manual Part 2}
+
+\tableofcontents
+
+\section*{Content}
+\begin{enumerate}
+    \item General data processing instructions \dotfill 80
+    \item Core peripherals \dotfill 192
+    \begin{enumerate}
+        \item About the STM32 Cortex-M4 core peripherals \dotfill 192
+        \item Memory protection unit (MPU) \dotfill 192
+        \begin{enumerate}
+            \item MPU access permission attributes \dotfill 194
+            \item MPU mismatch \dotfill 195
+            \item Updating an MPU region \dotfill 195
+            \item MPU design hints and tips \dotfill 198
+            \item MPU type register (MPU\_TYPER) \dotfill 199
+            \item MPU control register (MPU\_CTRL) \dotfill 200
+            \item MPU region number register (MPU\_RNR) \dotfill 201
+            \item MPU region base address register (MPU\_RBAR) \dotfill 202
+            \item MPU region attribute and size register (MPU\_RASR) \dotfill 203
+            \item MPU register map \dotfill 205
+        \end{enumerate}
+        \item Nested vectored interrupt controller (NVIC) \dotfill 207
+        \begin{enumerate}
+            \item Accessing the Cortex-M4 NVIC registers using CMSIS \dotfill 208
+            \item Interrupt set-enable registers (NVIC\_ISERx) \dotfill 209
+            \item Interrupt clear-enable registers (NVIC\_ICERx) \dotfill 210
+            \item Interrupt set-pending registers (NVIC\_ISPRx) \dotfill 211
+            \item Interrupt clear-pending registers (NVIC\_ICPRx) \dotfill 212
+            \item Interrupt active bit registers (NVIC\_IABRx) \dotfill 213
+            \item Interrupt priority registers (NVIC\_IPRx) \dotfill 214
+            \item Software trigger interrupt register (NVIC\_STIR) \dotfill 215
+            \item Level-sensitive and pulse interrupts \dotfill 216
+            \item NVIC design hints and tips \dotfill 217
+            \item NVIC register map \dotfill 218
+        \end{enumerate}
+        \item System control block (SCB) \dotfill 220
+        \begin{enumerate}
+            \item Auxiliary control register (ACTLR) \dotfill 221
+            \item CPUID base register (CPUID) \dotfill 223
+            \item Interrupt control and state register (ICSR) \dotfill 224
+            \item Vector table offset register (VTOR) \dotfill 226
+            \item Application interrupt and reset control register (AIRCR) \dotfill 227
+            \item System control register (SCR) \dotfill 229
+            \item Configuration and control register (CCR) \dotfill 230
+            \item System handler priority registers (SHPRx) \dotfill 232
+            \item System handler control and state register (SHCSR) \dotfill 234
+            \item Configurable fault status register (CFSR; UFSR+BFSR+MMFSR) \dotfill 236
+            \item Usage fault status register (UFSR) \dotfill 237
+            \item Bus fault status register (BFSR) \dotfill 238
+            \item Memory management fault address register (MMFSR) \dotfill 239
+            \item Hard fault status register (HFSR) \dotfill 240
+            \item Memory management fault address register (MMFAR) \dotfill 241
+            \item Bus fault address register (BFAR) \dotfill 241
+            \item Auxiliary fault status register (AFSR) \dotfill 242
+            \item System control block design hints and tips \dotfill 242
+            \item SCB register map \dotfill 243
+        \end{enumerate}
+        \item SysTick timer (STK) \dotfill 245
+        \begin{enumerate}
+            \item SysTick control and status register (STK\_CTRL) \dotfill 246
+            \item SysTick reload value register (STK\_LOAD) \dotfill 247
+            \item SysTick current value register (STK\_VAL) \dotfill 248
+            \item SysTick calibration value register (STK\_CALIB) \dotfill 249
+            \item SysTick design hints and tips \dotfill 249
+            \item SysTick register map \dotfill 250
+        \end{enumerate}
+        \item Floating point unit (FPU) \dotfill 251
+        \begin{enumerate}
+            \item Coprocessor access control register (CPACR) \dotfill 252
+            \item Floating-point context control register (FPCCR) \dotfill 252
+            \item Floating-point context address register (FPCAR) \dotfill 254
+            \item Floating-point status control register (FPSCR) \dotfill 254
+            \item Floating-point default status control register (FPDSCR) \dotfill 256
+            \item Enabling the FPU \dotfill 256
+            \item Enabling and clearing FPU exception interrupts \dotfill 257
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\title{Master Plan for Embedded Systems and Algorithm Study}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Data Structures and Algorithms (Independent Study)}
+
+\subsection*{1.1 Algorithms}
+\begin{itemize}
+    \item \textbf{Fast Fourier Transform (FFT)}: Study the algorithm for frequency-domain analysis, focusing on efficient computation in real-time systems.
+    \begin{itemize}
+        \item \textbf{Priority}: High (for real-time signal processing with ADC)
+    \end{itemize}
+    
+    \item \textbf{Sliding Window Algorithm}: Used for maintaining a subset of items (e.g., moving average or window-based data aggregation) in real-time data streams.
+    \begin{itemize}
+        \item \textbf{Priority}: High (for data stream handling and pattern detection)
+    \end{itemize}
+    
+    \item \textbf{Pattern Matching}:
+    \begin{itemize}
+        \item \textbf{KMP Algorithm}: Knuth-Morris-Pratt for efficient string matching, especially useful in packet analysis or command recognition in embedded streams.
+        \item \textbf{Rabin-Karp Algorithm}: Used for detecting patterns in streams of data (e.g., network packet analysis).
+        \item \textbf{Priority}: Medium (for DMA data streaming and pattern detection)
+    \end{itemize}
+\end{itemize}
+
+\subsection*{1.2 Data Structures}
+\begin{itemize}
+    \item \textbf{Trie}: Efficient for storing and querying dynamic sequences or strings, useful for embedded systems with limited memory.
+    \begin{itemize}
+        \item \textbf{Priority}: Medium (for managing binary streams or sequences in data buffers)
+    \end{itemize}
+    
+    \item \textbf{B-tree}: Balanced tree structure used for large datasets, suitable for file systems or large timestamp storage.
+    \begin{itemize}
+        \item \textbf{Priority}: Medium (for real-time clock tasks and flash memory management)
+    \end{itemize}
+    
+    \item \textbf{Binary Search Tree}: Fundamental structure for organizing and querying data efficiently.
+    \begin{itemize}
+        \item \textbf{Priority}: High (for managing timestamps, task scheduling)
+    \end{itemize}
+    
+    \item \textbf{Priority Queue}: Crucial for scheduling tasks, managing sensor data, or tracking highest/lowest readings.
+    \begin{itemize}
+        \item \textbf{Priority}: High (integrates with most embedded systems projects)
+    \end{itemize}
+    
+    \item \textbf{Stacks and Queues}: Basic structures useful for handling interrupts, task scheduling, and managing function calls.
+    \begin{itemize}
+        \item \textbf{Priority}: Medium (for interrupt-driven task management)
+    \end{itemize}
+    
+    \item \textbf{HashMap}: Efficient for storing key-value pairs, useful in fault categorization, configuration settings, or power monitoring.
+    \begin{itemize}
+        \item \textbf{Priority}: Medium (for memory management and fault handling)
+    \end{itemize}
+\end{itemize}
+
+\section*{2. Integrated Embedded Systems Tasks (Hardware + Algorithms)}
+
+\subsection*{2.1 Priority 1: Foundation-Level Tasks}
+\begin{itemize}
+    \item \textbf{Temperature and Voltage Monitoring}:
+    \begin{itemize}
+        \item \textbf{Data Source}: Internal temperature sensor, voltage reference (VREFINT)
+        \item \textbf{Data Structures}: Ring Buffer, Priority Queue
+        \item \textbf{Algorithms}: Moving Average, Exponential Smoothing, Threshold Detection
+    \end{itemize}
+    
+    \item \textbf{Watchdog Timers}:
+    \begin{itemize}
+        \item \textbf{Data Source}: Independent and Window Watchdog Timers (IWDG, WWDG)
+        \item \textbf{Data Structures}: Circular Queue
+        \item \textbf{Algorithms}: Timeout Management, Monitoring and Alerting
+    \end{itemize}
+    
+    \item \textbf{Real-Time Clock (RTC) \& Timestamps}:
+    \begin{itemize}
+        \item \textbf{Data Source}: RTC, SysTick timer
+        \item \textbf{Data Structures}: Binary Search Tree, B-tree
+        \item \textbf{Algorithms}: Scheduling Algorithms (Round-robin, priority-based), Binary Search
+    \end{itemize}
+\end{itemize}
+
+\subsection*{2.2 Priority 2: Intermediate-Level Tasks}
+\begin{itemize}
+    \item \textbf{Interrupt-Driven Task Scheduling}:
+    \begin{itemize}
+        \item \textbf{Data Source}: Timers, interrupts
+        \item \textbf{Data Structures}: Priority Queue, Doubly Linked List
+        \item \textbf{Algorithms}: Round-Robin Scheduling, Earliest Deadline First (EDF)
+    \end{itemize}
+    
+    \item \textbf{Real-Time Signal Processing with ADC}:
+    \begin{itemize}
+        \item \textbf{Data Source}: Analog-to-Digital Converter (ADC)
+        \item \textbf{Data Structures}: Circular Queue, FFT Buffer
+        \item \textbf{Algorithms}: FFT, Sliding Window, Finite State Machine (FSM) for pattern recognition
+    \end{itemize}
+    
+    \item \textbf{Fault Monitoring and Recovery}:
+    \begin{itemize}
+        \item \textbf{Data Source}: Non-Maskable Interrupt (NMI), system faults
+        \item \textbf{Data Structures}: HashMap, Circular Queue
+        \item \textbf{Algorithms}: Error Detection (Hamming Code), CRC
+    \end{itemize}
+\end{itemize}
+
+\subsection*{2.3 Priority 3: Advanced-Level Tasks}
+\begin{itemize}
+    \item \textbf{DMA for Data Streaming}:
+    \begin{itemize}
+        \item \textbf{Data Source}: DMA controller, ADC
+        \item \textbf{Data Structures}: Ring Buffer, Trie
+        \item \textbf{Algorithms}: Pattern Matching (KMP, Rabin-Karp), Circular Buffer Management
+    \end{itemize}
+    
+    \item \textbf{Memory Management and Flash Programming}:
+    \begin{itemize}
+        \item \textbf{Data Source}: Flash memory, EEPROM
+        \item \textbf{Data Structures}: HashMap, Linked List
+        \item \textbf{Algorithms}: Wear-Leveling, CRC for Data Integrity
+    \end{itemize}
+    
+    \item \textbf{Power Consumption Monitoring}:
+    \begin{itemize}
+        \item \textbf{Data Source}: Internal power sensors
+        \item \textbf{Data Structures}: Priority Queue, HashMap
+        \item \textbf{Algorithms}: Power Optimization (Dynamic Voltage/Frequency Scaling), Energy Profiling
+    \end{itemize}
+\end{itemize}
+
+\section*{3. Summary of Priorities}
+\begin{itemize}
+    \item \textbf{High Priority}:
+    \begin{itemize}
+        \item \textbf{Data Structures \& Algorithms}: FFT, Sliding Window, Binary Search Tree, Priority Queue.
+        \item \textbf{Embedded Tasks}: Temperature and voltage monitoring, watchdog timers, RTC-based scheduling, interrupt-driven task scheduling.
+    \end{itemize}
+    
+    \item \textbf{Medium Priority}:
+    \begin{itemize}
+        \item \textbf{Data Structures \& Algorithms}: Trie, B-tree, Pattern Matching (KMP, Rabin-Karp), HashMap.
+        \item \textbf{Embedded Tasks}: Fault monitoring, real-time signal processing, DMA data streaming.
+    \end{itemize}
+    
+    \item \textbf{Low Priority}:
+    \begin{itemize}
+        \item Memory Management, Power Consumption Monitoring.
+    \end{itemize}
+\end{itemize}
+
+\end{document}

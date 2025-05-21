@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage{tocloft}
+\setlength\cftparskip{2pt}
+\setlength\cftbeforesecskip{5pt}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+
+\begin{document}
+
+\tableofcontents
+
+\section*{Datasheet}
+\addcontentsline{toc}{section}{Datasheet}
+
+\setcounter{tocdepth}{2}
+
+\begin{itemize}
+    \item Functional overview \dotfill 15
+    \begin{itemize}
+        \item ARM® Cortex®-M4 with FPU core with embedded Flash and SRAM \dotfill 15
+        \item Adaptive real-time memory accelerator (ART Accelerator™) \dotfill 15
+        \item Memory protection unit \dotfill 15
+        \item Embedded Flash memory \dotfill 16
+        \item CRC (cyclic redundancy check) calculation unit \dotfill 16
+        \item Embedded SRAM \dotfill 16
+        \item Multi-AHB bus matrix \dotfill 16
+        \item DMA controller (DMA) \dotfill 17
+        \item Nested vectored interrupt controller (NVIC) \dotfill 18
+        \item External interrupt/event controller (EXTI) \dotfill 18
+        \item Clocks and startup \dotfill 18
+        \item Boot modes \dotfill 19
+        \item Power supply schemes \dotfill 19
+        \item Power supply supervisor \dotfill 20
+        \item Internal reset ON \dotfill 20
+        \item Internal reset OFF \dotfill 20
+        \item Voltage regulator \dotfill 21
+        \item Regulator ON \dotfill 21
+        \item Regulator OFF \dotfill 22
+        \item Regulator ON/OFF and internal power supply supervisor availability \dotfill 25
+        \item Real-time clock (RTC) and backup registers \dotfill 25
+        \item Low-power modes \dotfill 26
+        \item VBAT operation \dotfill 26
+        \item Timers and watchdogs \dotfill 27
+        \item Advanced-control timers (TIM1) \dotfill 27
+        \item General-purpose timers (TIMx) \dotfill 28
+        \item Independent watchdog \dotfill 28
+        \item Window watchdog \dotfill 28
+        \item SysTick timer \dotfill 29
+        \item Inter-integrated circuit interface (I2C) \dotfill 29
+        \item Universal synchronous/asynchronous receiver transmitters (USART) \dotfill 29
+        \item Serial peripheral interface (SPI) \dotfill 30
+        \item Inter-integrated sound (I2S) \dotfill 30
+        \item Audio PLL (PLLI2S) \dotfill 30
+        \item Secure digital input/output interface (SDIO) \dotfill 31
+        \item Universal serial bus on-the-go full-speed (OTG\_FS) \dotfill 31
+        \item General-purpose input/outputs (GPIOs) \dotfill 31
+        \item Analog-to-digital converter (ADC) \dotfill 31
+        \item Temperature sensor \dotfill 32
+        \item Serial wire JTAG debug port (SWJ-DP) \dotfill 32
+        \item Embedded Trace Macrocell™ \dotfill 32
+    \end{itemize}
+    \item Pinouts and pin description \dotfill 33
+    \item Memory mapping \dotfill 51
+    \item Electrical characteristics \dotfill 55
+    \begin{itemize}
+        \item Parameter conditions \dotfill 55
+        \item Minimum and maximum values \dotfill 55
+        \item Typical values \dotfill 55
+        \item Typical curves \dotfill 55
+        \item Loading capacitor \dotfill 55
+        \item Pin input voltage \dotfill 56
+        \item Power supply scheme \dotfill 57
+        \item Current consumption measurement \dotfill 58
+        \item Absolute maximum ratings \dotfill 58
+        \item Operating conditions \dotfill 60
+        \item General operating conditions \dotfill 60
+        \item VCAP1/VCAP2 external capacitors \dotfill 62
+        \item Operating conditions at power-up/power-down (regulator ON) \dotfill 63
+        \item Operating conditions at power-up / power-down (regulator OFF) \dotfill 63
+        \item Embedded reset and power control block characteristics \dotfill 64
+        \item Supply current characteristics \dotfill 65
+        \item Wakeup time from low-power modes \dotfill 75
+        \item External clock source characteristics \dotfill 76
+        \item Internal clock source characteristics \dotfill 80
+        \item PLL characteristics \dotfill 82
+        \item PLL spread spectrum clock generation (SSCG) characteristics \dotfill 84
+        \item Memory characteristics \dotfill 85
+        \item EMC characteristics \dotfill 87
+        \item Absolute maximum ratings (electrical sensitivity) \dotfill 89
+        \item I/O current injection characteristics \dotfill 90
+        \item I/O port characteristics \dotfill 91
+        \item NRST pin characteristics \dotfill 96
+        \item TIM timer characteristics \dotfill 97
+        \item Communications interfaces \dotfill 98
+        \item 12-bit ADC characteristics \dotfill 106
+        \item Temperature sensor characteristics \dotfill 112
+        \item VBAT monitoring characteristics \dotfill 112
+        \item Embedded reference voltage \dotfill 112
+        \item SD/SDIO MMC card host interface (SDIO) characteristics \dotfill 113
+        \item RTC characteristics \dotfill 114
+    \end{itemize}
+    \item Package characteristics \dotfill 115
+    \begin{itemize}
+        \item Package mechanical data \dotfill 115
+        \item WLCSP49, 3.06 x 3.06 mm, 0.4 mm pitch wafer level chip size package \dotfill 116
+        \item UFQFPN48, 7 x 7 mm, 0.5 mm pitch package \dotfill 119
+        \item LQFP64, 10 x 10 mm, 64-pin low-profile quad flat package \dotfill 122
+        \item LQFP100, 14 x 14 mm, 100-pin low-profile quad flat package \dotfill 125
+        \item UFBGA100, 7 x 7 mm, 0.5 mm pitch package \dotfill 128
+        \item Thermal characteristics \dotfill 131
+        \item Reference document \dotfill 131
+    \end{itemize}
+    \item Part numbering \dotfill 132
+    \item Revision history \dotfill 134
+\end{itemize}
+
+\end{document}

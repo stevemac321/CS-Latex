@@ -1,0 +1,184 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Embedded Systems Project Roadmap}
+\author{Your Name}
+\date{\today}
+\maketitle
+
+\section{Phase 1: Foundation and System Understanding}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Clocks and Timers: Understanding System Pulse}
+    \begin{itemize}
+        \item \textit{Objective}: Understand how clocks and timers drive the microcontroller and affect system timing.
+        \item \textit{Data Source}: System clock, SysTick, and basic timers (TIM).
+        \item \textit{Data Structures}: Circular Queue.
+        \item \textit{What to Learn}: Basic timer setup, understanding clock prescalers, timers' role in periodic interrupts, and how these affect real-time tasks.
+        \item \textit{Testable Outcome}: Configure timers to generate periodic interrupts and verify timing accuracy using interrupt handlers and SysTick for precise delays.
+    \end{itemize}
+
+    \item \textbf{Basic Peripherals (UART, SPI, I2C, GPIO)}
+    \begin{itemize}
+        \item \textit{Objective}: Master the initialization and use of basic peripherals for data communication and control.
+        \item \textit{Data Source}: UART, SPI, I2C peripherals, GPIO pins.
+        \item \textit{Data Structures}: Queue (for data buffering).
+        \item \textit{What to Learn}: Understand how to configure and communicate using peripherals such as UART for serial communication, SPI for high-speed data transfer, I2C for inter-chip communication, and GPIO for digital I/O.
+        \item \textit{Testable Outcome}: Set up data communication using each peripheral, transmit and receive data, and control LEDs or external sensors via GPIO.
+    \end{itemize}
+
+    \item \textbf{PWM (Pulse Width Modulation)}
+    \begin{itemize}
+        \item \textit{Objective}: Learn to generate PWM signals for controlling peripherals like motors or LEDs.
+        \item \textit{Data Source}: Timers configured for PWM mode.
+        \item \textit{What to Learn}: Configure timers to produce PWM signals and control duty cycles.
+        \item \textit{Testable Outcome}: Control LED brightness or motor speed using PWM.
+    \end{itemize}
+
+    \item \textbf{Low Power Modes}
+    \begin{itemize}
+        \item \textit{Objective}: Learn to implement power-saving strategies in embedded systems.
+        \item \textit{Data Source}: Power control unit (PCU).
+        \item \textit{What to Learn}: Understand the different power modes (sleep, stop, standby) and how to wake the microcontroller from low-power states using interrupts.
+        \item \textit{Testable Outcome}: Demonstrate power-saving modes and configure the system to wake up using a timer or external interrupt.
+    \end{itemize}
+
+    \item \textbf{Interrupt-Driven Task Scheduling}
+    \begin{itemize}
+        \item \textit{Objective}: Learn how interrupts drive real-time scheduling in embedded systems.
+        \item \textit{Data Source}: Timer interrupts.
+        \item \text Structures: Priority Queue, Doubly Linked List.
+        \item \textit{Algorithms}: Round-Robin Scheduling, Earliest Deadline First (EDF).
+        \item \textit{What to Learn}: Implement a basic task scheduler using timers and interrupts.
+        \item \textit{Testable Outcome}: Implement an interrupt-driven scheduler, measure interrupt latency, and showcase task switching using a priority queue.
+    \end{itemize}
+
+    \item \textbf{External Interrupts and Buttons}
+    \begin{itemize}
+        \item \textit{Objective}: Learn how to handle external interrupts triggered by buttons or other input devices.
+        \item \textit{Data Source}: GPIO configured for external interrupts.
+        \item \textit{What to Learn}: Configure external interrupts and implement debouncing strategies.
+        \item \textit{Testable Outcome}: Create a button-triggered event using external interrupts.
+    \end{itemize}
+\end{enumerate}
+
+\section{Phase 2: Intermediate Embedded Tasks and Data Structures}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Temperature and Voltage Monitoring}
+    \begin{itemize}
+        \item \textit{Objective}: Develop real-time sensor monitoring using internal temperature sensors and voltage references.
+        \item \textit{Data Source}: Internal temperature sensor, voltage reference (VREFINT).
+        \item \textit{Data Structures}: Ring Buffer, Priority Queue.
+        \item \textit{Algorithms}: Moving Average, Exponential Smoothing, Threshold Detection.
+        \item \textit{What to Learn}: Understand how to read ADC values, apply smoothing algorithms, and detect threshold conditions.
+        \item \textit{Testable Outcome}: Create a monitoring system that logs temperature and voltage, applying a moving average filter to smooth sensor data.
+    \end{itemize}
+
+    \item \textbf{Real-Time Clock (RTC) and Timestamps}
+    \begin{itemize}
+        \item \textit{Objective}: Implement real-time clock functionality for logging and scheduling purposes.
+        \item \textit{Data Source}: RTC, SysTick timer.
+        \item \textit{Data Structures}: Binary Search Tree.
+        \item \textit{Algorithms}: Scheduling algorithms, Binary Search.
+        \item \textit{What to Learn}: Understand how RTCs work in conjunction with system clocks for timekeeping and task scheduling.
+        \item \textit{Testable Outcome}: Set up the RTC to provide timestamps for event logging and use binary search trees to manage scheduled tasks.
+    \end{itemize}
+
+    \item \textbf{Watchdog Timers for System Stability}
+    \begin{itemize}
+        \item \textit{Objective}: Use watchdog timers to monitor system stability and recovery from faults.
+        \item \textit{Data Source}: Independent and Window Watchdog Timers (IWDG, WWDG).
+        \item \textit{Data Structures}: Circular Queue.
+        \item \textit{Algorithms}: Timeout Management, Monitoring and Alerting.
+        \item \textit{What to Learn}: Understand how watchdog timers prevent system lockups and how to manage timeouts.
+        \item \textit{Testable Outcome}: Implement a watchdog system that monitors key tasks, triggers resets, and logs recovery data.
+    \end{itemize}
+\end{enumerate}
+
+\section{Phase 3: Signal Processing and Advanced Data Streaming}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Real-Time Signal Processing with ADC}
+    \begin{itemize}
+        \item \textit{Objective}: Learn to handle high-speed analog data, perform basic signal processing, and apply filters.
+        \item \textit{Data Source}: Analog-to-Digital Converter (ADC).
+        \item \textit{Data Structures}: Circular Queue, FFT Buffer.
+        \item \textit{Algorithms}: FFT, Sliding Window, Finite State Machine (FSM) for pattern recognition.
+        \item \textit{What to Learn}: Set up real-time ADC data acquisition and implement an FFT for basic signal analysis.
+        \item \textit{Testable Outcome}: Process real-time sensor data, perform FFT, and detect signal patterns.
+    \end{itemize}
+
+    \item \textbf{SPI/I2C for External Sensors}
+    \begin{itemize}
+        \item \textit{Objective}: Interface with external sensors (e.g., accelerometers, temperature sensors) via SPI or I2C.
+        \item \textit{Data Source}: External sensor via SPI/I2C.
+        \item \textit{What to Learn}: Set up communication with external sensors, read sensor data, and process it in real time.
+        \item \textit{Testable Outcome}: Interface with an external sensor and use the data for real-time processing.
+    \end{itemize}
+
+    \item \textbf{Fault Monitoring and Recovery}
+    \begin{itemize}
+        \item \textit{Objective}: Detect and recover from system faults using interrupts and NMI.
+        \item \textit{Data Source}: Non-Maskable Interrupt (NMI), system faults.
+        \item \textit{Data Structures}: HashMap, Circular Queue.
+        \item \textit{Algorithms}: Error Detection (Hamming Code), CRC.
+        \item \textit{What to Learn}: Handle critical system faults using non-maskable interrupts, detect errors, and implement recovery.
+        \item \textit{Testable Outcome}: Design a fault-tolerant system that logs errors and recovers gracefully.
+    \end{itemize}
+\end{enumerate}
+
+\section{Phase 4: Advanced Projects for Embedded Expertise}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{DMA for Data Streaming}
+    \begin{itemize}
+        \item \textit{Objective}: Use Direct Memory Access (DMA) to offload data streaming tasks from the CPU.
+        \item \textit{Data Source}: DMA controller, ADC.
+        \item \textit{Data Structures}: Ring Buffer.
+        \item \textit{Algorithms}: Circular Buffer Management.
+        \item \textit{What to Learn}: Configure DMA for continuous data transfer and implement efficient data streaming algorithms.
+        \item \textit{Testable Outcome}: Build a real-time data streaming system using DMA and verify performance gains compared to CPU-managed data transfer.
+    \end{itemize}
+
+    \item \textbf{Memory Management and Flash Programming}
+    \begin{itemize}
+        \item \textit{Objective}: Implement robust memory management techniques and work with flash memory.
+        \item \textit{Data Source}: Flash memory, EEPROM.
+        \item \textit{Data Structures}: HashMap, Linked List.
+        \item \textit{Algorithms}: Wear-Leveling, CRC for Data Integrity.
+        \item \textit{What to Learn}: Manage non-volatile memory, handle wear leveling, and ensure data integrity using CRC.
+        \item \textit{Testable Outcome}: Implement a memory manager that efficiently handles flash writes and data retention.
+    \end{itemize}
+
+    \item \textbf{Power Consumption Monitoring}
+    \begin{itemize}
+        \item \textit{Objective}: Monitor and optimize power consumption in embedded systems.
+        \item \textit{Data Source}: Internal power sensors.
+        \item \textit{Data Structures}: Priority Queue, HashMap.
+        \item \textit{Algorithms}: Power Optimization (Dynamic Voltage/Frequency Scaling), Energy Profiling.
+        \item \textit{What to Learn}: Implement dynamic power management and measure the energy profile of embedded applications.
+        \item \textit{Testable Outcome}: Create a system that dynamically scales power usage based on task priority and workload.
+    \end{itemize}
+    
+    \item \textbf{Bootloader Development}
+    \begin{itemize}
+        \item \textit{Objective}: Implement a bootloader for firmware updates over UART or USB.
+        \item \textit{Data Source}: Flash memory.
+        \item \textit{What to Learn}: Understand the principles of bootloading and flash memory management.
+        \item \textit{Testable Outcome}: Create a basic bootloader that allows firmware updates and implements basic error handling during flashing.
+    \end{itemize}
+\end{enumerate}
+
+\section{Phase 5: CMSIS Automation for Testing and Validation}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{CMSIS Automation Testing Suite (Linux)}
+    \begin{itemize}
+        \item \textit{Objective}: Automate embedded system testing using CMSIS and Linux toolchains.
+        \item \textit{Tools}: CMSIS, StdPeriph automation suite.
+        \item \textit{Data Structures}: Custom test harness, Linked List.
+        \item \textit{What to Learn}: Build an automated testing framework using CMSIS and demonstrate proficiency in embedded systems validation.
+        \item \textit{Testable Outcome}: Develop a comprehensive test suite that runs automated tests for embedded peripherals and system stability on STM32. Integrate CI/CD for continuous testing.
+    \end{itemize}
+\end{enumerate}
+
+\end{document}

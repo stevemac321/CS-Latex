@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{amsmath}
+
+\title{Hardware Access on Raspberry Pi with Linux}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Accessing Hardware on Raspberry Pi with Linux}
+
+Even with Linux running on the Raspberry Pi, you can still access hardware peripherals without switching to bare-metal programming. Here are several ways to interact with the hardware while using Linux as the operating system:
+
+\begin{enumerate}
+    \item \textbf{Memory-Mapped I/O via \texttt{/dev/mem}}
+    \begin{itemize}
+        \item Description: You can access hardware registers via memory-mapped I/O using the \texttt{/dev/mem} interface. This allows direct access to physical memory, enabling control of peripherals like GPIO, timers, and UART.
+        \item Usage: Open \texttt{/dev/mem} with proper permissions, map the peripheral's physical address using \texttt{mmap()}, and interact with the hardware registers.
+    \end{itemize}
+
+    \item \textbf{Using Device Files (e.g., \texttt{/dev/gpio})}
+    \begin{itemize}
+        \item Description: Linux provides device files under \texttt{/dev} for accessing peripherals such as GPIO, SPI, I2C, and UART. You can read from and write to these device files to interact with the hardware.
+        \item Usage: Use system calls like \texttt{open()}, \texttt{read()}, and \texttt{write()} to access the peripheral.
+    \end{itemize}
+
+    \item \textbf{GPIO Control with sysfs or \texttt{libgpiod}}
+    \begin{itemize}
+        \item Description: The GPIO pins can be controlled via the sysfs interface, or using the \texttt{libgpiod} library. This allows user-space programs to control GPIO pins.
+        \item Usage: Write to sysfs files (e.g., \texttt{/sys/class/gpio/export}, \texttt{/sys/class/gpio/gpioXX/value}) or use the \texttt{libgpiod} API to control GPIO pins.
+    \end{itemize}
+
+    \item \textbf{Accessing UART, SPI, I2C via Linux Drivers}
+    \begin{itemize}
+        \item Description: Linux provides drivers for UART, SPI, and I2C, making it easy to communicate with these peripherals via device files (e.g., \texttt{/dev/serial0}, \texttt{/dev/spidev0.0}).
+        \item Usage: Open the device file and communicate using standard file I/O system calls.
+    \end{itemize}
+
+    \item \textbf{Real-Time Programming with Preempt-RT Patch}
+    \begin{itemize}
+        \item Description: If precise timing is required, the Preempt-RT patch for the Linux kernel reduces interrupt latency, making Linux behave closer to a real-time operating system.
+        \item Usage: Compile Linux with the Preempt-RT patch and assign real-time priorities to tasks.
+    \end{itemize}
+\end{enumerate}
+
+\section{Bare-Metal Programming vs. Linux Programming}
+\begin{itemize}
+    \item \textbf{Bare-Metal Programming}: Provides full control over the hardware but sacrifices the conveniences of an operating system (e.g., multitasking, file systems, networking).
+    \item \textbf{Linux Programming}: Allows access to peripherals and low-level hardware while still benefiting from OS-level features like multitasking and hardware abstraction.
+\end{itemize}
+
+\section{Example: Accessing GPIO with \texttt{/dev/mem}}
+
+To access GPIO pins via assembly or C while running Linux:
+\begin{enumerate}
+    \item Open \texttt{/dev/mem} using \texttt{open("/dev/mem", O\_RDWR)}.
+    \item Map the GPIO registers using \texttt{mmap()} to a pointer in user space.
+    \item Control the GPIO pins by writing to the mapped memory addresses.
+\end{enumerate}
+
+\end{document}

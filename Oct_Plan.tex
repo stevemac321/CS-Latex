@@ -1,0 +1,97 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{left=1in, right=1in, top=1in, bottom=1in}
+
+\title{Revised Prioritized Project and Study Plan}
+\author{Stephen MacKenzie}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Prioritized Plan of Action}
+
+\subsection*{1. Highest Priority: MLibs Project Video}
+\begin{itemize}
+    \item \textbf{Objective}: Create and upload a video demonstrating the MLibs project, including its setup, components, and real-time execution.
+    \item \textbf{Tasks}:
+    \begin{itemize}
+        \item Prepare a video script outlining the introduction, project overview, and real-time execution of the MLibs project.
+        \item Record the setup, build, and execution process using screen recording software.
+        \item Include an explanation of each library module (priority queues, hash tables, etc.) with Doxygen documentation as visual aids.
+        \item Demonstrate the automated build, flash, and run process using the \texttt{bfr.py} script.
+        \item Upload the completed video to YouTube and share it on LinkedIn.
+    \end{itemize}
+    \item \textbf{Timeframe}: 1-2 days
+\end{itemize}
+
+\subsection*{2. Real-Time Packet Reading and Interaction (Voltage Analyzer Project)}
+\begin{itemize}
+    \item \textbf{Objective}: Enhance the \texttt{voltage\_analyzer} project to read Ethernet packets in real-time from the microcontroller and interact with the microcontroller using two-way communication.
+    \item \textbf{Tasks}:
+    \begin{itemize}
+        \item Implement a thread to handle real-time packet reading using non-blocking socket I/O and `ncurses` for display.
+        \item Set up a thread for sending packets to the microcontroller, triggering interrupts for polling data.
+        \item Implement interrupt handling and threading to synchronize data processing.
+        \item Integrate temperature monitoring code, making the application a comprehensive remote monitor and analyzer.
+        \item Add Doxygen support to generate documentation for each module and provide detailed comments for better code understanding.
+    \end{itemize}
+    \item \textbf{Outcome}: A real-time remote monitor and analyzer that reads and displays voltage and temperature data from the microcontroller, showcasing multi-threaded interactions and low-level network programming.
+    \item \textbf{Timeframe}: 1 week
+\end{itemize}
+
+\subsection*{3. Multithreaded Development Assignment}
+\begin{itemize}
+    \item \textbf{Objective}: Implement a multi-threaded data pipeline that utilizes various threading primitives for synchronization and coordination.
+    \item \textbf{Tasks}:
+    \begin{itemize}
+        \item Develop a data processing pipeline with multiple threads, each handling different stages of data transformation (e.g., reading, processing, and aggregating).
+        \item Implement synchronization using \texttt{std::mutex}, \texttt{std::atomic}, and \texttt{std::condition\_variable}.
+        \item Add demonstrations of thread-safe data structures and synchronization methods.
+        \item Integrate \texttt{std::numerics} components for computational tasks like FFT.
+    \end{itemize}
+    \item \textbf{Outcome}: A comprehensive multi-threaded project that showcases your understanding of synchronization and parallelism in C++.
+    \item \textbf{Timeframe}: 2-3 weeks
+\end{itemize}
+
+\subsection*{4. Numerics Library Integration}
+\begin{itemize}
+    \item \textbf{Objective}: Understand and implement numerics operations using \texttt{std::numeric} and related libraries to complement threading work.
+    \item \textbf{Tasks}:
+    \begin{itemize}
+        \item Explore and implement key numerics operations (e.g., \texttt{std::valarray}, \texttt{std::complex}, \texttt{std::accumulate}).
+        \item Integrate numerics computations into the threading project (e.g., using FFT for data processing).
+        \item Profile and optimize numerics operations in multi-threaded scenarios.
+    \end{itemize}
+    \item \textbf{Outcome}: A strong grasp of numerics utilities and how they can be used effectively in concurrent environments.
+    \item \textbf{Timeframe}: 1-2 weeks
+\end{itemize}
+
+\subsection*{5. CLRS-Based Assignments (Lower Priority)}
+\begin{itemize}
+    \item \textbf{Objective}: Reinforce algorithmic problem-solving skills with targeted exercises from CLRS.
+    \item \textbf{Tasks}:
+    \begin{itemize}
+        \item Implement dynamic programming exercises like the Rod Cutting problem.
+        \item Work on graph theory problems such as BFS, DFS, and concurrent graph traversal algorithms.
+        \item Implement concurrent versions of algorithms (e.g., parallel Dijkstra's shortest path) using threading concepts.
+    \end{itemize}
+    \item \textbf{Outcome}: A solid understanding of algorithms that complement your threading and numerics work.
+    \item \textbf{Timeframe}: As time permits, revisit after completing the primary threading and numerics work.
+\end{itemize}
+
+\subsection*{6. Additional Stretch Goals (Optional)}
+\begin{itemize}
+    \item \textbf{Objective}: Implement advanced projects that leverage custom allocators, memory management, and real-world simulations.
+    \item \textbf{Tasks}:
+    \begin{itemize}
+        \item Implement a memory pool allocator for multi-threaded allocation and deallocation.
+        \item Simulate real-world scenarios like traffic management using threading and graph algorithms.
+    \end{itemize}
+    \item \textbf{Outcome}: A deeper understanding of memory management and concurrency in real-world systems.
+    \item \textbf{Timeframe}: Optional, if time permits.
+\end{itemize}
+
+\end{document}

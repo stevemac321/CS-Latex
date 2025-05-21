@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{enumitem}
+
+\begin{document}
+
+\section*{STM32 Microcontroller Peripherals - Preliminary Framework}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    
+    \item \textbf{Core Peripherals}
+    \begin{itemize}
+        \item \textbf{Cortex-M4 Core}
+        \begin{itemize}
+            \item NVIC (Nested Vectored Interrupt Controller)
+            \item SYSTICK Timer
+            \item SCB (System Control Block)
+            \item FPU (Floating Point Unit)
+            \item MPU (Memory Protection Unit)
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Clock and Reset}
+    \begin{itemize}
+        \item \textbf{RCC (Reset and Clock Control)}
+        \begin{itemize}
+            \item HSE (High-Speed External)
+            \item HSI (High-Speed Internal)
+            \item LSE (Low-Speed External)
+            \item LSI (Low-Speed Internal)
+            \item PLL (Phase-Locked Loop)
+            \item AHB/APB Bus Clocks
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Memory}
+    \begin{itemize}
+        \item \textbf{Flash Memory}
+        \begin{itemize}
+            \item Flash Interface
+            \item Option Bytes
+            \item Write/Erase Operations
+        \end{itemize}
+        \item SRAM (Static Random-Access Memory)
+        \item EEPROM (Electrically Erasable Programmable Read-Only Memory)
+    \end{itemize}
+    
+    \item \textbf{GPIO (General Purpose Input/Output)}
+    \begin{itemize}
+        \item \textbf{Pin Configurations}
+        \begin{itemize}
+            \item Input Mode
+            \item Output Mode
+            \item Alternate Function
+            \item Analog Mode
+        \end{itemize}
+        \item \textbf{GPIO Registers}
+        \begin{itemize}
+            \item MODER (Mode Register)
+            \item OTYPER (Output Type Register)
+            \item OSPEEDR (Output Speed Register)
+            \item PUPDR (Pull-Up/Pull-Down Register)
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Timers and Counters}
+    \begin{itemize}
+        \item \textbf{General Purpose Timers}
+        \begin{itemize}
+            \item TIMx (e.g., TIM1, TIM2, etc.)
+            \item Input Capture/Output Compare
+            \item PWM (Pulse Width Modulation)
+        \end{itemize}
+        \item \textbf{Advanced Control Timers}
+        \begin{itemize}
+            \item TIM1, TIM8
+        \end{itemize}
+        \item \textbf{Basic Timers}
+        \begin{itemize}
+            \item TIM6, TIM7
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Communication Interfaces}
+    \begin{itemize}
+        \item USART/UART (Universal Synchronous/Asynchronous Receiver/Transmitter)
+        \item SPI (Serial Peripheral Interface)
+        \item I2C (Inter-Integrated Circuit)
+        \item CAN (Controller Area Network)
+        \item USB (Universal Serial Bus)
+        \item Ethernet (if applicable)
+    \end{itemize}
+    
+    \item \textbf{Analog Peripherals}
+    \begin{itemize}
+        \item \textbf{ADC (Analog-to-Digital Converter)}
+        \begin{itemize}
+            \item Regular/Injected Channels
+            \item DMA Configuration
+        \end{itemize}
+        \item DAC (Digital-to-Analog Converter)
+        \item Comparators
+        \item Op-Amps
+    \end{itemize}
+    
+    \item \textbf{Power Management}
+    \begin{itemize}
+        \item \textbf{PWR (Power Control)}
+        \begin{itemize}
+            \item Low Power Modes (Sleep, Stop, Standby)
+            \item Voltage Regulators
+            \item Battery Backup Domain
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Interrupts and Exceptions}
+    \begin{itemize}
+        \item Interrupt Vector Table
+        \item Exception Handling
+        \item External Interrupts (EXTI)
+        \item Priority Grouping
+    \end{itemize}
+    
+    \item \textbf{DMA (Direct Memory Access)}
+    \begin{itemize}
+        \item \textbf{DMA Channels}
+        \begin{itemize}
+            \item Memory-to-Memory Transfers
+            \item Peripheral-to-Memory Transfers
+            \item Circular Mode
+        \end{itemize}
+        \item \textbf{DMA Controller}
+        \begin{itemize}
+            \item Stream/Channel Configuration
+            \item Transfer Complete/Interrupts
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Security and Protection}
+    \begin{itemize}
+        \item Watchdog Timers
+        \begin{itemize}
+            \item Independent Watchdog (IWDG)
+            \item Window Watchdog (WWDG)
+        \end{itemize}
+        \item CRC (Cyclic Redundancy Check)
+        \item Encryption/Decryption Hardware
+        \item Firewall Protection
+    \end{itemize}
+    
+    \item \textbf{Debugging and Programming}
+    \begin{itemize}
+        \item SWD (Serial Wire Debug)
+        \item JTAG Interface
+        \item ITM (Instrumentation Trace Macrocell)
+        \item DWT (Data Watchpoint and Trace Unit)
+    \end{itemize}
+    
+    \item \textbf{Miscellaneous Peripherals}
+    \begin{itemize}
+        \item RTC (Real-Time Clock)
+        \item Backup Registers
+        \item WWDG (Window Watchdog)
+        \item IWDG (Independent Watchdog)
+    \end{itemize}
+    
+\end{enumerate}
+
+\section*{Start-Up Code Initialization Checklist}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Stack Pointer Initialization
+    \item Relocation of Vector Table
+    \item Initialization of Global/Static Variables
+    \item Memory Remapping (if required)
+    \item Configuration of System Clock
+    \item Initialization of Peripherals (GPIO, Clocks, etc.)
+    \item Enabling Interrupts and Fault Handlers
+    \item Calling Main Function
+\end{enumerate}
+
+\end{document}

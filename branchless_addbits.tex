@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\title{Detailed Report on Bitwise Addition Loop}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Overview}
+
+The following analysis pertains to the loop used in the \texttt{add\_bits} function, which performs binary addition using bitwise operations. This function is designed to add two integers of generic type \texttt{T} and return the sum and the final carry.
+
+\section*{Loop Invariant Properties}
+
+In any loop, a loop invariant is a property that holds true before and after each iteration of the loop. For this loop, the three loop invariant properties are:
+
+\begin{itemize}
+    \item \textbf{Initialization}: Before the loop begins, the initial state satisfies the loop invariant. This is where the sum and carry are initialized to zero, and the loop is prepared to iterate over each bit of the inputs.
+    \item \textbf{Maintenance}: If the loop invariant is true before an iteration of the loop, it remains true after the iteration. This ensures that during each iteration, the correct sum bit and carry are computed based on the current bit positions of the inputs.
+    \item \textbf{Termination}: The loop terminates when all bits have been processed. At this point, the final sum and carry reflect the correct binary addition of the inputs.
+\end{itemize}
+
+\section*{Detailed Explanation of the Loop}
+
+The loop iterates over each bit of the input integers \texttt{a} and \texttt{b}, computes the sum bit for each position, and determines the carry to propagate to the next bit position.
+
+\begin{verbatim}
+    for i in 0..bit_count {
+        let a_bit = (a >> i) & T::from(1);
+        let b_bit = (b >> i) & T::from(1);
+        let carry_bit = (carry >> i) & T::from(1);
+
+        let sum_bit = a_bit ^ b_bit ^ carry_bit;
+        carry = (a_bit & b_bit) | (b_bit & carry_bit) | (carry_bit & a_bit);
+
+        sum |= sum_bit << i;
+    }
+\end{verbatim}
+
+\subsection*{Step-by-Step Analysis}
+
+\subsubsection*{1. Isolate the i-th Bit of \texttt{a}, \texttt{b}, and \texttt{carry}}
+
+\begin{verbatim}
+let a_bit = (a >> i) & T::from(1);
+let b_bit = (b >> i) & T::from(1);
+let carry_bit = (carry >> i) & T::from(1);
+\end{verbatim}
+
+\begin{itemize}
+    \item \textbf{Purpose}: 
+    The purpose of these lines is to extract the i-th bit from each of the input integers \texttt{a} and \texttt{b}, and the carry from the previous bit's addition.
+    \item \textbf{Explanation}: 
+    The expression \texttt{a >> i} shifts the bits of \texttt{a} to the right by \texttt{i} positions, bringing the i-th bit to the least significant bit (LSB) position. The bitwise AND operation with \texttt{T::from(1)} isolates this bit. This process is repeated for \texttt{b} and \texttt{carry}.
+    \item \textbf{Invariant}: 
+    At the start of each iteration, \texttt{a\_bit}, \texttt{b\_bit}, and \texttt{carry\_bit} correctly represent the i-th bits of their respective values.
+\end{itemize}
+
+\subsubsection*{2. Compute the Sum Bit for the i-th Position}
+
+\begin{verbatim}
+let sum_bit = a_bit ^ b_bit ^ carry_bit;
+\end{verbatim}
+
+\begin{itemize}
+    \item \textbf{Purpose}: 
+    The goal here is to compute the sum bit at the i-th position based on the current bits of \texttt{a}, \texttt{b}, and \texttt{carry}.
+    \item \textbf{Explanation}: 
+    The XOR operation (\texttt{\^{}}) is used to determine the sum bit. XOR is used because it effectively adds the bits without considering carry propagation:
+    \begin{itemize}
+        \item If all bits (\texttt{a\_bit}, \texttt{b\_bit}, \texttt{carry\_bit}) are 0 or two are 1s, the result is 0.
+        \item If only one of the bits is 1, the result is 1.
+        \item This logic ensures that the sum bit reflects the correct value without considering the carry from the next operation.
+    \end{itemize}
+    \item \textbf{Invariant}: 
+    After this operation, \texttt{sum\_bit} holds the correct sum for the i-th bit position, based on the current values of \texttt{a\_bit}, \texttt{b\_bit}, and \texttt{carry\_bit}.
+\end{itemize}
+
+\subsubsection*{3. Compute the Carry for the Next Bit Position}
+
+\begin{verbatim}
+carry = (a_bit & b_bit) | (b_bit & carry_bit) | (carry_bit & a_bit);
+\end{verbatim}
+
+\begin{itemize}
+    \item \textbf{Purpose}: 
+    The purpose of this line is to calculate the carry that will be propagated to the next bit position.
+    \item \textbf{Explanation}: 
+    The carry is computed by checking which pairs of bits among \texttt{a\_bit}, \texttt{b\_bit}, and \texttt{carry\_bit} are both 1. If any two of these bits are 1, then there will be a carry to the next position:
+    \begin{itemize}
+        \item \texttt{a\_bit \& b\_bit}: Checks if both \texttt{a\_bit} and \texttt{b\_bit} are 1.
+        \item \texttt{b\_bit \& carry\_bit}: Checks if both \texttt{b\_bit} and \texttt{carry\_bit} are 1.
+        \item \texttt{carry\_bit \& a\_bit}: Checks if both \texttt{carry\_bit} and \texttt{a\_bit} are 1.
+        \item The OR operation (\texttt{|}) combines these conditions to determine if any of them are true, meaning a carry should be propagated.
+    \end{itemize}
+    \item \textbf{Invariant}: 
+    After this step, \texttt{carry} is correctly updated to reflect the carry-out from the current bit addition, to be used in the next iteration.
+\end{itemize}
+
+\subsubsection*{4. Update the Sum with the Computed Sum Bit}
+
+\begin{verbatim}
+sum |= sum_bit << i;
+\end{verbatim}
+
+\begin{itemize}
+    \item \textbf{Purpose}: 
+    This line updates the final sum by placing the computed \texttt{sum\_bit} into its correct position in the \texttt{sum}.
+    \item \textbf{Explanation}: 
+    The \texttt{sum\_bit} is shifted left by \texttt{i} positions to move it to its correct place in the final sum. The OR assignment operation (\texttt{|=}) then sets this bit in \texttt{sum}. This step accumulates the result as the loop progresses through each bit position.
+    \item \textbf{Invariant}: 
+    After each iteration, the \texttt{sum} variable correctly represents the sum of all processed bit positions so far, with the bits placed in their appropriate positions.
+\end{itemize}
+
+\section*{Conclusion}
+
+The loop in the \texttt{add\_bits} function iteratively processes each bit of the input values \texttt{a} and \texttt{b}, computing the sum and carry for each bit position. The loop invariant properties ensure that at every iteration, the correct sum and carry are maintained, leading to the final result after all bits have been processed. The use of bitwise operations allows for efficient computation, although understanding and reasoning about the code require familiarity with these low-level operations.
+
+\end{document}

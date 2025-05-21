@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+\title{Embedded-Focused Study Plan with FSM and Automata Integration}
+\author{stevemac321}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Overview}
+This study plan focuses on embedded systems development using **C**, **C++**, and **Rust**. It includes foundational data structures and algorithms from **CLRS** and **Foundations of Computer Science** (FCS) that are applicable to embedded systems, including a deep dive into **Finite State Machines (FSMs)**, **automata theory**, and practical microcontroller tasks. The plan is prioritized to ensure a well-rounded development of both theoretical and practical skills for embedded system design.
+
+\section*{Priority 1: Core Data Structures and Algorithms for Embedded Systems}
+\subsection*{1.1 Array-Based Data Structures}
+\begin{itemize}
+    \item Revisit \textbf{Heap Sort}:
+    \begin{itemize}
+        \item Implement in C++ and ensure a static array-based structure.
+        \item Rust is suitable here for implementing priority management without dynamic memory.
+    \end{itemize}
+    \item Implement \textbf{Priority Queues}:
+    \begin{itemize}
+        \item Array-based implementation to prioritize real-time events.
+        \item \textbf{Rust is highly suitable} due to its memory safety features and efficient handling of static arrays.
+    \end{itemize}
+    \item Explore \textbf{Circular Buffers} (Ring Buffers) for real-time data storage:
+    \begin{itemize}
+        \item Use in scenarios like sensor data collection or task queuing.
+        \item Study sliding window algorithms for efficient real-time processing.
+        \item \textbf{Rust is ideal} here for implementing efficient circular buffers with static memory guarantees.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{1.2 Graph Algorithms (with Hardware Focus)}
+\begin{itemize}
+    \item Implement \textbf{Breadth-First Search (BFS)} and \textbf{Depth-First Search (DFS)} in both C++ and Rust:
+    \begin{itemize}
+        \item Integrate with real-world scenarios such as hardware interrupt handling.
+        \item Use static adjacency matrices or lists for embedded performance.
+        \item \textbf{Rust is ideal} for these graph algorithms due to its safety and handling of recursion (especially DFS).
+    \end{itemize}
+    \item Implement \textbf{Dijkstra’s Algorithm} for shortest path finding:
+    \begin{itemize}
+        \item Rust is suitable, offering safe memory management for complex algorithms like Dijkstra’s.
+    \end{itemize}
+    \item Study and implement \textbf{Kruskal’s and Prim’s Algorithms} for spanning tree problems.
+\end{itemize}
+
+\subsection*{1.3 Finite State Machines (FSMs) and Automata}
+\begin{itemize}
+    \item \textbf{Study and Implement FSMs} in embedded systems:
+    \begin{itemize}
+        \item Revisit **state machines** and **automata theory** from \textit{Foundations of Computer Science} (Chapter 10.2-10.4).
+        \item Focus on **deterministic** and **nondeterministic automata** (Chapter 10.3 and 10.4) to gain deeper understanding.
+        \item Implement both types of FSMs in **C** and **Rust** for event-driven systems like **device control** and **protocol handling**.
+    \end{itemize}
+    \item Implement FSMs for real-time embedded applications:
+    \begin{itemize}
+        \item Design FSMs in **C** and **Rust** to handle:
+        \begin{itemize}
+            \item **Device Control** (e.g., power states, operational modes).
+            \item **Protocol Handling** (communication protocols with state-based input processing).
+            \item **Interrupt Management** (state transitions based on hardware interrupts).
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{From Regular Expressions to Automata and Vice Versa}:
+    \begin{itemize}
+        \item Study Chapter 10.8 and 10.9 from **Foundations of Computer Science** to understand how regular expressions map to automata.
+        \item Implement regular expression matching in Rust and relate it to automata theory.
+    \end{itemize}
+    \item Explore **hierarchical state machines (HSMs)** for complex systems:
+    \begin{itemize}
+        \item Study more advanced designs where nested states improve control flow for embedded tasks with multiple operational modes.
+    \end{itemize}
+\end{itemize}
+
+\section*{Priority 2: Microcontroller Hardware Tasks}
+\subsection*{2.1 Temperature, Voltage Monitoring, and Watchdog Timers}
+\begin{itemize}
+    \item \textbf{Temperature and Voltage Monitoring}:
+    \begin{itemize}
+        \item Use internal sensors, and store data in a circular buffer.
+        \item Implement priority queues to track highest and lowest readings.
+        \item These tasks are hardware-specific and best implemented in C for microcontroller access.
+    \end{itemize}
+    \item \textbf{Watchdog Timers}:
+    \begin{itemize}
+        \item Implement timers in C, log reset events in a circular queue, and track system health.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{2.2 Real-Time Clock (RTC) and Timestamp Handling}
+\begin{itemize}
+    \item Implement **binary search trees** for querying events based on timestamps.
+    \item Develop **scheduling algorithms** (round-robin, priority-based) to handle tasks based on time events.
+    \item Suitable for C++, though Rust can also handle timestamp management.
+\end{itemize}
+
+\subsection*{2.3 Signal Processing and Error Detection}
+\begin{itemize}
+    \item Study **Fast Fourier Transform (FFT)** for real-time signal processing.
+    \item Implement **Cyclic Redundancy Check (CRC)** and **Hamming Codes** for fault detection and correction.
+    \item Both C and Rust are good options, with Rust offering safety in buffer management.
+\end{itemize}
+
+\section*{Priority 3: Advanced Algorithms and Data Structures}
+\subsection*{3.1 Dynamic Programming with Embedded Constraints}
+\begin{itemize}
+    \item Implement basic **dynamic programming algorithms** (Knapsack, Fibonacci) using array-based approaches.
+    \item Explore space-efficient implementations suitable for embedded systems.
+    \item Rust is highly suitable for ensuring memory safety in dynamic programming.
+\end{itemize}
+
+\subsection*{3.2 Real-Time Scheduling and Task Management}
+\begin{itemize}
+    \item Study and implement **real-time scheduling algorithms**:
+    \begin{itemize}
+        \item Focus on round-robin, earliest deadline first (EDF), and other algorithms.
+    \end{itemize}
+    \item Integrate task management with hardware interrupts and timers.
+    \item Best suited for C/C++ for low-level control, though Rust can handle scheduling in embedded OS environments.
+\end{itemize}
+
+\section*{Priority 4: Embedded-Specific Data Structures}
+\subsection*{4.1 Array-Based Implementations}
+\begin{itemize}
+    \item **Tries**:
+    \begin{itemize}
+        \item Implement as array-based structures for string pattern matching.
+        \item \textbf{Rust} is highly suitable for implementing tries due to its strong handling of recursive data structures.
+    \end{itemize}
+    \item **B-Trees**:
+    \begin{itemize}
+        \item Study array-based or fixed-memory B-tree implementations for embedded databases.
+        \item Best suited for C++, though Rust can be used for its safety in managing complex tree structures.
+    \end{itemize}
+\end{itemize}
+
+\section*{Conclusion}
+This plan integrates both the core algorithms and data structures from **CLRS** and **Foundations of Computer Science**, emphasizing **FSMs**, **automata**, and graph algorithms, alongside hardware-specific tasks. FSM design is central to embedded systems, and this plan includes practical implementations in both **C** and **Rust** for real-time system management. Topics such as **regular expressions**, **automata**, and **state machines** are tied to both theoretical foundations and practical applications in protocol handling, control systems, and task scheduling.
+\end{document}

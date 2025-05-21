@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{STM32 Project Setup Report}
+\author{User}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This report details the steps taken to configure, generate code, and debug an STM32 project using STM32CubeMX, VisualGDB, and OpenOCD. The goal was to configure USART, GPIO, and basic system peripherals, generate the necessary initialization code, and set up debugging using ST-Link.
+
+\section{STM32CubeMX Configuration}
+\begin{enumerate}
+    \item \textbf{USART Configuration}
+    \begin{itemize}
+        \item Configured \texttt{USART1} with the following parameters:
+        \begin{itemize}
+            \item Baud Rate: 9600 (or 115200 depending on application)
+            \item Parity: None
+            \item Flow Control: Disabled
+        \end{itemize}
+        \item Mapped \texttt{PA9} as \texttt{USART1\_TX} and \texttt{PA10} as \texttt{USART1\_RX}.
+    \end{itemize}
+
+    \item \textbf{GPIO Configuration}
+    \begin{itemize}
+        \item Configured \texttt{PA5} as \texttt{GPIO\_Output} for an LED.
+        \item Default settings for GPIO: Output level low, Output Push-Pull, No pull-up/pull-down resistors, and low speed.
+    \end{itemize}
+
+    \item \textbf{System Configuration (Sys)} 
+    \begin{itemize}
+        \item Enabled Serial Wire Debug (\texttt{SWD}) for debugging.
+    \end{itemize}
+
+    \item \textbf{Clock Configuration}
+    \begin{itemize}
+        \item Configured system clock using the HSE (High-Speed External) with a crystal oscillator.
+        \item Set PLL to generate the required system clock frequency.
+    \end{itemize}
+
+    \item \textbf{SysTick and Wake-Up}
+    \begin{itemize}
+        \item \texttt{SysTick} enabled by default for system timing.
+        \item Wake-up sources and low-power modes left at default.
+    \end{itemize}
+
+    \item \textbf{Watchdog Timers}
+    \begin{itemize}
+        \item Both \texttt{IWDG} and \texttt{WWDG} were left disabled for this development phase.
+    \end{itemize}
+
+    \item \textbf{Additional Peripherals}
+    \begin{itemize}
+        \item DMA was not enabled, as it was unnecessary for this basic setup.
+    \end{itemize}
+\end{enumerate}
+
+\section{VisualGDB Setup}
+\begin{enumerate}
+    \item Successfully integrated STM32CubeMX with VisualGDB.
+    \item Debugging method selected: \texttt{OpenOCD ST-Link Fork}.
+    \item Debug settings:
+    \begin{itemize}
+        \item Debug output from OpenOCD: Enabled.
+        \item USB Serial Number passed to OpenOCD: Disabled (only one ST-Link in use).
+        \item GDB Commands used:
+        \begin{lstlisting}
+set remotetimeout 60
+target remote :$$SYS:GDB_PORT$$
+monitor arm semihosting enable
+mon halt
+load
+mon reset init
+        \end{lstlisting}
+    \end{itemize}
+\end{enumerate}
+
+\section{Code Generation and Debugging}
+\begin{enumerate}
+    \item Code was successfully generated using STM32CubeMX with an \texttt{.ioc} file.
+    \item VisualGDB built the project, and the debugger hit the breakpoint.
+\end{enumerate}
+
+\section{Next Steps}
+The next steps involve resolving the issue with viewing hardware registers during debugging. The project is currently functional with breakpoints being hit, but hardware register visibility needs to be addressed.
+
+\end{document}

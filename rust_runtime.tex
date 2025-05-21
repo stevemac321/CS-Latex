@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Summary of Rust Runtime}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Memory Management}
+\textbf{Ownership System (Compile-Time):} Rust's ownership system, including borrowing and lifetimes, is enforced entirely at compile time. This ensures memory safety and prevents data races without requiring a garbage collector or runtime checks.
+
+\textbf{Heap Allocation (Runtime):} While the ownership system is compile-time, heap allocations (e.g., using \texttt{Box}, \texttt{Vec}, or \texttt{String}) occur at runtime. Rust’s standard library provides the allocator, but the ownership system ensures that these allocations are safe and that deallocations happen automatically when values go out of scope.
+
+\section{Traits and Polymorphism}
+\textbf{Static Dispatch (Compile-Time):} Most of Rust’s trait system is resolved at compile time. The compiler generates the appropriate code for trait methods where they are used.
+
+\textbf{Dynamic Dispatch (Runtime):} When using trait objects (e.g., \texttt{dyn Trait}), Rust uses dynamic dispatch. This involves a vtable (virtual table) lookup at runtime to determine which method to call. This introduces some runtime overhead.
+
+\section{Threading}
+\textbf{Concurrency Primitives:} Rust’s standard library provides concurrency primitives like threads, channels, and mutexes, which rely on underlying OS features and involve runtime support.
+
+\textbf{Thread Management:} Rust’s runtime manages thread creation, scheduling, joining, and synchronization, though the heavy lifting is done by the OS.
+
+\section{Standard Library}
+\textbf{I/O Operations:} Rust’s standard library handles I/O operations, which involve system calls and runtime support to interface with the OS.
+
+\textbf{Error Handling:} While Rust’s \texttt{Result} and \texttt{Option} types are compile-time constructs, some runtime checks occur when handling these types.
+
+\section{Start-up and Clean-up}
+\textbf{Initialization:} Before the \texttt{main} function is called, Rust sets up a minimal runtime environment, including setting up the stack and initializing static variables.
+
+\textbf{Clean-up:} After \texttt{main} returns, the runtime ensures any remaining resources are cleaned up, though this is minimal.
+
+\section{Language Features}
+\textbf{Closures:} Rust’s closures can capture their environment. Depending on how they capture variables, there might be a small amount of runtime overhead to manage these captures.
+
+\section{Conclusion}
+Rust's runtime is intentionally minimal, focusing on essential tasks like panic handling, dynamic dispatch, threading, I/O, and some initialization and clean-up tasks. The bulk of Rust’s safety guarantees are enforced at compile-time, leaving only a minimal runtime footprint.
+
+\end{document}

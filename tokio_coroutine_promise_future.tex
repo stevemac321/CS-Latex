@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Comparison of Tokio and C++ Coroutines}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Comparison of Tokio and C++ Coroutines}
+
+Yes, Tokio in Rust is conceptually similar to coroutines in C++. Both Tokio and coroutines allow you to write asynchronous, non-blocking code that looks and behaves like synchronous code. Here's a comparison to help clarify:
+
+\subsection{1. Coroutines in C++}
+\begin{itemize}
+    \item \textbf{C++ Coroutines}: Introduced in C++20, coroutines provide a way to write asynchronous code that can suspend execution and resume later. They allow you to write asynchronous code in a sequential style, which improves readability and maintainability.
+    \item \textbf{co\_await and co\_return}: In C++ coroutines, you use \texttt{co\_await} to suspend the coroutine and \texttt{co\_return} to return a value. The coroutine can be resumed later when the awaited operation is complete.
+    \item \textbf{Stackless Coroutines}: C++ coroutines are typically "stackless," meaning they do not have their own stack; they store their state in a small structure known as a "promise object."
+\end{itemize}
+
+\subsection{2. Tokio in Rust}
+\begin{itemize}
+    \item \textbf{Async/Await in Rust}: Rust's async/await syntax is similar to C++ coroutines. Functions marked with \texttt{async} return a \texttt{Future}, which represents a value that may not be ready yet. The \texttt{await} keyword is used to yield control until the future is ready, effectively pausing the function.
+    \item \textbf{Futures}: In Rust, async functions return \texttt{Future} objects, which encapsulate the asynchronous computation. These futures are polled by the runtime (like Tokio) until they are ready.
+    \item \textbf{Tokio Runtime}: Tokio provides the infrastructure to execute these async tasks, including task scheduling, I/O handling, and timers. The runtime is responsible for driving the \texttt{Future}s to completion.
+\end{itemize}
+
+\subsection{Similarities}
+\begin{itemize}
+    \item \textbf{Asynchronous Execution}: Both C++ coroutines and Rust’s async/await are used to write non-blocking asynchronous code.
+    \item \textbf{Sequential Code Style}: Both allow you to write code that appears sequential, even though it may be executing asynchronously.
+    \item \textbf{Yielding Execution}: In both cases, you can yield execution until a certain condition is met (e.g., I/O completion).
+\end{itemize}
+
+\subsection{Differences}
+\begin{itemize}
+    \item \textbf{Runtime}: Rust's async/await is tightly coupled with a runtime like Tokio, which handles the scheduling and execution of tasks. C++ coroutines are more flexible and can be used with various coroutine libraries, but they do not require a runtime in the same way Rust’s async/await does.
+    \item \textbf{Ecosystem}: Tokio is a complete ecosystem for asynchronous programming in Rust, offering utilities for networking, timers, synchronization, etc. C++ coroutines are more of a language feature, and you may need to use additional libraries (like Boost or a custom task scheduler) to get similar functionality.
+    \item \textbf{Memory Safety}: Rust's ownership model and borrow checker provide additional guarantees around memory safety, which can be particularly important in asynchronous code. C++ coroutines do not provide this level of safety out-of-the-box.
+\end{itemize}
+
+\subsection{Summary of Tokio and Coroutines}
+\begin{itemize}
+    \item \textbf{Tokio} uses Rust's async/await syntax and \texttt{Future} trait rather than the promise-future mechanism. It manages task scheduling and execution, making async tasks appear to run concurrently, even if they are in a single-threaded context.
+    \item \textbf{C++ Coroutines} can use promises and futures for managing asynchronous results, with \texttt{co\_await} used to suspend and resume coroutines.
+    \item \textbf{Single vs. Multi-Threaded}: Tokio can run tasks in a single thread using cooperative multitasking or across multiple threads for true concurrency, depending on the runtime configuration.
+\end{itemize}
+
+\section{Promises and Futures in C++}
+\subsection{What is a Promise?}
+A \textbf{promise} is a synchronization primitive that represents a value or an exception that will be available at some point in the future. Promises are typically used in conjunction with \textbf{futures} to manage the flow of asynchronous operations. In many programming languages, including C++, a promise is used to set the result of an asynchronous operation, while the corresponding future is used to retrieve that result.
+
+\subsection{How Promises and Futures Work Together}
+\begin{itemize}
+    \item \textbf{Promise}: A promise is an object that can be used to set the value or exception of a future. It's a write-side interface to the asynchronous operation. The promise is usually fulfilled (i.e., the value is set) by the producer of the asynchronous result.
+    \item \textbf{Future}: A future is an object that represents a value that will be available at some later time. It's the read-side interface to the asynchronous operation. The consumer of the asynchronous result waits on the future to get the value that the promise will eventually set.
+    \item \textbf{Packaged Task}: In C++, a \textbf{packaged task} is a function wrapper that can be invoked asynchronously and can store its result in a future. A packaged task is often associated with a promise and a future:
+    \begin{itemize}
+        \item \textbf{Promise}: The packaged task completes by setting the result in the promise.
+        \item \textbf{Future}: The result of the packaged task can be retrieved from the future.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Stackless Coroutines and Promises in C++}
+\begin{itemize}
+    \item \textbf{Coroutines}: C++20 introduced stackless coroutines, which are a way to write asynchronous code that can suspend and resume execution without maintaining a separate stack for each coroutine. This makes them lightweight and efficient.
+    \item \textbf{Promise Object in Coroutines}: When a coroutine is defined, a promise object is associated with it. This promise object is responsible for managing the coroutine's state, including setting the final result (or exception) that the coroutine will return via a future.
+    \item \textbf{Awaiting}: When you \texttt{co\_await} in a coroutine, you're effectively waiting on a future that is backed by a promise. The coroutine can suspend execution until the awaited future is ready.
+\end{itemize}
+
+\section{Tokio Runtime and Asynchronicity}
+
+\subsection{Promise-Future Connection in Tokio}
+\begin{itemize}
+    \item Tokio does not directly use the same promise-future connection pattern found in C++. Instead, Tokio relies on Rust's \texttt{Future} trait and the async/await syntax to manage asynchronous tasks. In Rust, an \texttt{async} function implicitly returns a \texttt{Future}, which represents a value that will be available later.
+    \item When you \texttt{await} a future in Tokio, you're suspending the execution of the async function until the future is ready, similar to how you would use \texttt{co\_await} in C++ coroutines. However, Rust’s futures are designed to be non-blocking and are managed by the Tokio runtime rather than by a manual promise-future mechanism.
+\end{itemize}
+
+\subsection{Pseudo-Asynchronicity in Tokio}
+\begin{itemize}
+    \item \textbf{Single-Threaded Context}: Tokio can run multiple async tasks within a single thread by using a cooperative multitasking model. This means that tasks yield control explicitly (when they \texttt{await} something), allowing other tasks to run. This is similar to how stackless coroutines work in a single thread.
+    \item \textbf{Multi-Threaded Context}: Tokio also supports a multi-threaded runtime, where tasks can be distributed across multiple threads, allowing true parallel execution. This is where Tokio's runtime shines, as it efficiently manages the scheduling of tasks across multiple threads, but still, each task runs independently and cooperatively within its own thread.
+    \item \textbf{Pseudo-Asynchronicity}: In both single-threaded and multi-threaded modes, Tokio creates the illusion of asynchronicity by interleaving the execution of tasks. Tasks only run when they have something to do, and they yield control back to the runtime when they are waiting on I/O or other operations, allowing other tasks to proceed.
+\end{itemize}
+
+\end{document}

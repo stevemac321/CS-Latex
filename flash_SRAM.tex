@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Operating System Process vs. Firmware}
+
+Let's break down the differences and analogs between a \textbf{running process} in an OS and \textbf{firmware} running on a microcontroller:
+
+\subsection*{1. Operating System Process vs. Firmware}
+\begin{itemize}
+    \item \textbf{Operating System Process}:
+    \begin{itemize}
+        \item A \textbf{process} in an operating system is an instance of a running program.
+        \item It has its own \textbf{virtual memory} space, including:
+        \begin{itemize}
+            \item \textbf{Text Segment}: Contains the program’s code (instructions).
+            \item \textbf{Data Segment}: Stores global and static variables.
+            \item \textbf{Heap}: For dynamically allocated memory during runtime.
+            \item \textbf{Stack}: For function calls, local variables, and return addresses.
+        \end{itemize}
+        \item The OS \textbf{schedules} processes, manages resources, and provides system services.
+    \end{itemize}
+    \item \textbf{Firmware} (like on your microcontroller):
+    \begin{itemize}
+        \item Firmware is essentially a \textbf{single, continuous program} that runs directly on the microcontroller.
+        \item It does \textbf{not have virtual memory} or the concept of separate processes.
+        \item The code runs from \textbf{flash memory}, and the data is either in \textbf{flash}, \textbf{SRAM}, or \textbf{peripheral memory}.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{2. Flash vs. RAM for Firmware}
+\begin{itemize}
+    \item \textbf{Flash Memory} (Non-Volatile):
+    \begin{itemize}
+        \item Holds the \textbf{program code} (instructions) and \textbf{read-only constants}.
+        \item When the microcontroller boots, it starts executing code directly from \textbf{flash}.
+        \item Flash memory is not typically used for runtime data storage because writing to it is slow and limited.
+    \end{itemize}
+    \item \textbf{SRAM (Static RAM)}:
+    \begin{itemize}
+        \item SRAM is the microcontroller's \textbf{volatile memory} used for \textbf{dynamic data}.
+        \item Global variables (if mutable) are initialized by copying from flash to SRAM at startup.
+        \item The \textbf{stack} and \textbf{heap} for runtime memory management are located in SRAM.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{3. Interrupt Table (Vector Table) in Flash}
+\begin{itemize}
+    \item The \textbf{Interrupt Vector Table} is stored in \textbf{flash memory} by default and contains addresses of the interrupt service routines (ISRs).
+    \item This table persists in flash since it doesn't change dynamically during runtime.
+\end{itemize}
+
+\subsection*{4. Analogies Between an OS Process and Firmware}
+\begin{itemize}
+    \item \textbf{Text Segment (Process)} $\leftrightarrow$ \textbf{Flash Memory (Firmware)}:
+    \begin{itemize}
+        \item The code (instructions) in both cases is stored in non-volatile memory (disk for processes, flash for firmware).
+    \end{itemize}
+    \item \textbf{Data Segment (Process)} $\leftrightarrow$ \textbf{Flash/SRAM (Firmware)}:
+    \begin{itemize}
+        \item In a process, static and global variables reside in the data segment. In firmware, read-only data stays in flash, and read/write data gets copied to SRAM during initialization.
+    \end{itemize}
+    \item \textbf{Heap (Process)} $\leftrightarrow$ \textbf{Heap in SRAM (Firmware)}:
+    \begin{itemize}
+        \item Both use a heap for dynamically allocated memory, but in firmware, it's allocated directly from SRAM.
+    \end{itemize}
+    \item \textbf{Stack (Process)} $\leftrightarrow$ \textbf{Stack in SRAM (Firmware)}:
+    \begin{itemize}
+        \item Both use a stack for managing function calls and local variables. In firmware, the stack is located in SRAM.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{5. Absence of Virtual Memory}
+\begin{itemize}
+    \item Firmware lacks \textbf{virtual memory} and runs directly in \textbf{physical memory} (flash and SRAM).
+    \item There’s no paging or segmentation as in an OS, meaning firmware runs with full access to the hardware's memory map.
+\end{itemize}
+
+\subsection*{6. Single Continuous Program vs. Multitasking Processes}
+\begin{itemize}
+    \item Firmware is typically a \textbf{single continuous program} running on the microcontroller. 
+    \item There’s no concept of multiple processes or multitasking unless you implement a \textbf{real-time operating system (RTOS)}.
+\end{itemize}
+
+\end{document}

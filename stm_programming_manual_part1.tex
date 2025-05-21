@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Programming Manual}
+
+\tableofcontents
+
+\section*{Content}
+\begin{enumerate}
+    \item Typographical conventions \dotfill 12
+    \item List of abbreviations for registers \dotfill 12
+    \item About the STM32 Cortex-M4 processor and core peripherals \dotfill 13
+    \begin{enumerate}
+        \item System level interface \dotfill 14
+        \item Integrated configurable debug \dotfill 14
+        \item Cortex-M4 processor features and benefits summary \dotfill 14
+        \item Cortex-M4 core peripherals \dotfill 15
+    \end{enumerate}
+    \item The Cortex-M4 processor \dotfill 16
+    \begin{enumerate}
+        \item Programmers model \dotfill 16
+        \begin{enumerate}
+            \item Processor mode and privilege levels for software execution \dotfill 16
+            \item Stacks \dotfill 16
+            \item Core registers \dotfill 17
+            \item Exceptions and interrupts \dotfill 25
+            \item Data types \dotfill 25
+            \item The Cortex microcontroller software interface standard (CMSIS) \dotfill 25
+        \end{enumerate}
+        \item Memory model \dotfill 27
+        \begin{enumerate}
+            \item Memory regions, types and attributes \dotfill 28
+            \item Memory system ordering of memory accesses \dotfill 28
+            \item Behavior of memory accesses \dotfill 29
+            \item Software ordering of memory accesses \dotfill 30
+            \item Bit-banding \dotfill 31
+            \item Memory endianness \dotfill 33
+            \item Synchronization primitives \dotfill 33
+            \item Programming hints for the synchronization primitives \dotfill 35
+        \end{enumerate}
+        \item Exception model \dotfill 36
+        \begin{enumerate}
+            \item Exception states \dotfill 36
+            \item Exception types \dotfill 36
+            \item Exception handlers \dotfill 38
+            \item Vector table \dotfill 39
+            \item Exception priorities \dotfill 40
+            \item Interrupt priority grouping \dotfill 40
+            \item Exception entry and return \dotfill 41
+        \end{enumerate}
+        \item Fault handling \dotfill 43
+        \begin{enumerate}
+            \item Fault types \dotfill 44
+            \item Fault escalation and hard faults \dotfill 45
+            \item Fault status registers and fault address registers \dotfill 46
+            \item Lockup \dotfill 46
+        \end{enumerate}
+        \item Power management \dotfill 46
+        \begin{enumerate}
+            \item Entering sleep mode \dotfill 47
+            \item Wakeup from sleep mode \dotfill 47
+            \item External event input / extended interrupt and event input \dotfill 48
+            \item Power management programming hints \dotfill 48
+        \end{enumerate}
+    \end{enumerate}
+    \item The STM32 Cortex-M4 instruction set \dotfill 49
+    \begin{enumerate}
+        \item Instruction set summary \dotfill 49
+        \item CMSIS intrinsic functions \dotfill 57
+        \item About the instruction descriptions \dotfill 59
+        \begin{enumerate}
+            \item Operands \dotfill 59
+            \item Restrictions when using PC or SP \dotfill 59
+            \item Flexible second operand \dotfill 59
+            \item Shift operations \dotfill 61
+            \item Address alignment \dotfill 64
+            \item PC-relative expressions \dotfill 64
+            \item Conditional execution \dotfill 64
+            \item Instruction width selection \dotfill 67
+        \end{enumerate}
+        \item Memory access instructions \dotfill 68
+        \begin{enumerate}
+            \item ADR \dotfill 69
+            \item LDR and STR, immediate offset \dotfill 70
+            \item LDR and STR, register offset \dotfill 72
+            \item LDR and STR, unprivileged \dotfill 73
+            \item LDR, PC-relative \dotfill 74
+            \item LDM and STM \dotfill 75
+            \item PUSH and POP \dotfill 77
+            \item LDREX and STREX \dotfill 78
+            \item CLREX \dotfill 79
+        \end{enumerate}
+        \item General data processing instructions \dotfill 80
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

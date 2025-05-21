@@ -1,0 +1,41 @@
+\documentclass{article}
+\begin{document}
+
+\section{Notes on Taking Logarithms and Stirling's Approximation}
+
+\subsection{Taking Logarithms}
+Taking logarithms is a mathematical technique used to simplify expressions involving multiplicative or exponential growth. The logarithmic function helps convert multiplication into addition and division into subtraction, making it easier to analyze large numbers and growth patterns.
+
+In algorithm analysis, logarithms are particularly useful when dealing with recursive or divide-and-conquer algorithms, such as:
+\begin{itemize}
+    \item \textbf{Binary Search}: The number of comparisons required to search a sorted list of \( n \) elements is \( O(\log_2 n) \).
+    \item \textbf{Sorting Algorithms (e.g., Merge Sort, Heap Sort)}: These algorithms have a time complexity of \( O(n \log n) \), due to the need to repeatedly divide and merge elements.
+\end{itemize}
+
+Logarithmic functions are monotonically increasing, meaning that applying a logarithmic function to both sides of an inequality preserves the inequality, which is useful in mathematical proofs.
+
+\subsection{Stirling's Approximation}
+Stirling's approximation is a formula used to approximate the value of factorials for large \( n \). The formula is:
+\[
+n! \approx \sqrt{2 \pi n} \left(\frac{n}{e}\right)^n
+\]
+Where \( \pi \) is approximately 3.14159 and \( e \) is Euler's number, approximately 2.71828.
+
+Taking the logarithm of both sides of Stirling's approximation gives:
+\[
+\log(n!) \approx n \log(n) - n
+\]
+This approximation simplifies the growth of \( n! \) to something closer to \( n \log n \), which is easier to analyze in the context of algorithm complexity.
+
+\subsection{Applications in Algorithm Analysis}
+Stirling's approximation is useful in understanding algorithms that involve permutations or combinations, such as:
+\begin{itemize}
+    \item **Decision trees** in sorting algorithms, where the number of comparisons can be related to \( \log(n!) \).
+    \item **Complexity analysis** of algorithms that grow factorially, such as some brute-force or combinatorial algorithms.
+\end{itemize}
+In most cases, Stirling's approximation helps reduce factorial expressions to something more manageable, like \( n \log n \), when analyzing the time complexity of algorithms.
+
+\subsection{Reference}
+For further reading and a more detailed explanation of Stirling's approximation and logarithmic functions, see \textit{Concrete Mathematics} by Donald Knuth, et al., particularly starting on page 112 in the Number Theory chapter.
+
+\end{document}

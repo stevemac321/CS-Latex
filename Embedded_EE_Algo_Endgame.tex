@@ -1,0 +1,178 @@
+\documentclass{article}
+\usepackage{enumitem}
+
+\begin{document}
+
+\section*{Group 1: Morning Book Study (Alternate Focus Areas)}
+
+You will alternate between the following books each morning, focusing on key topics and taking notes:
+
+\begin{enumerate}
+    \item \textbf{Valvano’s Book}:
+    \begin{itemize}
+        \item Read the first 40 pages (introductory concepts on computers and electronics).
+        \item Ongoing study of embedded systems, focusing on how it ties into your practical projects.
+    \end{itemize}
+
+    \item \textbf{Yiu’s "Embedded Systems"}:
+    \begin{itemize}
+        \item Focus on chapters related to ADC and microcontroller-specific concepts.
+        \item Supplement Valvano's book for hardware configuration and register-level understanding.
+    \end{itemize}
+
+    \item \textbf{"The Art of Electronics"}:
+    \begin{itemize}
+        \item Supplement Valvano with foundational electronics concepts, especially on signals, sinusoidal functions, and ADC.
+        \item Focus on introductory chapters that explain electronics fundamentals, and reference page 14 on sinusoidal signals.
+    \end{itemize}
+
+    \item \textbf{Brown’s Book}:
+    \begin{itemize}
+        \item Use as a reference for minimal projects and automation, particularly ADC and hardware setup.
+        \item Supplement Yiu and Valvano for specific topics like ADC and signal processing.
+    \end{itemize}
+
+    \item \textbf{CLRS and Sedgewick}:
+    \begin{itemize}
+        \item Continue with your focus on sliding window algorithms, KMP, Rabin-Karp, tries, and B-trees.
+        \item De-prioritize the rest of the data structures since you're already familiar with them.
+    \end{itemize}
+\end{enumerate}
+
+\section*{Group 2: Follow-Up on FFT Applied to ADC}
+
+\begin{enumerate}
+    \item \textbf{Review Polynomials and Coefficients in Relation to FFT}:
+    \begin{itemize}
+        \item \textbf{Reference Books}: CLRS and Sedgewick. Review sections on polynomials and their role in algorithms, focusing on their application in FFT.
+        \item \textbf{Action}: Understand how polynomials form the basis for the FFT algorithm (e.g., how FFT decomposes a signal into sinusoidal components).
+        \item \textbf{Goal}: Grasp the mathematical foundation (polynomials, coefficients) that underpins the FFT.
+    \end{itemize}
+    
+    \item \textbf{Basic Electronics and ADC Fundamentals}:
+    \begin{itemize}
+        \item \textbf{Reference Books}: The Art of Electronics, Valvano’s Book, Yiu’s "Embedded Systems", and Brown’s Book.
+        \item \textbf{Action}: Map out how the ADC works, particularly in the STM32 context. Extract formulas from the books and locate corresponding sections in the STM32 datasheets/manuals.
+        \item \textbf{Goal}: Develop a clear understanding of ADC operations and their connection to signal processing with FFT.
+    \end{itemize}
+
+    \item \textbf{Sinusoidal Signals and Magnitude}:
+    \begin{itemize}
+        \item \textbf{Reference}: The Art of Electronics, page 14.
+        \item \textbf{Action}: Learn the meaning of “magnitude” in the context of FFT and how it represents frequency components.
+        \item \textbf{Goal}: Understand the breakdown of sinusoidal signals via FFT and the interpretation of magnitude.
+    \end{itemize}
+
+    \item \textbf{FFT Algorithm Based on Sedgewick}:
+    \begin{itemize}
+        \item \textbf{Reference}: Sedgewick’s Algorithms.
+        \item \textbf{Action}: Continue using Sedgewick’s FFT implementation in your project. Verify the algorithm with real-time ADC data.
+        \item \textbf{Goal}: Ensure the FFT algorithm works effectively in your project.
+    \end{itemize}
+
+    \item \textbf{Research the CMSIS FFT Library (for reference only)}:
+    \begin{itemize}
+        \item \textbf{Action}: Explore CMSIS FFT to familiarize yourself with the professional tools available for future reference.
+        \item \textbf{Goal}: Gain awareness of how CMSIS libraries could be leveraged in the future.
+    \end{itemize}
+
+    \item \textbf{Formulas and Practical Applications}:
+    \begin{itemize}
+        \item \textbf{Action}: Gather key formulas related to ADC (e.g., converting ADC values to voltages, scaling signals for FFT input) and confirm their presence in the STM32 manual.
+        \item \textbf{Goal}: Have practical formulas ready for your project.
+    \end{itemize}
+\end{enumerate}
+
+\section*{Group 3: Algorithms and Data Structures}
+
+\subsection*{1.1 Algorithms}
+\begin{itemize}
+    \item \textbf{Fast Fourier Transform (FFT)}: Study the algorithm for frequency domain analysis, focusing on efficient computation in real-time systems.
+    \item \textbf{Sliding Window Algorithm}: Used for maintaining a subset of items (e.g., moving average or window-based data aggregation) in real-time data streams.
+    \item \textbf{Pattern Matching}:
+    \begin{itemize}
+        \item KMP Algorithm: Knuth-Morris-Pratt for efficient string matching.
+        \item Rabin-Karp Algorithm: Used for detecting patterns in streams of data.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{1.2 Data Structures}
+\begin{itemize}
+    \item \textbf{Trie}: Efficient for storing and querying dynamic sequences or strings.
+    \item \textbf{B-tree}: Balanced tree structure used for large datasets.
+\end{itemize}
+
+\subsection*{2. Integrated Embedded Systems Tasks (Hardware + Algorithms)}
+\subsubsection*{2.1 Priority 1: Foundation-Level Tasks}
+\begin{itemize}
+    \item \textbf{Temperature and Voltage Monitoring}
+    \begin{itemize}
+        \item Data Source: Internal temperature sensor, voltage reference (VREFINT)
+        \item Data Structures: Ring Buffer, Priority Queue
+        \item Algorithms: Moving Average, Exponential Smoothing, Threshold Detection
+    \end{itemize}
+    
+    \item \textbf{Watchdog Timers}
+    \begin{itemize}
+        \item Data Source: Independent and Window Watchdog Timers (IWDG, WWDG)
+        \item Data Structures: Circular Queue
+        \item Algorithms: Timeout Management, Monitoring and Alerting
+    \end{itemize}
+    
+    \item \textbf{Real-Time Clock (RTC) \& Timestamps}
+    \begin{itemize}
+        \item Data Source: RTC, SysTick timer
+        \item Data Structures: Binary Search Tree, B-tree
+        \item Algorithms: Scheduling Algorithms (Round-robin, priority-based), Binary Search
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{2.2 Priority 2: Intermediate-Level Tasks}
+\begin{itemize}
+    \item \textbf{Interrupt-Driven Task Scheduling}
+    \begin{itemize}
+        \item Data Source: Timers, interrupts
+        \item Data Structures: Priority Queue, Doubly Linked List
+        \item Algorithms: Round-Robin Scheduling, Earliest Deadline First (EDF)
+    \end{itemize}
+    
+    \item \textbf{Real-Time Signal Processing with ADC}
+    \begin{itemize}
+        \item Data Source: Analog-to-Digital Converter (ADC)
+        \item Data Structures: Circular Queue, FFT Buffer
+        \item Algorithms: FFT, Sliding Window, Finite State Machine (FSM) for pattern recognition
+    \end{itemize}
+    
+    \item \textbf{Fault Monitoring and Recovery}
+    \begin{itemize}
+        \item Data Source: Non-Maskable Interrupt (NMI), system faults
+        \item Data Structures: HashMap, Circular Queue
+        \item Algorithms: Error Detection (Hamming Code), CRC
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{2.3 Priority 3: Advanced-Level Tasks}
+\begin{itemize}
+    \item \textbf{DMA for Data Streaming}
+    \begin{itemize}
+        \item Data Source: DMA controller, ADC
+        \item Data Structures: Ring Buffer, Trie
+        \item Algorithms: Pattern Matching (KMP, Rabin-Karp), Circular Buffer Management
+    \end{itemize}
+    
+    \item \textbf{Memory Management and Flash Programming}
+    \begin{itemize}
+        \item Data Source: Flash memory, EEPROM
+        \item Data Structures: HashMap, Linked List
+        \item Algorithms: Wear-Leveling, CRC for Data Integrity
+    \end{itemize}
+    
+    \item \textbf{Power Consumption Monitoring}
+    \begin{itemize}
+        \item Data Source: Internal power sensors
+        \item Data Structures: Priority Queue, HashMap
+        \item Algorithms: Power Optimization (Dynamic Voltage/Frequency Scaling), Energy Profiling
+    \end{itemize}
+\end{itemize}
+
+\end{document}

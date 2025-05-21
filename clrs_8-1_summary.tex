@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\section{Decision Tree - Theorem 8.1 Lesson}
+
+\subsection{1. The Decision Tree and Permutations}
+For a \textbf{comparison sort} on \( N \) elements, every possible outcome (or permutation) of the input can be represented as a \textit{leaf} in a \textit{decision tree}.
+\begin{itemize}
+    \item \textbf{Permutations}: For \( N \) elements, there are \( N! \) possible ways to arrange them, so there are \( N! \) reachable leaves in the decision tree. Sorting \( N \) elements requires handling all these permutations, demonstrating that sorting is fundamentally about managing permutations, not just iteration.
+\end{itemize}
+
+\subsection{2. \( N! \) and Stirling’s Approximation}
+When dealing with the factorial \( N! \), its growth is \textit{super-exponential}, making direct calculation of comparison costs difficult for large \( N \). 
+
+\begin{itemize}
+    \item \textbf{Stirling’s Approximation} helps simplify \( N! \) by approximating it with a logarithmic term, \( N \log N \). This approximation is essential for deriving bounds on the number of comparisons in a sort and allows the use of logarithms in the proof.
+\end{itemize}
+
+\subsection{3. Logarithms and the Height of the Decision Tree}
+The height \( h \) of the decision tree defines the worst-case number of comparisons in a sorting algorithm.
+
+\begin{itemize}
+    \item The number of reachable leaves in the tree is at least \( N! \), and the number of leaves in a binary tree of height \( h \) is at most \( 2^h \). This gives the inequality:
+    \[
+    N! \leq L \leq 2^h
+    \]
+    \item \textbf{Taking logarithms}: Applying logarithms to both sides of the inequality simplifies it to:
+    \[
+    h \geq \log_2(N!)
+    \]
+    which provides a lower bound on the number of comparisons based on the height of the decision tree.
+\end{itemize}
+
+\subsection{4. Theorem 8.1 and Asymptotic Optimality}
+\begin{itemize}
+    \item \textbf{Theorem 8.1} states that any comparison sort algorithm requires \( \Omega(N \log N) \) comparisons in the worst case. This lower bound applies to any algorithm that uses comparisons to sort, such as heapsort or mergesort.
+    \item \textbf{Heapsort and Mergesort} are \textit{asymptotically optimal} comparison sorts because they achieve the lower bound \( \Omega(N \log N) \) in both worst-case and average-case scenarios. Their upper bound is also \( O(N \log N) \), meaning the worst-case number of comparisons matches the lower bound, making them optimal within this class.
+\end{itemize}
+
+\subsection{5. Understanding Bounds}
+\begin{itemize}
+    \item \textbf{Bounds} refer to the \textit{growth rate} of an algorithm’s time complexity, which reflects how the algorithm’s runtime increases as the input size \( N \) grows.
+    \item The lower bound (\( \Omega \)) tells us the minimum number of comparisons needed in the worst case, while the upper bound (\( O \)) gives us the maximum number of comparisons.
+    \item In the case of heapsort and mergesort, their time complexity is tightly bound between \( \Omega(N \log N) \) and \( O(N \log N) \), making them efficient and optimal for sorting.
+\end{itemize}
+
+\subsection{Summary of Theorem 8.1 Concepts}
+\begin{itemize}
+    \item \textbf{Decision Trees}: Represent the sorting process as a set of comparisons, with \( N! \) permutations corresponding to the leaves.
+    \item \textbf{\( N! \) and Stirling’s Approximation}: Simplify the factorial growth into \( N \log N \) for easier analysis.
+    \item \textbf{Logarithms}: Used to analyze the height of the decision tree and establish the worst-case lower bound on comparisons.
+    \item \textbf{Asymptotic Optimality}: Heapsort and mergesort meet the \( \Omega(N \log N) \) bound, making them optimal comparison sorts.
+    \item \textbf{Bounds}: Refer to how the runtime of an algorithm grows with the size of the input, important for analyzing sorting efficiency.
+\end{itemize}
+
+\end{document}

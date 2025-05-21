@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Merge Sort Time Complexity Analysis}
+
+\subsection*{Overview}
+\begin{itemize}
+    \item Merge sort has a time complexity of \( \mathcal{O}(n \log n) \).
+    \item The outer function that the user calls drives the recursion.
+    \item The recursive part contributes the \( \log n \) factor.
+        \begin{itemize}
+            \item For example, if \( n = 8 \):
+            \begin{itemize}
+                \item The first recursion breaks 8 into 2 parts of 4.
+                \item The next recursion breaks each 4 into 2 parts of 2.
+                \item The recursion bottoms out when the subarrays are of size one.
+            \end{itemize}
+        \end{itemize}
+    \item When the stack unwinds, the merge work is done:
+        \begin{itemize}
+            \item Merging the 1’s into 2’s.
+            \item Then the 2’s into 4’s.
+            \item Finally, the 4’s into the final 8.
+        \end{itemize}
+    \item The merge operation contributes the \( n \) factor.
+    \item The recursive iterations are counted, representing the number of "deployments."
+    \item For example, you don’t count the individual operations in each deployment like \(1+4+4+2+2+2+2+1+1+1+1+1+1+1+1\). Instead, you sum up the operations across all levels, which simplifies to \( n \log n \).
+    \item These counts are not factored into Big-O notation because they are constants.
+    \item In Big-O notation, constants and lower-order terms are ignored, focusing on the dominant term, which is \( \mathcal{O}(n \log n) \).
+\end{itemize}
+
+\subsection*{Recursion Tree Analysis}
+
+\begin{itemize}
+    \item Consider the recurrence relation \( T(n) = 2T(n/2) + cn \).
+    \item \( T(n) \) represents the total time complexity for sorting an array of size \( n \).
+    \item \( 2T(n/2) \) represents the time complexity for the two recursive calls. Since we are dividing the array into two halves, each of size \( n/2 \), the total cost of these two recursive calls is \( 2T(n/2) \).
+    \item \( cn \) represents the time complexity of merging the two sorted halves back together, which is \( \mathcal{O}(n) \). Here, \( c \) is a constant representing the cost of merging per element.
+    \item The recursion tree has \( \log n \) levels.
+        \begin{itemize}
+            \item At the root level (level 0), the work is \( cn \).
+            \item At level 1, the work is \( cn \), since it sums up to \( 2 \times c(n/2) = cn \).
+            \item This pattern continues for all levels, contributing \( cn \) work at each level.
+        \end{itemize}
+    \item The total work across all levels is \( cn \times \log n \), resulting in \( \mathcal{O}(n \log n) \) as the overall time complexity.
+\end{itemize}
+
+\subsection*{Summary}
+\begin{itemize}
+    \item The correct interpretation of the recursion tree and the cost \( T(n) = 2T(n/2) + cn \) is that the total work done across all levels sums to \( \mathcal{O}(n \log n) \), where each level contributes \( \mathcal{O}(n) \) work, and there are \( \log n \) levels.
+    \item The constant \( c \) represents the cost per element during the merge step, and it's factored into each level's cost but is omitted in Big-O notation.
+\end{itemize}
+
+\end{document}

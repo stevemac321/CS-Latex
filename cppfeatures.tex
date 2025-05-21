@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\title{Prioritized Study Plan for C++ Features}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+
+This document lists key C++ features to study, with a focus on threading and safety enhancements, organized by C++ version. Each feature is accompanied by a brief description to guide your study. The topics are categorized into high, medium, and low priority based on their relevance to modern C++ development and your goals.
+
+\section*{High Priority Topics}
+
+\subsection*{Threading and Concurrency}
+\begin{itemize}
+    \item \textbf{std::thread}:
+    Introduces threading support in the standard library, enabling concurrent execution of code.
+
+    \item \textbf{std::mutex, std::lock, std::unique\_lock}:
+    Provides mechanisms for managing access to shared resources and preventing race conditions.
+
+    \item \textbf{std::atomic}:
+    Introduces atomic operations to ensure thread safety without using mutexes, providing a performance boost in some cases.
+
+    \item \textbf{std::jthread}:
+    A more convenient thread class that automatically joins upon destruction, reducing the risk of resource leaks.
+
+    \item \textbf{std::scoped\_lock}:
+    Provides a convenient way to lock multiple mutexes simultaneously, preventing deadlocks.
+
+    \item \textbf{Efficient Concurrency}:
+    Techniques such as lock-free programming and advanced locking mechanisms to improve concurrency performance.
+
+    \item \textbf{Memory Models and Concurrency}:
+    Understanding how memory models interact with concurrent programming, including memory access in multi-threaded programs.
+\end{itemize}
+
+\subsection*{Coroutines and Asynchronous Programming}
+\begin{itemize}
+    \item \textbf{Coroutines}:
+    Enables writing asynchronous code in a synchronous style, simplifying the management of asynchronous tasks.
+
+    \item \textbf{Structured Concurrency with Senders and Receivers}:
+    A modern approach to managing asynchronous processing pipelines and data parallelism.
+
+    \item \textbf{Async with Coroutines}:
+    Using coroutines for asynchronous tasks, focusing on \texttt{async}, \texttt{await}, and structured concurrency.
+\end{itemize}
+
+\subsection*{Concepts and Templates}
+\begin{itemize}
+    \item \textbf{Concepts}:
+    Introduces constraints for templates, improving the readability and safety of template code.
+
+    \item \textbf{Generic Functions with auto}:
+    Simplifies the definition of generic functions by using \texttt{auto} as a type placeholder.
+\end{itemize}
+
+\subsection*{Ranges and Views}
+\begin{itemize}
+    \item \textbf{Ranges}:
+    Provides a new way to work with sequences of data, offering a safer and more expressive alternative to traditional iterators.
+
+    \item \textbf{Views in Detail}:
+    Detailed study of view types like \texttt{transform\_view}, \texttt{filter\_view}, and \texttt{iota\_view}, which are essential for modern C++ programming.
+\end{itemize}
+
+\section*{Medium Priority Topics}
+
+\subsection*{Memory and Performance}
+\begin{itemize}
+    \item \textbf{std::unique\_ptr, std::shared\_ptr}:
+    Introduces smart pointers to automate memory management and reduce the risk of memory leaks and dangling pointers.
+
+    \item \textbf{move semantics and rvalue references}:
+    Enhances performance by enabling efficient transfer of resources, minimizing unnecessary copying.
+    
+    \item \textbf{Formatted Output (std::format)}:
+    Using \texttt{format()}, \texttt{format\_to()}, and user-defined formatters for modern string formatting.
+\end{itemize}
+
+\subsection*{Modules and Compile-Time Improvements}
+\begin{itemize}
+    \item \textbf{Modules}:
+    Facilitates better modularization of code, reducing compilation times and improving code organization.
+
+    \item \textbf{Compile-Time Enhancements}:
+    Topics like \texttt{constexpr}, \texttt{consteval}, and compile-time computations with complex data structures.
+\end{itemize}
+
+\section*{Low Priority Topics}
+
+\subsection*{Other Language Features}
+\begin{itemize}
+    \item \textbf{Spaceship Operator \texttt{<=>}}:
+    Introduces three-way comparison, allowing easier implementation of comparison operators.
+
+    \item \textbf{Chrono Extensions}:
+    Calendar dates and time zones, providing advanced time and date handling.
+
+    \item \textbf{String and Bits Extensions}:
+    Extensions for handling strings and bitwise operations, including \texttt{std::span} and bit manipulation utilities.
+\end{itemize}
+
+\section*{Additional Resources}
+
+\begin{itemize}
+    \item \textbf{cppreference.com}:
+    Comprehensive reference for C++ features, including details on the latest standards.
+
+    \item \textbf{Clang Website}:
+    Lists C++ features supported by the Clang compiler, useful for understanding what is available and implemented.
+\end{itemize}
+
+\end{document}

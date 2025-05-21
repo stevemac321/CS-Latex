@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{amsmath} % Include this package for \text command
+
+\begin{document}
+
+\section{Fast Fourier Transform (FFT)}
+
+The \textbf{Fast Fourier Transform (FFT)} is an efficient algorithm used to compute the Discrete Fourier Transform (DFT) and its inverse. The FFT reduces the computational complexity from \(O(N^2)\) to \(O(N \log N)\) by exploiting the symmetries in the DFT.
+
+\subsection{DFT Definition}
+
+For a given sequence of \(N\) complex numbers \(x_0, x_1, \dots, x_{N-1}\), the Discrete Fourier Transform is defined as:
+
+\[
+X_k = \sum_{n=0}^{N-1} x_n \cdot e^{-i 2 \pi k n / N}, \quad \text{for } k = 0, 1, \dots, N-1
+\]
+
+Where:
+- \( X_k \) represents the frequency-domain coefficients.
+- \( e^{-i 2 \pi k n / N} \) are the complex roots of unity, which correspond to the periodic nature of the signal.
+- \( x_n \) is the time-domain input.
+
+\subsection{Complex Roots of Unity}
+
+The \(N\)-th complex roots of unity are the solutions to the equation:
+
+\[
+z^N = 1
+\]
+
+These roots are used by the FFT to divide the problem into smaller subproblems, and they form the basis of the efficient recursion in the algorithm.
+
+\subsection{Divide-and-Conquer Approach}
+
+The FFT applies a divide-and-conquer strategy by recursively breaking down the DFT of size \(N\) into two DFTs of size \(N/2\). This uses the fact that:
+
+\[
+X_k = \sum_{n=0}^{N/2-1} x_{2n} e^{-i 2 \pi k n / N} + e^{-i 2 \pi k / N} \sum_{n=0}^{N/2-1} x_{2n+1} e^{-i 2 \pi k n / N}
+\]
+
+This approach allows the FFT to halve the number of operations at each recursive step, ultimately reducing the complexity.
+
+\subsection{Polynomial Interpretation}
+
+The FFT can be seen as evaluating a polynomial of degree \(N-1\) at \(N\) distinct points (the \(N\)-th roots of unity). Given the polynomial:
+
+\[
+P(x) = a_0 + a_1 x + a_2 x^2 + \dots + a_{N-1} x^{N-1}
+\]
+
+FFT computes the values \(P(\omega^k)\) for \(k = 0, 1, \dots, N-1\), where \(\omega = e^{-i 2 \pi / N}\) is the principal \(N\)-th root of unity.
+
+\subsection{Applications}
+
+FFT is widely used in:
+- \textbf{Signal Processing}: Converting time-domain signals to frequency-domain for analysis.
+- \textbf{Image Processing}: Used in compression algorithms and filtering.
+- \textbf{Data Analysis}: Finding frequency components in data sets.
+
+\subsection{Real and Imaginary Components}
+
+When processing real-world signals (e.g., voltage samples), the input to FFT can be represented as real/imaginary pairs. If the input is real, the imaginary part is set to zero:
+
+\[
+\text{Input Pair: } (x_{\text{real}}, 0)
+\]
+
+After the FFT, the real and imaginary components of each frequency are populated, giving the frequency-domain representation of the signal.
+
+\end{document}

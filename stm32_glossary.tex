@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\begin{document}
+
+\section*{STM32 Glossary}
+
+\subsection*{A}
+\textbf{AHB/APB Bridges (APB)} \\
+\textbf{Category:} System Architecture \\
+\textbf{Definition:} Bridges connecting Advanced High-performance Bus (AHB) and Advanced Peripheral Bus (APB). \\
+\textbf{Manual:} Reference Manual, Page 37 \\
+
+\textbf{AHB1 Peripheral Reset Register (RCC\_AHB1RSTR)} \\
+\textbf{Category:} Reset and Clock Control (RCC) \\
+\textbf{Definition:} Register controlling the reset of AHB1 peripherals. \\
+\textbf{Manual:} Reference Manual, Page 111 \\
+
+\subsection*{C}
+\textbf{Clock Security System (CSS)} \\
+\textbf{Category:} Clock System \\
+\textbf{Definition:} A feature ensuring safe operation of the system clock by switching to a backup clock in case of a failure. \\
+\textbf{Manual:} Reference Manual, Page 98 \\
+
+\textbf{Core Registers} \\
+\textbf{Category:} Processor Model \\
+\textbf{Definition:} Registers directly managed by the Cortex-M4 processor, including general-purpose and special-purpose registers. \\
+\textbf{Manual:} Programming Manual, Page 17 \\
+
+\subsection*{D}
+\textbf{DMA Peripheral Bus} \\
+\textbf{Category:} System Architecture \\
+\textbf{Definition:} The bus used by the Direct Memory Access (DMA) controller to access peripherals. \\
+\textbf{Manual:} Reference Manual, Page 37 \\
+
+\subsection*{F}
+\textbf{Fault Status Registers (FSR)} \\
+\textbf{Category:} Fault Handling \\
+\textbf{Definition:} Registers holding fault status information when an exception occurs. \\
+\textbf{Manual:} Programming Manual, Page 46 \\
+
+\subsection*{M}
+\textbf{Memory Protection Unit (MPU)} \\
+\textbf{Category:} Core Peripherals \\
+\textbf{Definition:} A unit used to enforce memory access permissions to protect memory regions from unauthorized access. \\
+\textbf{Manual:} Programming Manual, Page 192 \\
+
+\textbf{Memory Management Fault Address Register (MMFAR)} \\
+\textbf{Category:} Fault Handling \\
+\textbf{Definition:} Register storing the address of the memory access that caused a memory management fault. \\
+\textbf{Manual:} Programming Manual, Page 241 \\
+
+\subsection*{S}
+\textbf{SysTick Timer (STK)} \\
+\textbf{Category:} Core Peripherals \\
+\textbf{Definition:} A timer used for generating a system tick or delay, useful for OS tick generation or event timing. \\
+\textbf{Manual:} Programming Manual, Page 245 \\
+
+\end{document}

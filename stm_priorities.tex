@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{enumitem}
+
+\begin{document}
+
+\section*{High-Level Priority List from the Datasheet}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{System Architecture (Section 2.1 of Reference Manual):} \\
+    Understanding the I-bus, D-bus, S-bus, and BusMatrix is crucial as it directly affects how the microcontroller handles data and instructions.
+
+    \item \textbf{Memory Organization (Section 2.2 of Reference Manual):} \\
+    Familiarize yourself with the memory layout, including SRAM and Flash, since this will impact how you allocate and access data in your programs.
+
+    \item \textbf{Embedded Flash Memory (Section 3.3 of Reference Manual):} \\
+    Knowing how to program, erase, and protect Flash memory is essential for handling persistent data and firmware updates.
+
+    \item \textbf{DMA Controller (Section 9 of Reference Manual and 3.8 of Datasheet):} \\
+    DMA plays a key role in efficient data transfer without CPU intervention. Understanding its operation and configuration is important for optimizing performance.
+
+    \item \textbf{Reset and Clock Control (Section 6 of Reference Manual):} \\
+    Understanding how the microcontroller’s clock system works is fundamental for setting up the right operating conditions, power consumption, and performance.
+
+    \item \textbf{Interrupts and Events (Section 10 of Reference Manual and 3.9 of Datasheet):} \\
+    Mastering the NVIC and EXTI controllers is critical for handling asynchronous events and writing responsive, real-time software.
+
+    \item \textbf{Power Management (Section 5 of Reference Manual and 3.13-3.17 of Datasheet):} \\
+    Power consumption is often a critical factor in embedded systems, so understanding low-power modes and power supply schemes is important.
+
+    \item \textbf{GPIO (Section 8 of Reference Manual and 3.27 of Datasheet):} \\
+    GPIOs are essential for interfacing with external peripherals, so understanding their configuration and usage is a must.
+
+    \item \textbf{ADC (Section 11 of Reference Manual and 3.28 of Datasheet):} \\
+    If your application involves analog signals, understanding the ADC's operation, configuration, and limitations is important.
+
+    \item \textbf{Timers and Watchdogs (Section 13-14 of Reference Manual and 3.19 of Datasheet):} \\
+    Timers are used for a wide variety of tasks, including generating PWM signals, measuring time intervals, and implementing timeouts.
+
+    \item \textbf{Debugging Interface (Section 3.30-3.31 of Datasheet):} \\
+    The JTAG and SWD interfaces are crucial for debugging, so understanding these will be beneficial for troubleshooting and development.
+\end{enumerate}
+
+\end{document}

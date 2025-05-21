@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+\title{Video Plan for uVisionEmbeddedStateGraphTimer and RustEmbeddedStateVertex Projects}
+\author{stevemac321}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This video will cover both the C-based \texttt{uVisionEmbeddedStateGraphTimer} project and the Rust-based \texttt{RustEmbeddedStateVertex} project. It is designed to appeal to embedded systems developers using either language. The agenda will include timestamps in the YouTube description so viewers can jump to the sections they are most interested in.
+
+\section{Agenda and Section Order}
+Here is the planned order of the video:
+
+\subsection{(a) A Review of uVision}
+\begin{itemize}
+    \item An overview of the Keil uVision IDE and its use for embedded development with STM32 microcontrollers.
+    \item Introduction to the STM32F401RE microcontroller and its relevance in embedded systems development.
+\end{itemize}
+
+\subsection{(b) Step Through the Startup Code to \texttt{main()}}
+\begin{itemize}
+    \item Explanation of the startup code and memory map.
+    \item Description of how the linker file represents the binary image.
+    \item How data is loaded into RAM and how instructions are executed from flash.
+    \item Introduction to the \texttt{PC} register as the "pre-fetch" mechanism and the multi-stage pipeline in the STM32.
+    \item Emphasize that this is a bare-metal environment with no operating system.
+\end{itemize}
+
+\subsection{(c) Demo of the C Program}
+\begin{itemize}
+    \item Show the C program running in uVision.
+    \item Explain how the program polls for system state and builds the graph structure.
+    \item Discussion of the vertex and edge structure using bitvectors, and how interrupts handle real-time events.
+    \item Highlight the use of atomics for thread-safe access to shared data between the main loop and interrupts.
+    \item Demonstrate the Breadth-First Search (BFS) algorithm in action.
+\end{itemize}
+
+\subsection{(d) Simplified Rust Version Demo in VSCode on Linux}
+\begin{itemize}
+    \item Transition to the Rust version, showing its setup in VSCode on Linux.
+    \item Explanation of how Rust can be used for embedded development, with comparisons to the C version.
+    \item Highlight the similarities and differences between the C and Rust implementations.
+\end{itemize}
+
+\section{Conclusion}
+\begin{itemize}
+    \item Recap the key topics covered, including embedded development in both C and Rust, memory handling, and concurrency with atomics and interrupts.
+    \item Remind viewers to check the YouTube description for timestamps to easily navigate through the video.
+\end{itemize}
+
+\section{Next Steps}
+\begin{itemize}
+    \item Once the Segger J-Link is working and a print dump of the graph is added, the recording can be done.
+    \item The current plan will serve as a guide for organizing the video, but there is room for improvement and further planning, which can be worked on later.
+\end{itemize}
+
+\end{document}

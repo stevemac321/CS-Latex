@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\title{Mathematical Overview of the Project}
+\author{Your Name}
+\date{\today}
+\maketitle
+
+\section{Mathematical Overview of the Remote Signal Processor Project}
+
+\subsection{1. Voltage Calculation}
+
+The application processes raw ADC values from packets to calculate real voltage values. The formula for converting ADC values to real voltages is:
+
+\[
+V_{\text{real}} = \frac{\text{ADC}_{\text{value}} \times V_{\text{reference}}}{2^{\text{Resolution}}}
+\]
+
+Where:
+\begin{itemize}
+    \item $\text{ADC}_{\text{value}}$ is the raw value obtained from the ADC.
+    \item $V_{\text{reference}}$ is the reference voltage (e.g., 3.3V).
+    \item Resolution is the resolution of the ADC (e.g., 12 bits).
+\end{itemize}
+
+\subsection{2. Fourier Transform}
+
+Fourier analysis is used to convert time-domain voltage signals into their frequency components. The continuous Fourier Transform is represented as:
+
+\[
+X(f) = \int_{-\infty}^{\infty} x(t) e^{-i 2 \pi f t} dt
+\]
+
+However, in this project, the Discrete Fourier Transform (DFT) is used, which is given by:
+
+\[
+X_k = \sum_{n=0}^{N-1} x_n e^{-i \frac{2 \pi}{N} k n}
+\]
+
+Where:
+\begin{itemize}
+    \item $X_k$ represents the frequency component at index $k$,
+    \item $x_n$ is the signal value at index $n$,
+    \item $N$ is the number of data points.
+\end{itemize}
+
+\subsection{3. Magnitude Calculation for FFT Results}
+
+The FFT results are stored as complex numbers. To compute the magnitude of these complex numbers, the formula is:
+
+\[
+\text{Magnitude} = \sqrt{\text{Re}(X)^2 + \text{Im}(X)^2}
+\]
+
+Where:
+\begin{itemize}
+    \item $\text{Re}(X)$ is the real part of the complex number.
+    \item $\text{Im}(X)$ is the imaginary part.
+\end{itemize}
+
+\subsection{4. Matrix Operations}
+
+The application performs various matrix operations on the captured data.
+
+\subsubsection{Matrix Addition}
+\[
+C[i][j] = A[i][j] + B[i][j]
+\]
+Where $A$, $B$, and $C$ are matrices of the same dimensions.
+
+\subsubsection{Matrix Subtraction}
+\[
+C[i][j] = A[i][j] - B[i][j]
+\]
+
+\subsubsection{Matrix Multiplication}
+\[
+C[i][j] = \sum_{k=0}^{N-1} A[i][k] \times B[k][j]
+\]
+Where $A$, $B$, and $C$ are matrices of compatible dimensions for multiplication.
+
+\subsection{5. Fourier Series Approximation}
+
+Given a signal, the Fourier series can approximate it using a sum of sinusoids:
+
+\[
+f(t) \approx \sum_{n=1}^{N} \left( a_n \cos(n \omega t) + b_n \sin(n \omega t) \right)
+\]
+
+Where:
+\begin{itemize}
+    \item $a_n$ and $b_n$ are the Fourier coefficients, calculated based on the signal.
+    \item $N$ is the number of harmonics to include in the approximation.
+\end{itemize}
+
+\subsection{6. Polynomial Multiplication}
+
+Polynomial multiplication in the project involves multiplying two polynomials represented by their coefficients. If $P(x)$ and $Q(x)$ are two polynomials, the result $R(x)$ is given by:
+
+\[
+R(x) = P(x) \times Q(x) = \sum_{i=0}^{m} \sum_{j=0}^{n} a_i b_j x^{i+j}
+\]
+
+Where:
+\begin{itemize}
+    \item $P(x) = \sum_{i=0}^{m} a_i x^i$
+    \item $Q(x) = \sum_{j=0}^{n} b_j x^j$
+\end{itemize}
+
+The result $R(x)$ has coefficients that are the sum of products of corresponding terms from $P(x)$ and $Q(x)$.
+
+\section{Study Guidance}
+
+Given your resources, here’s how to organize your study:
+
+\subsection{College Algebra (Richardson)}
+
+Use this to brush up on basic algebra, particularly for understanding polynomial manipulation, matrix operations, and logarithms, which are critical for FFT and Fourier series. Focus on sections that cover matrices, polynomials, and logarithmic functions.
+
+\subsection{CLRS (Introduction to Algorithms)}
+
+Use CLRS to deepen your understanding of algorithms used in matrix operations and FFT. Study the chapters on matrix multiplication (Chapter 4), FFT (Chapter 30), and divide-and-conquer algorithms, which will help you understand the complexity and optimization techniques.
+
+\subsection{Sedgewick's Algorithms}
+
+This will help reinforce your understanding of algorithm efficiency. Focus on sorting and searching algorithms, and graph algorithms, which might help if you extend the project to include more complex analysis or optimizations.
+
+\subsection{The Art of Electronics}
+
+This is excellent for understanding the hardware aspect, especially in signal processing. Study the sections on ADCs and DACs (Analog-to-Digital and Digital-to-Analog Converters), which will help in better understanding the voltage signal processing part of the project.
+
+\end{document}

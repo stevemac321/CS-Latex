@@ -1,0 +1,26 @@
+\section*{Merge Sort Time Complexity Analysis}
+
+\begin{itemize}
+    \item Merge sort has a time complexity of \(O(n \log n)\).
+    \item The outer function that the user calls initiates the recursion.
+    \item The recursive process contributes the \(\log n\) factor:
+    \begin{itemize}
+        \item For example, if \(n = 8\):
+        \begin{itemize}
+            \item The first recursion divides the array into two parts of size 4.
+            \item The next recursion divides each part into two parts of size 2.
+            \item The recursion continues until each subarray has size 1.
+        \end{itemize}
+    \end{itemize}
+    \item The merge operation contributes the \(n\) factor:
+    \begin{itemize}
+        \item Merging the \(1\)-element subarrays into \(2\)-element subarrays.
+        \item Then merging the \(2\)-element subarrays into \(4\)-element subarrays.
+        \item Finally, merging the \(4\)-element subarrays into the final \(8\)-element array.
+    \end{itemize}
+    \item The total work at each level is \(O(n)\), and there are \(\log n\) levels:
+    \begin{itemize}
+        \item This results in a total time complexity of \(O(n \log n)\).
+    \end{itemize}
+    \item In Big O notation, constants and lower-order terms are ignored, focusing on the dominant term, which is \(O(n \log n)\).
+\end{itemize}

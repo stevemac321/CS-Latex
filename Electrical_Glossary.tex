@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[toc,section=section]{glossaries}
+
+\makeglossaries
+
+% Define the glossary entries
+\newglossaryentry{ampere}{
+    name=Ampere,
+    description={The unit of electric current, denoted by \(I\), measuring the flow of electric charge per second. 1 Ampere (A) = 1 Coulomb/second}
+}
+
+\newglossaryentry{voltage}{
+    name=Voltage,
+    description={The electrical potential difference between two points in a circuit, measured in Volts (V). It drives the electric current through a circuit.}
+}
+
+\newglossaryentry{ohm}{
+    name=Ohm,
+    description={The unit of electrical resistance, denoted by \(\Omega\), which opposes the flow of electric current. Defined by Ohm's Law as \(R = V/I\)}
+}
+
+\newglossaryentry{resistor}{
+    name=Resistor,
+    description={A passive electrical component that limits the flow of current in a circuit. Its resistance is measured in ohms \((\Omega)\).}
+}
+
+\newglossaryentry{current}{
+    name=Current,
+    description={The flow of electric charge through a conductor, measured in Amperes (A). Denoted by \(I\). Follows the relationship \(I = V/R\) from Ohm's Law.}
+}
+
+\newglossaryentry{power}{
+    name=Power,
+    description={The rate at which electrical energy is consumed or converted, measured in Watts (W). Calculated as \(P = VI = I^2 R\).}
+}
+
+\newglossaryentry{energy}{
+    name=Energy,
+    description={The capacity to do work, measured in Joules (J). Electrical energy is calculated as \(E = P \times t\), where \(t\) is time.}
+}
+
+\newglossaryentry{polarity}{
+    name=Polarity,
+    description={The orientation of electrical potential in a circuit. Positive and negative terminals indicate the direction of current flow.}
+}
+
+\newglossaryentry{circuit}{
+    name=Circuit,
+    description={A closed loop that allows electric current to flow, typically including components like resistors, capacitors, and power sources.}
+}
+
+\newglossaryentry{switch}{
+    name=Switch,
+    description={A device that opens or closes a circuit, allowing or preventing current to flow.}
+}
+
+\newglossaryentry{battery}{
+    name=Battery,
+    description={A device that stores chemical energy and converts it into electrical energy to provide voltage for a circuit.}
+}
+
+\newglossaryentry{direction}{
+    name=Direction,
+    description={The flow of electric current, conventionally considered from the positive to the negative terminal of a battery.}
+}
+
+% Basic Rules for Solving Circuits
+\newglossaryentry{ohmslaw}{
+    name=Ohm's Law,
+    description={The fundamental relationship between voltage, current, and resistance in a circuit: \(V = IR\), where \(V\) is voltage, \(I\) is current, and \(R\) is resistance.}
+}
+
+\newglossaryentry{kirchhoffsv}{
+    name=Kirchhoff's Voltage Law (KVL),
+    description={The sum of all voltages around a closed loop in a circuit is zero. Mathematically, \(\sum V = 0\). This law is used to analyze the voltage drops across components.}
+}
+
+\newglossaryentry{kirchhoffsc}{
+    name=Kirchhoff's Current Law (KCL),
+    description={The sum of currents entering a junction equals the sum of currents leaving the junction. Mathematically, \(\sum I = 0\).}
+}
+
+\begin{document}
+
+\title{Electrical Circuits Glossary and Basic Rules}
+\author{Your Name}
+\date{\today}
+\maketitle
+
+\section*{Glossary of Terms}
+
+\printglossaries
+
+\section*{Basic Rules for Solving Circuits}
+
+\subsection*{Ohm's Law}
+Ohm's Law states that the voltage (\(V\)) across a resistor is proportional to the current (\(I\)) through the resistor, given by \(V = IR\). This is fundamental to solving circuits.
+
+\subsection*{Kirchhoff's Voltage Law (KVL)}
+Kirchhoff's Voltage Law states that the sum of all the voltages around any closed loop in a circuit must equal zero. For example, in a simple series circuit:
+\[
+V_{\text{battery}} = V_1 + V_2 + V_3
+\]
+where \(V_1\), \(V_2\), and \(V_3\) are the voltage drops across the resistors.
+
+\subsection*{Kirchhoff's Current Law (KCL)}
+Kirchhoff's Current Law states that the total current entering a junction must equal the total current leaving the junction:
+\[
+I_{\text{in}} = I_{\text{out}}
+\]
+This is useful for analyzing parallel circuits.
+
+\subsection*{Power in a Circuit}
+Power in an electrical circuit is given by \(P = VI\) and can also be expressed as:
+\[
+P = I^2 R \quad \text{or} \quad P = \frac{V^2}{R}
+\]
+Power represents the rate at which energy is consumed by a resistor or other component.
+
+\section*{Solving Circuits with Batteries, Switches, and Resistors}
+
+1. **Step 1**: Identify all resistors, power sources (batteries), and switches.
+2. **Step 2**: Use Ohm’s Law \(V = IR\) to calculate unknown values (current, resistance, voltage).
+3. **Step 3**: Apply Kirchhoff’s Voltage Law (KVL) to any closed loops to find unknown voltages.
+4. **Step 4**: Apply Kirchhoff’s Current Law (KCL) to any junctions to find unknown currents.
+5. **Step 5**: Calculate the power consumed by each resistor using \(P = I^2 R\).
+
+\end{document}

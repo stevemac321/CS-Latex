@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+
+\title{Glossary of Set Notation Symbols}
+\author{}
+\date{}
+\maketitle
+
+\section{Set Operations Glossary}
+
+\begin{itemize}
+    \item \(\emptyset\): The **empty set**, the set with no elements.
+    \[
+    \emptyset = \{\}
+    \]
+    \item \(\in\): **Element of**. Denotes that an element is part of a set.
+    \[
+    x \in A \quad \text{means} \quad x \text{ is an element of set } A
+    \]
+    \item \(\notin\): **Not an element of**. Denotes that an element is not part of a set.
+    \[
+    x \notin A \quad \text{means} \quad x \text{ is not an element of set } A
+    \]
+    \item \(\subseteq\): **Subset**. Set \( A \) is a subset of set \( B \) if all elements of \( A \) are also elements of \( B \).
+    \[
+    A \subseteq B \quad \text{means} \quad \text{every element of } A \text{ is also in } B
+    \]
+    \item \(\subset\): **Proper subset**. Set \( A \) is a proper subset of \( B \) if all elements of \( A \) are in \( B \), but \( A \neq B \).
+    \[
+    A \subset B \quad \text{means} \quad A \text{ is a proper subset of } B
+    \]
+    \item \(\cup\): **Union**. The union of sets \( A \) and \( B \) is the set of elements that are in \( A \), \( B \), or both.
+    \[
+    A \cup B = \{x \mid x \in A \text{ or } x \in B\}
+    \]
+    \item \(\cap\): **Intersection**. The intersection of sets \( A \) and \( B \) is the set of elements that are in both \( A \) and \( B \).
+    \[
+    A \cap B = \{x \mid x \in A \text{ and } x \in B\}
+    \]
+    \item \(\setminus\): **Set difference**. The difference between sets \( A \) and \( B \) is the set of elements that are in \( A \) but not in \( B \).
+    \[
+    A \setminus B = \{x \mid x \in A \text{ and } x \notin B\}
+    \]
+    \item \(\triangle\): **Symmetric difference**. The symmetric difference of sets \( A \) and \( B \) is the set of elements that are in either \( A \) or \( B \), but not in both.
+    \[
+    A \triangle B = (A \setminus B) \cup (B \setminus A)
+    \]
+    \item \(\mathbb{U}\): **Universal set**. The set containing all possible elements under consideration in a particular discussion.
+    \[
+    A \subseteq \mathbb{U} \quad \text{where } \mathbb{U} \text{ is the universal set.}
+    \]
+    \item \(A^c\): **Complement**. The complement of set \( A \) is the set of all elements in the universal set \( \mathbb{U} \) that are not in \( A \).
+    \[
+    A^c = \{x \mid x \in \mathbb{U} \text{ and } x \notin A\}
+    \]
+    \item \(|A|\): **Cardinality**. The cardinality of a set is the number of elements in the set \( A \).
+    \[
+    |A| = \text{number of elements in } A
+    \]
+\end{itemize}
+
+\end{document}

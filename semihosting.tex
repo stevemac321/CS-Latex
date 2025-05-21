@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Setting Up Semihosting in STM32CubeIDE}
+\author{}
+\date{}
+\maketitle
+
+\section{Creating a New Project}
+
+\begin{enumerate}
+  \item Launch \textbf{STM32CubeIDE}.
+  \item Create a new project using \textbf{File > New > STM32 Project}.
+  \item Select your STM32 microcontroller or board (e.g., \texttt{STM32F401RETx}).
+  \item In the \textbf{Project Setup} window, name your project, and select \textbf{C} as the language (you can switch to C++ later if needed).
+  \item Select the option to \textbf{Initialize all peripherals with default settings}.
+\end{enumerate}
+
+\section{Enable Semihosting}
+
+To configure the project for semihosting, follow these steps:
+
+\begin{enumerate}
+  \item Open \textbf{Project Properties} by right-clicking on the project in the Project Explorer.
+  \item Navigate to \textbf{C/C++ Build > Settings > MCU GCC Linker > Miscellaneous}.
+  \item In the \textbf{Other flags} box, add the following flags:
+  \begin{lstlisting}
+-specs=rdimon.specs -lc -lrdimon
+  \end{lstlisting}
+  \item In the same settings window, under \textbf{MCU GCC Linker > General}, ensure that the linker script is set to use \texttt{--specs=rdimon.specs}.
+\end{enumerate}
+
+\section{Configure Debugger for Semihosting}
+
+\begin{enumerate}
+  \item Open the \textbf{Run > Debug Configurations} window.
+  \item In the \textbf{Debugger} tab, go to \textbf{Startup} and add the following command in the \textbf{Initialization Commands} section:
+  \begin{lstlisting}
+monitor arm semihosting enable
+  \end{lstlisting}
+  \item Ensure that \textbf{ST-Link (OpenOCD)} is selected as the debugger.
+\end{enumerate}
+
+\section{Modify the \texttt{syscalls.c} File}
+
+If \texttt{syscalls.c} is generated in your project, it may cause conflicts. Delete the \texttt{syscalls.c} file from the \texttt{Core/Src} directory.
+
+\section{Code to Print to the Console}
+
+In your \texttt{main.c} or \texttt{main.cpp}, add the following function to support semihosting for \texttt{printf}:
+
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+
+#ifdef __GNUC__
+  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
+
+PUTCHAR_PROTOTYPE
+{
+  ITM_SendChar(ch); // For SWV (optional, if you have ITM)
+  return ch;
+}
+
+int main(void)
+{
+  HAL_Init();
+  printf("Hello, Semihosting!\n");
+
+  while (1) {
+    // Main loop
+  }
+}
+\end{lstlisting}
+
+\section{Build and Debug}
+
+\begin{enumerate}
+  \item Build the project by clicking on \textbf{Project > Build Project}.
+  \item Start debugging by clicking on the \textbf{Bug icon} or selecting \textbf{Run > Debug}.
+  \item Open the \textbf{Console} view in STM32CubeIDE to see the output of the \texttt{printf} statements.
+\end{enumerate}
+
+\section{Final Steps}
+If the console doesn't show the expected output:
+\begin{itemize}
+  \item Verify that semihosting is enabled in the \textbf{Debugger Startup} settings.
+  \item Check the linker flags and make sure the correct libraries are used.
+  \item Ensure the correct initialization of HAL and peripherals.
+\end{itemize}
+
+\end{document}

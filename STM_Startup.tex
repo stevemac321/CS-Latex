@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{STM32CubeIDE Debugging Session Summary}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Pinout and System View Discussion}
+
+In our STM32CubeIDE session, we started by discussing the pinout and system views in the \texttt{.ioc} file. Some key points from this phase:
+
+\begin{itemize}
+    \item Pins we looked at included:
+    \begin{itemize}
+        \item \texttt{PC-13}: B1 Blue push button
+        \item \texttt{PA-5}: LD2 (green LED)
+        \item \texttt{PA-2} and \texttt{PA-3}: USART\_TX and USART\_RX, respectively
+        \item RCC-related pins like \texttt{PC-14}, \texttt{PC-15}, \texttt{PH0}, and \texttt{PH1}
+    \end{itemize}
+    \item We explored the \texttt{System View}, where we noticed:
+    \begin{itemize}
+        \item A green checkmark next to most items in the \texttt{System Core} section.
+        \item NVIC (Interrupt Controller) and the interrupt table indicating which interrupts are enabled.
+        \item Warnings associated with the SWO and other peripherals, signaling configuration issues or unconnected pins.
+    \end{itemize}
+\end{itemize}
+
+\section{Debugging Session: From \texttt{Reset\_Handler} to \texttt{main()}}
+
+We stepped through the debugging process from the \texttt{Reset\_Handler}, observing key steps involved in initialization before reaching \texttt{main()}. Here are the details:
+
+\subsection{Reset\_Handler Initialization}
+\begin{itemize}
+    \item \texttt{Reset\_Handler} starts by loading the \texttt{\_estack} into the stack pointer (SP). This defines the initial stack location.
+    \item After that, we branched to \texttt{SystemInit}, which handles basic system configurations such as setting the clock tree and enabling the floating-point unit (FPU).
+    \item The instruction we examined in detail: \texttt{ldr r5, [pc, \#52]} loads an address relative to the program counter (PC) into register \texttt{r5}, accounting for ARM's two-instruction prefetch in Thumb mode.
+\end{itemize}
+
+\subsection{SystemInit and FPU Initialization}
+\begin{itemize}
+    \item We encountered a block of code to enable the FPU:
+    \begin{lstlisting}
+    #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
+    SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* Set CP10 and CP11 Full Access */
+    #endif
+    \end{lstlisting}
+    \item The \texttt{SCB->CPACR} register (0xE000ED88) controls access to the FPU, and we noted that this masked the two bits associated with CP10 and CP11, setting them to \texttt{0x3}.
+    \item We confirmed in the debugger that these two-bit fields were modified after stepping over this line of code.
+\end{itemize}
+
+\subsection{Loading Data into SRAM}
+\begin{itemize}
+    \item The \texttt{Reset\_Handler} proceeds by initializing the data segment, copying it from flash into SRAM using global markers like \texttt{\_sdata}, \texttt{\_edata}, and \texttt{\_sidata} defined in the linker file.
+    \item We discussed how these global symbols are used to copy initialized data from flash (non-volatile) to SRAM (volatile), which allows the program to modify its variables in memory during runtime.
+\end{itemize}
+
+\subsection{\texttt{\_\_libc\_init\_array}: Static Constructors}
+\begin{itemize}
+    \item We stepped into the \texttt{\_\_libc\_init\_array} function, which is responsible for calling static constructors in C++ programs before \texttt{main()} is reached.
+    \item The hardware automatically handles loading the \texttt{init\_array} addresses from memory, and we examined how \texttt{ldr} instructions loaded the constructor pointers for the initialization process.
+\end{itemize}
+
+\subsection{Reaching \texttt{main()}}
+\begin{itemize}
+    \item After the data segment was loaded into SRAM and static constructors initialized, we hit \texttt{main()}.
+    \item We paused here to reflect on the fact that while we had only reached \texttt{main()}, we had already covered a significant amount of low-level initialization logic that directly correlates with operating system concepts like memory management, interrupt handling, and context switching.
+\end{itemize}
+
+\section{Key Observations}
+\begin{itemize}
+    \item Debugging through the startup sequence provided valuable insight into the microcontroller’s hardware-level setup, reinforcing concepts from operating systems and systems programming.
+    \item The process of stepping through the \texttt{Reset\_Handler} and observing how the microcontroller handles memory, data segments, and FPU initialization offers a deeper understanding of embedded systems architecture.
+    \item We confirmed that ARM’s PC-relative addressing requires awareness of the prefetch mechanism, and we saw firsthand how global symbols from the linker file drive the initialization process.
+\end{itemize}
+
+\end{document}

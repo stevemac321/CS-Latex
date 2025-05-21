@@ -1,0 +1,166 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{geometry}
+
+\geometry{margin=1in}
+
+\title{Project and Demo Inventory}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Projects and Demos}
+
+\subsection*{Embedded Common C and C++}
+\begin{itemize}
+    \item \textbf{Static heap allocators}: Dynamic allocation semantics for advanced data structures such as open address hash tables, RB trees, and graphs.
+    \item Compatible with \texttt{std::c++}.
+    \item C++14 conforming \texttt{stevemac::vector} with static allocator.
+\end{itemize}
+
+\subsection*{STM32CubeIDE}
+\begin{itemize}
+    \item Interrupt bare metal "multi-threading" with \texttt{std::atomics}.
+    \item System Graph.
+    \item STM32CubeMX pinout configuration.
+    \item Semihosting.
+\end{itemize}
+
+\subsection*{Keil uVision with STM32CubeMX}
+\begin{itemize}
+    \item STM32CubeMX pinout config integrated.
+    \item Interrupt bare metal "multi-threading" with C11 atomics.
+\end{itemize}
+
+\subsection*{VSCode}
+\begin{itemize}
+    \item Rust embedded bare metal state captures.
+    \item Semihosting.
+    \item Cortex Quick Start for STM32F401RE.
+\end{itemize}
+
+\subsection*{Visual Studio}
+\begin{itemize}
+    \item Raspberry Pi remote cross compile and debugging.
+\end{itemize}
+
+\subsection*{MLibs}
+\begin{itemize}
+    \item Embedded automation suite.
+    \item Semihosting.
+\end{itemize}
+
+\subsection*{Raspberry Pi Assembly}
+\begin{itemize}
+    \item Native assembly development (sorts and other routines).
+\end{itemize}
+
+\subsection*{Algorithms C++ General}
+\begin{itemize}
+    \item Implemented data structures and algorithms: Automata, Graph, Linked List, Stack, Queue, Heap Sort, Merge Sort, Quick Sort, Open address hash table with cluster diagnostics, Red Black Tree.
+    \item C++14 conforming \texttt{stevemac::vector} with static allocator.
+    \item Multithreaded, SIMD matrix multiplication.
+    \item Rust code generator simple "wizard".
+    \item FreeBSD/Linux Tree and List macros.
+\end{itemize}
+
+\subsection*{Algorithms Rust}
+\begin{itemize}
+    \item Implemented algorithms in Rust: Kadane, Linked List, Binary Tree, Quick Sort, Valid Parentheses, Binary Search, Insertion Sort, String Permute, Tic-tac-toe, etc.
+\end{itemize}
+
+\section*{Embedded Systems Project: ADC, DSP, and FFT Demonstration}
+\subsection*{Project Overview}
+The project involves an ADC (Analog-to-Digital Conversion), DSP (Digital Signal Processing), and FFT (Fast Fourier Transform) demo using custom data structures such as a priority queue and graph. This demonstration showcases advanced data structure usage in an embedded environment.
+
+\subsection*{Steps and Basis for Edge Connections}
+\begin{enumerate}
+    \item \textbf{Priority Queue Construction}: 
+    The FFT output is stored in a priority queue using \texttt{priority\_queue\_from\_array} and \texttt{priority\_queue\_build\_max\_heap}. The heap is then printed with \texttt{priority\_queue\_print\_heap}, organizing the FFT magnitudes based on their values (peaks and valleys).
+    
+    \item \textbf{Graph Creation}:
+    A graph is created with \texttt{create\_graph(\&graph, FFT\_LENGTH)}, initializing the graph structure with a size based on the FFT length. Each vertex represents a magnitude from the FFT results.
+    
+    \item \textbf{Vertices Addition}:
+    For each value in the heap (\texttt{pq.heap}), a vertex is added to the graph. Each vertex corresponds to an FFT output magnitude.
+    
+    \item \textbf{Edge Creation Based on Peaks and Valleys}:
+    The core logic for adding edges checks for peaks and valleys in the magnitude values of the FFT results. Peaks are connected to neighboring valleys and vice versa.
+    
+    \item \textbf{Graph Visualization}:
+    The graph is printed using \texttt{print\_graph(\&graph)}, showing the vertices (peaks and valleys) and their connections (edges).
+\end{enumerate}
+
+\subsection*{Edge Connection Summary}
+\begin{itemize}
+    \item Peaks are connected to adjacent valleys and vice versa.
+    \item The edges are added based on relative magnitude comparisons of adjacent FFT results.
+\end{itemize}
+
+\section*{FreeBSD Kernel Deep Dive}
+\begin{itemize}
+    \item 45 hours of FreeBSD kernel study with McKusick’s deep dive course.
+\end{itemize}
+
+\section*{Rust Programming}
+\begin{itemize}
+    \item Completed the Rust book cover-to-cover, covering ownership, borrowing, smart pointers, concurrency, and more.
+\end{itemize}
+
+\section*{Embedded Systems and Development Tools}
+\subsection*{Languages}
+\begin{itemize}
+    \item C, C++, ARM Assembly.
+    \item Rust (embedded development).
+\end{itemize}
+
+\subsection*{Embedded Platforms}
+\begin{itemize}
+    \item ARM Cortex M series: STM32, Tiva C microcontrollers.
+    \item Raspberry Pi.
+\end{itemize}
+
+\subsection*{Development Tools}
+\begin{itemize}
+    \item IAR Embedded Workbench, Keil uVision.
+    \item STM32CubeMX (code generator).
+    \item STM32CubeIDE, uVision Runtime Manager.
+    \item Code Composer Studio, PinMux, Resource Explorer, Driverlib.
+    \item Visual Studio, VisualGDB, VSCode, Vim, NeoVim.
+    \item Rust embedded crates, ST-Link, OpenOCD.
+    \item CLI environment (gdb + stlink or openocd).
+    \item STM32 HAL, CMSIS Programming, Legacy StdPeripheral.
+    \item MISRA Warnings enabled.
+\end{itemize}
+
+\subsection*{Embedded Programming Skills}
+\begin{itemize}
+    \item Advanced algorithms: Fast Fourier Transform, Automata, Finite State Machines.
+    \item Electronic sampling: analog-to-digital, digital-to-analog, temperature, and voltage sampling.
+    \item Data integrity techniques: wear leveling, CRC.
+    \item Custom allocators using fixed array-based heap managers (e.g., Valvano).
+    \item Standard C++ Library containers (e.g., \texttt{std::vector}) with fixed array-based custom allocators.
+    \item Data structures optimized for embedded environments (stacks, queues, circular buffers, binary trees, priority queues, heaps, graphs, open-address hash tables).
+    \item Algorithms derived from \textit{Introduction to Algorithms} by Cormen, Leiserson, Rivest, and Stein, Sedgewick’s \textit{Algorithms}, and \textit{Foundations of Computer Science} by Aho and Ullman.
+    \item Automated embedded testing using CLI-based build, flash, and test sequences.
+    \item Integration with STM32CubeMX for STM32 and PinMux/Resource Explorer for Tiva C series.
+    \item CMSIS DSP Libraries for signal processing and testing.
+\end{itemize}
+
+\subsection*{Embedded Systems Skills}
+\begin{itemize}
+    \item General Operating Systems knowledge, Computer Organization, Binary Structure, and Embedded Startup Code Sequences.
+    \item Timers and Clocks, generated programmatically or using tools like STM32CubeMX.
+    \item Interrupt Handling, Fault Monitoring, and Recovery.
+    \item Peripheral Communication: GPIO, UART, SSI, I2C, Timer, PWM, ADC, Ethernet, CAN.
+    \item DMA streaming, Memory Management, Flash Memory, EEPROM, Power Optimization.
+    \item Atomic Operations, Concurrency, and Parallelism (C++ Coroutines, Rust’s async/await).
+    \item Debugging Tools: Keil uVision, STM32CubeIDE, Code Composer Studio, VisualGDB, CLI (gdb + st-link or openocd).
+    \item Semihosting, UART Printing, ITM Tracing.
+\end{itemize}
+
+\end{document}

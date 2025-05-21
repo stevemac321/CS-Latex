@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Enhancements to Visual Studio for Embedded Development}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Overview}
+
+This document outlines potential enhancements to Microsoft Visual Studio to provide a more integrated and seamless experience for embedded systems development. These ideas aim to position Visual Studio as a first-class embedded development environment, on par with specialized IDEs such as STM32CubeIDE and Keil uVision, while also leveraging Visual Studio’s broader appeal to corporate customers. 
+
+\section*{1. Raspberry Pi Debugging with Natvis}
+
+The first enhancement involves leveraging Natvis (Native Visualizer) to create a rich debugging experience for Raspberry Pi development in Visual Studio. 
+
+\begin{itemize}
+    \item \textbf{Objective:} Provide a custom debugging experience that displays real-time values from Raspberry Pi's memory-mapped registers directly in Visual Studio using Natvis.
+    \item \textbf{Approach:} By using known addresses of Raspberry Pi's memory-mapped hardware registers (such as GPIO or timers), Visual Studio could visualize these registers in an intuitive manner during a debug session. This would involve:
+    \begin{itemize}
+        \item Displaying register values using the actual hardware data, not mock data.
+        \item Integrating this feature with the existing Visual Studio Raspberry Pi project type to provide a richer debugging experience.
+        \item Adding support for SVDs (System View Description files) that can be converted into Natvis files, allowing developers to visualize hardware assets in a structured way.
+    \end{itemize}
+    \item \textbf{Target Audience:} Developers working on embedded Linux projects using Raspberry Pi, who would benefit from the ability to view real-time hardware register states.
+\end{itemize}
+
+\section*{2. Visual Studio Integration with STM32CubeMX and SVDs}
+
+This proposal involves making Visual Studio more comparable to specialized embedded IDEs like STM32CubeIDE and Keil uVision by integrating STM32CubeMX and adding support for SVDs.
+
+\begin{itemize}
+    \item \textbf{Objective:} Create a first-class embedded project experience in Visual Studio that integrates with STM32CubeMX for pinout configuration and code generation, and also provides native support for hardware debugging using SVDs.
+    \item \textbf{Approach:} 
+    \begin{itemize}
+        \item Add microcontroller support as a feature in the Visual Studio add-remove setup program.
+        \item Modify the project wizard to spawn STM32CubeMX, allowing users to configure pinouts via the graphical interface and generate initialization code directly into the Visual Studio project.
+        \item Integrate STM32-provided SVDs or provide tooling to convert SVDs into Natvis files, giving developers a rich debugging experience with real-time register views.
+    \end{itemize}
+    \item \textbf{Target Audience:} Corporate customers who use STM32 microcontrollers and need a professional, integrated development environment for embedded systems, but want to leverage Visual Studio’s more extensive ecosystem.
+\end{itemize}
+
+\section*{3. Adding CMake Support and Corporate Appeal}
+
+\begin{itemize}
+    \item \textbf{Objective:} Broaden Visual Studio's appeal to corporate customers by integrating CMake into the embedded development workflow, making it easier to manage cross-platform projects.
+    \item \textbf{Approach:} 
+    \begin{itemize}
+        \item Add support for CMake in the embedded project templates, allowing for cross-platform development.
+        \item Emphasize Visual Studio's appeal as a professional IDE for corporate customers by offering a more integrated, non-piecemeal approach to embedded development. 
+        \item Highlight the contrast with VSCode, which, while powerful, depends on community-driven extensions that may not offer the same level of integration or professional support.
+    \end{itemize}
+    \item \textbf{Target Audience:} Corporate customers who require a polished, professional-grade IDE with strong support for embedded development workflows and cross-platform build systems like CMake.
+\end{itemize}
+
+\section*{Conclusion}
+
+These enhancements to Visual Studio would position it as a compelling option for corporate customers engaged in embedded systems development, providing a more integrated experience for microcontroller development and hardware debugging. By improving the support for STM32CubeMX, SVD files, Raspberry Pi development, and CMake, Visual Studio can meet the demands of professional developers working on complex systems.
+\end{document}

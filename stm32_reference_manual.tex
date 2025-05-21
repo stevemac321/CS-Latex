@@ -1,0 +1,434 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Reference Manual}
+
+\tableofcontents
+
+\section*{Content}
+\begin{enumerate}
+    \item Memory and bus architecture \dotfill 36
+    \begin{enumerate}
+        \item System architecture \dotfill 36
+        \begin{enumerate}
+            \item I-bus \dotfill 37
+            \item D-bus \dotfill 37
+            \item S-bus \dotfill 37
+            \item DMA memory bus \dotfill 37
+            \item DMA peripheral bus \dotfill 37
+            \item BusMatrix \dotfill 37
+            \item AHB/APB bridges (APB) \dotfill 37
+        \end{enumerate}
+        \item Memory organization \dotfill 38
+        \item Memory map \dotfill 38
+        \begin{enumerate}
+            \item Embedded SRAM \dotfill 40
+            \item Flash memory overview \dotfill 40
+            \item Bit banding \dotfill 40
+        \end{enumerate}
+        \item Boot configuration \dotfill 41
+    \end{enumerate}
+    \item Embedded Flash memory interface \dotfill 44
+    \begin{enumerate}
+        \item Introduction \dotfill 44
+        \item Main features \dotfill 44
+        \item Embedded Flash memory in STM32F401xB/C and STM32F401xD/E \dotfill 45
+        \item Read interface \dotfill 46
+        \begin{enumerate}
+            \item Relation between CPU clock frequency and Flash memory read time \dotfill 46
+            \item Adaptive real-time memory accelerator (ART Accelerator™) \dotfill 47
+        \end{enumerate}
+        \item Erase and program operations \dotfill 49
+        \begin{enumerate}
+            \item Unlocking the Flash control register \dotfill 49
+            \item Program/erase parallelism \dotfill 50
+            \item Erase \dotfill 51
+            \item Programming \dotfill 51
+            \item Interrupts \dotfill 52
+        \end{enumerate}
+        \item Option bytes \dotfill 52
+        \begin{enumerate}
+            \item Description of user option bytes \dotfill 52
+            \item Programming user option bytes \dotfill 54
+            \item Read protection (RDP) \dotfill 54
+            \item Write protections \dotfill 56
+            \item Proprietary code readout protection (PCROP) \dotfill 57
+        \end{enumerate}
+        \item One-time programmable bytes \dotfill 59
+        \item Flash interface registers \dotfill 60
+        \begin{enumerate}
+            \item Flash access control register (FLASH\_ACR) \dotfill 60
+            \item Flash key register (FLASH\_KEYR) \dotfill 61
+            \item Flash option key register (FLASH\_OPTKEYR) \dotfill 61
+            \item Flash status register (FLASH\_SR) \dotfill 62
+            \item Flash control register (FLASH\_CR) \dotfill 63
+            \item Flash option control register (FLASH\_OPTCR) \dotfill 65
+            \item Flash interface register map \dotfill 67
+        \end{enumerate}
+    \end{enumerate}
+    \item CRC calculation unit \dotfill 68
+    \begin{enumerate}
+        \item CRC introduction \dotfill 68
+        \item CRC main features \dotfill 68
+        \item CRC functional description \dotfill 68
+        \item CRC registers \dotfill 69
+        \begin{enumerate}
+            \item Data register (CRC\_DR) \dotfill 69
+            \item Independent data register (CRC\_IDR) \dotfill 69
+            \item Control register (CRC\_CR) \dotfill 70
+            \item CRC register map \dotfill 70
+        \end{enumerate}
+    \end{enumerate}
+    \item Power controller (PWR) \dotfill 71
+    \begin{enumerate}
+        \item Power supplies \dotfill 71
+        \begin{enumerate}
+            \item Independent A/D converter supply and reference voltage \dotfill 72
+            \item Battery backup domain \dotfill 72
+            \item Voltage regulator \dotfill 73
+        \end{enumerate}
+        \item Power supply supervisor \dotfill 74
+        \begin{enumerate}
+            \item Power-on reset (POR)/power-down reset (PDR) \dotfill 74
+            \item Brownout reset (BOR) \dotfill 75
+            \item Programmable voltage detector (PVD) \dotfill 76
+        \end{enumerate}
+        \item Low-power modes \dotfill 76
+        \begin{enumerate}
+            \item Slowing down system clocks \dotfill 78
+            \item Peripheral clock gating \dotfill 78
+            \item Sleep mode \dotfill 79
+            \item Stop mode \dotfill 80
+            \item Standby mode \dotfill 82
+            \item Programming the RTC alternate functions to wake up the device from the Stop and Standby modes \dotfill 83
+        \end{enumerate}
+        \item Power control registers \dotfill 86
+        \begin{enumerate}
+            \item PWR power control register (PWR\_CR) \dotfill 86
+            \item PWR power control/status register (PWR\_CSR) \dotfill 88
+            \item PWR register map \dotfill 89
+        \end{enumerate}
+    \end{enumerate}
+    \item Reset and clock control (RCC) for STM32F401xB/C and STM32F401xD/E \dotfill 90
+    \begin{enumerate}
+        \item Reset \dotfill 90
+        \begin{enumerate}
+            \item System reset \dotfill 90
+            \item Power reset \dotfill 91
+            \item Backup domain reset \dotfill 92
+        \end{enumerate}
+        \item Clocks \dotfill 92
+        \begin{enumerate}
+            \item HSE clock \dotfill 95
+            \item HSI clock \dotfill 96
+            \item PLL configuration \dotfill 96
+            \item LSE clock \dotfill 97
+            \item LSI clock \dotfill 97
+            \item System clock (SYSCLK) selection \dotfill 97
+            \item Clock security system (CSS) \dotfill 98
+            \item RTC/AWU clock \dotfill 98
+            \item Watchdog clock \dotfill 99
+            \item Clock-out capability \dotfill 99
+            \item Internal/external clock measurement using TIM5/TIM11 \dotfill 99
+        \end{enumerate}
+        \item RCC registers \dotfill 102
+        \begin{enumerate}
+            \item RCC clock control register (RCC\_CR) \dotfill 102
+            \item RCC PLL configuration register (RCC\_PLLCFGR) \dotfill 104
+            \item RCC clock configuration register (RCC\_CFGR) \dotfill 106
+            \item RCC clock interrupt register (RCC\_CIR) \dotfill 109
+            \item RCC AHB1 peripheral reset register (RCC\_AHB1RSTR) \dotfill 111
+            \item RCC AHB2 peripheral reset register (RCC\_AHB2RSTR) \dotfill 113
+            \item RCC APB1 peripheral reset register for (RCC\_APB1RSTR) \dotfill 113
+            \item RCC APB2 peripheral reset register (RCC\_APB2RSTR) \dotfill 115
+            \item RCC AHB1 peripheral clock enable register (RCC\_AHB1ENR) \dotfill 117
+            \item RCC AHB2 peripheral clock enable register (RCC\_AHB2ENR) \dotfill 118
+            \item RCC APB1 peripheral clock enable register (RCC\_APB1ENR) \dotfill 118
+            \item RCC APB2 peripheral clock enable register (RCC\_APB2ENR) \dotfill 121
+            \item RCC AHB1 peripheral clock enable in low power mode register (RCC\_AHB1LPENR) \dotfill 123
+            \item RCC AHB2 peripheral clock enable in low power mode register (RCC\_AHB2LPENR) \dotfill 124
+            \item RCC APB1 peripheral clock enable in low power mode register (RCC\_APB1LPENR) \dotfill 125
+            \item RCC APB2 peripheral clock enabled in low power mode register (RCC\_APB2LPENR) \dotfill 127
+            \item RCC Backup domain control register (RCC\_BDCR) \dotfill 129
+            \item RCC clock control \& status register (RCC\_CSR) \dotfill 130
+            \item RCC spread spectrum clock generation register (RCC\_SSCGR) \dotfill 132
+            \item RCC PLLI2S configuration register (RCC\_PLLI2SCFGR) \dotfill 133
+            \item RCC Dedicated Clocks Configuration Register (RCC\_DCKCFGR) \dotfill 135
+            \item RCC register map \dotfill 136
+        \end{enumerate}
+    \end{enumerate}
+    \item System configuration controller (SYSCFG) \dotfill 139
+    \begin{enumerate}
+        \item I/O compensation cell \dotfill 139
+        \item SYSCFG registers \dotfill 139
+        \begin{enumerate}
+            \item SYSCFG memory remap register (SYSCFG\_MEMRMP) \dotfill 139
+            \item SYSCFG peripheral mode configuration register (SYSCFG\_PMC) \dotfill 140
+            \item SYSCFG external interrupt configuration register 1 (SYSCFG\_EXTICR1) \dotfill 141
+            \item SYSCFG external interrupt configuration register 2 (SYSCFG\_EXTICR2) \dotfill 141
+            \item SYSCFG external interrupt configuration register 3 (SYSCFG\_EXTICR3) \dotfill 142
+            \item SYSCFG external interrupt configuration register 4 (SYSCFG\_EXTICR4) \dotfill 142
+            \item Compensation cell control register (SYSCFG\_CMPCR) \dotfill 143
+            \item SYSCFG register map \dotfill 144
+        \end{enumerate}
+    \end{enumerate}
+    \item General-purpose I/Os (GPIO) \dotfill 145
+    \begin{enumerate}
+        \item GPIO introduction \dotfill 145
+        \item GPIO main features \dotfill 145
+        \item GPIO functional description \dotfill 146
+        \begin{enumerate}
+            \item General-purpose I/O (GPIO) \dotfill 148
+            \item I/O pin multiplexer and mapping \dotfill 148
+            \item I/O port control registers \dotfill 150
+            \item I/O port data registers \dotfill 151
+            \item I/O data bitwise handling \dotfill 151
+            \item GPIO locking mechanism \dotfill 151
+            \item I/O alternate function input/output \dotfill 152
+            \item External interrupt/wakeup lines \dotfill 152
+            \item Input configuration \dotfill 152
+            \item Output configuration \dotfill 153
+            \item Alternate function configuration \dotfill 153
+            \item Analog configuration \dotfill 154
+            \item Using the OSC32\_IN/OSC32\_OUT pins as GPIO PC14/PC15 port pins \dotfill 155
+            \item Using the OSC\_IN/OSC\_OUT pins as GPIO PH0/PH1 port pins \dotfill 155
+            \item Selection of RTC functions \dotfill 155
+        \end{enumerate}
+        \item GPIO registers \dotfill 157
+        \begin{enumerate}
+            \item GPIO port mode register (GPIOx\_MODER) (x = A..E and H) \dotfill 157
+            \item GPIO port output type register (GPIOx\_OTYPER) (x = A..E and H) \dotfill 157
+            \item GPIO port output speed register (GPIOx\_OSPEEDR) (x = A..E and H) \dotfill 158
+            \item GPIO port pull-up/pull-down register (GPIOx\_PUPDR) (x = A..E and H) \dotfill 158
+            \item GPIO port input data register (GPIOx\_IDR) (x = A..E and H) \dotfill 159
+            \item GPIO port output data register (GPIOx\_ODR) (x = A..E and H) \dotfill 159
+            \item GPIO port bit set/reset register (GPIOx\_BSRR) (x = A..E and H) \dotfill 160
+            \item GPIO port configuration lock register (GPIOx\_LCKR) (x = A..E and H) \dotfill 160
+            \item GPIO alternate function low register (GPIOx\_AFRL) (x = A..E and H) \dotfill 161
+            \item GPIO alternate function high register (GPIOx\_AFRH) (x = A..E and H) \dotfill 162
+            \item GPIO register map \dotfill 162
+        \end{enumerate}
+    \end{enumerate}
+    \item DMA controller (DMA) \dotfill 165
+    \begin{enumerate}
+        \item DMA introduction \dotfill 165
+        \item DMA main features \dotfill 165
+        \item DMA functional description \dotfill 167
+        \begin{enumerate}
+            \item General description \dotfill 167
+            \item DMA transactions \dotfill 168
+            \item Channel selection \dotfill 169
+            \item Arbiter \dotfill 170
+            \item DMA streams \dotfill 170
+            \item Source, destination and transfer modes \dotfill 171
+            \item Pointer incrementation \dotfill 174
+            \item Circular mode \dotfill 175
+            \item Double buffer mode \dotfill 175
+            \item Programmable data width, packing/unpacking, endianess \dotfill 176
+            \item Single and burst transfers \dotfill 178
+            \item FIFO \dotfill 179
+            \item DMA transfer completion \dotfill 181
+            \item DMA transfer suspension \dotfill 182
+            \item Flow controller \dotfill 183
+            \item Summary of the possible DMA configurations \dotfill 184
+            \item Stream configuration procedure \dotfill 184
+            \item Error management \dotfill 185
+        \end{enumerate}
+        \item DMA interrupts \dotfill 186
+        \item DMA registers \dotfill 187
+        \begin{enumerate}
+            \item DMA low interrupt status register (DMA\_LISR) \dotfill 187
+            \item DMA high interrupt status register (DMA\_HISR) \dotfill 188
+            \item DMA low interrupt flag clear register (DMA\_LIFCR) \dotfill 189
+            \item DMA high interrupt flag clear register (DMA\_HIFCR) \dotfill 189
+            \item DMA stream x configuration register (DMA\_SxCR) (x = 0..7) \dotfill 190
+            \item DMA stream x number of data register (DMA\_SxNDTR) (x = 0..7) \dotfill 193
+            \item DMA stream x peripheral address register (DMA\_SxPAR) (x = 0..7) \dotfill 194
+            \item DMA stream x memory 0 address register (DMA\_SxM0AR) (x = 0..7) \dotfill 194
+            \item DMA stream x memory 1 address register (DMA\_SxM1AR) (x = 0..7) \dotfill 194
+            \item DMA stream x FIFO control register (DMA\_SxFCR) (x = 0..7) \dotfill 195
+            \item DMA register map \dotfill 197
+        \end{enumerate}
+    \end{enumerate}
+    \item Interrupts and events \dotfill 201
+    \begin{enumerate}
+        \item Nested vectored interrupt controller (NVIC) \dotfill 201
+        \begin{enumerate}
+            \item NVIC features \dotfill 201
+            \item SysTick calibration value register \dotfill 201
+            \item Interrupt and exception vectors \dotfill 201
+        \end{enumerate}
+        \item External interrupt/event controller (EXTI) \dotfill 201
+        \begin{enumerate}
+            \item EXTI main features \dotfill 204
+            \item EXTI block diagram \dotfill 205
+            \item Wakeup event management \dotfill 205
+            \item Functional description \dotfill 205
+            \item External interrupt/event line mapping \dotfill 207
+        \end{enumerate}
+        \item EXTI registers \dotfill 208
+        \begin{enumerate}
+            \item Interrupt mask register (EXTI\_IMR) \dotfill 208
+            \item Event mask register (EXTI\_EMR) \dotfill 208
+            \item Rising trigger selection register (EXTI\_RTSR) \dotfill 209
+            \item Falling trigger selection register (EXTI\_FTSR) \dotfill 209
+            \item Software interrupt event register (EXTI\_SWIER) \dotfill 210
+            \item Pending register (EXTI\_PR) \dotfill 210
+            \item EXTI register map \dotfill 211
+        \end{enumerate}
+    \end{enumerate}
+    \item Analog-to-digital converter (ADC) \dotfill 212
+    \begin{enumerate}
+        \item ADC introduction \dotfill 212
+        \item ADC main features \dotfill 212
+        \item ADC functional description \dotfill 213
+        \begin{enumerate}
+            \item ADC on-off control \dotfill 214
+            \item ADC clock \dotfill 214
+            \item Channel selection \dotfill 214
+            \item Single conversion mode \dotfill 215
+            \item Continuous conversion mode \dotfill 215
+            \item Timing diagram \dotfill 216
+            \item Analog watchdog \dotfill 216
+            \item Scan mode \dotfill 217
+            \item Injected channel management \dotfill 217
+            \item Discontinuous mode \dotfill 218
+        \end{enumerate}
+        \item Data alignment \dotfill 220
+        \item Channel-wise programmable sampling time \dotfill 221
+        \item Conversion on external trigger and trigger polarity \dotfill 221
+        \item Fast conversion mode \dotfill 223
+        \item Data management \dotfill 224
+        \begin{enumerate}
+            \item Using the DMA \dotfill 224
+            \item Managing a sequence of conversions without using the DMA \dotfill 224
+            \item Conversions without DMA and without overrun detection \dotfill 225
+        \end{enumerate}
+        \item Temperature sensor \dotfill 225
+        \item Battery charge monitoring \dotfill 226
+        \item ADC interrupts \dotfill 227
+        \item ADC registers \dotfill 228
+        \begin{enumerate}
+            \item ADC status register (ADC\_SR) \dotfill 228
+            \item ADC control register 1 (ADC\_CR1) \dotfill 229
+            \item ADC control register 2 (ADC\_CR2) \dotfill 231
+            \item ADC sample time register 1 (ADC\_SMPR1) \dotfill 233
+            \item ADC sample time register 2 (ADC\_SMPR2) \dotfill 233
+            \item ADC injected channel data offset register x (ADC\_JOFRx) (x=1..4) \dotfill 234
+            \item ADC watchdog higher threshold register (ADC\_HTR) \dotfill 234
+            \item ADC watchdog lower threshold register (ADC\_LTR) \dotfill 235
+            \item ADC regular sequence register 1 (ADC\_SQR1) \dotfill 235
+            \item ADC regular sequence register 2 (ADC\_SQR2) \dotfill 236
+            \item ADC regular sequence register 3 (ADC\_SQR3) \dotfill 236
+            \item ADC injected sequence register (ADC\_JSQR) \dotfill 237
+            \item ADC injected data register x (ADC\_JDRx) (x= 1..4) \dotfill 237
+            \item ADC regular data register (ADC\_DR) \dotfill 238
+            \item ADC common control register (ADC\_CCR) \dotfill 238
+            \item ADC register map \dotfill 239
+        \end{enumerate}
+    \end{enumerate}
+    \item Advanced-control timer (TIM1) \dotfill 241
+    \begin{enumerate}
+        \item TIM1 introduction \dotfill 241
+        \item TIM1 main features \dotfill 242
+        \item TIM1 functional description \dotfill 244
+        \begin{enumerate}
+            \item Time-base unit \dotfill 244
+            \item Counter modes \dotfill 245
+            \item Repetition counter \dotfill 253
+            \item Clock selection \dotfill 255
+            \item Capture/compare channels \dotfill 257
+            \item Input capture mode \dotfill 259
+            \item PWM input mode \dotfill 261
+            \item Forced output mode \dotfill 262
+            \item Output compare mode \dotfill 262
+            \item PWM mode \dotfill 263
+            \item Complementary outputs and dead-time insertion \dotfill 266
+            \item Using the break function \dotfill 268
+            \item Clearing the OCxREF signal on an external event \dotfill 271
+            \item 6-step PWM generation \dotfill 272
+            \item One-pulse mode \dotfill 273
+            \item Encoder interface mode \dotfill 274
+            \item Timer input XOR function \dotfill 276
+            \item Interfacing with Hall sensors \dotfill 277
+            \item TIMx and external trigger synchronization \dotfill 279
+            \item Timer synchronization \dotfill 282
+            \item Debug mode \dotfill 282
+        \end{enumerate}
+        \item TIM1 registers \dotfill 283
+        \begin{enumerate}
+            \item TIM1 control register 1 (TIMx\_CR1) \dotfill 283
+            \item TIM1 control register 2 (TIMx\_CR2) \dotfill 284
+            \item TIM1 slave mode control register (TIMx\_SMCR) \dotfill 287
+            \item TIM1 DMA/interrupt enable register (TIMx\_DIER) \dotfill 289
+            \item TIM1 status register (TIMx\_SR) \dotfill 291
+            \item TIM1 event generation register (TIMx\_EGR) \dotfill 292
+            \item TIM1 capture/compare mode register 1 (TIMx\_CCMR1) \dotfill 294
+            \item TIM1 capture/compare mode register 2 (TIMx\_CCMR2) \dotfill 297
+            \item TIM1 capture/compare enable register (TIMx\_CCER) \dotfill 298
+            \item TIM1 counter (TIMx\_CNT) \dotfill 302
+            \item TIM1 prescaler (TIMx\_PSC) \dotfill 302
+            \item TIM1 auto-reload register (TIMx\_ARR) \dotfill 302
+            \item TIM1 repetition counter register (TIMx\_RCR) \dotfill 303
+            \item TIM1 capture/compare register 1 (TIMx\_CCR1) \dotfill 303
+            \item TIM1 capture/compare register 2 (TIMx\_CCR2) \dotfill 304
+            \item TIM1 capture/compare register 3 (TIMx\_CCR3) \dotfill 304
+            \item TIM1 capture/compare register 4 (TIMx\_CCR4) \dotfill 305
+            \item TIM1 break and dead-time register (TIMx\_BDTR) \dotfill 305
+            \item TIM1 DMA control register (TIMx\_DCR) \dotfill 307
+            \item TIM1 DMA address for full transfer (TIMx\_DMAR) \dotfill 308
+            \item TIM1 register map \dotfill 309
+        \end{enumerate}
+    \end{enumerate}
+    \item General-purpose timers (TIM2 to TIM5) \dotfill 311
+    \begin{enumerate}
+        \item TIM2 to TIM5 introduction \dotfill 311
+        \item TIM2 to TIM5 main features \dotfill 311
+        \item TIM2 to TIM5 functional description \dotfill 312
+        \begin{enumerate}
+            \item Time-base unit \dotfill 312
+            \item Counter modes \dotfill 314
+            \item Clock selection \dotfill 322
+            \item Capture/compare channels \dotfill 325
+            \item Input capture mode \dotfill 327
+            \item PWM input mode \dotfill 328
+            \item Forced output mode \dotfill 329
+            \item Output compare mode \dotfill 330
+            \item PWM mode \dotfill 331
+            \item One-pulse mode \dotfill 334
+            \item Clearing the OCxREF signal on an external event \dotfill 335
+            \item Encoder interface mode \dotfill 336
+            \item Timer input XOR function \dotfill 338
+            \item Timers and external trigger synchronization \dotfill 338
+            \item Timer synchronization \dotfill 341
+            \item Debug mode \dotfill 346
+        \end{enumerate}
+        \item TIM2 to TIM5 registers \dotfill 347
+        \begin{enumerate}
+            \item TIMx control register 1 (TIMx\_CR1) \dotfill 347
+            \item TIMx control register 2 (TIMx\_CR2) \dotfill 349
+            \item TIMx slave mode control register (TIMx\_SMCR) \dotfill 350
+            \item TIMx DMA/Interrupt enable register (TIMx\_DIER) \dotfill 352
+            \item TIMx status register (TIMx\_SR) \dotfill 353
+            \item TIMx event generation register (TIMx\_EGR) \dotfill 355
+            \item TIMx capture/compare mode register 1 (TIMx\_CCMR1) \dotfill 356
+            \item TIMx capture/compare mode register 2 (TIMx\_CCMR2) \dotfill 360
+            \item TIMx capture/compare enable register (TIMx\_CCER) \dotfill 362
+            \item TIMx counter (TIMx\_CNT) \dotfill 366
+            \item TIMx prescaler (TIMx\_PSC) \dotfill 367
+            \item TIMx auto-reload register (TIMx\_ARR) \dotfill 368
+            \item TIMx capture/compare register 1 (TIMx\_CCR1) \dotfill 368
+            \item TIMx capture/compare register 2 (TIMx\_CCR2) \dotfill 369
+            \item TIMx capture/compare register 3 (TIMx\_CCR3) \dotfill 370
+            \item TIMx capture/compare register 4 (TIMx\_CCR4) \dotfill 370
+            \item TIMx DMA control register (TIMx\_DCR) \dotfill 371
+            \item TIMx DMA address for full transfer (TIMx\_DMAR) \dotfill 372
+            \item TIM2/TIM5 option register (TIM2\_OR, TIM5\_OR) \dotfill 372
+            \item TIMx register map \dotfill 373
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

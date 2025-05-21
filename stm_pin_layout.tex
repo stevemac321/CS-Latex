@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+\title{STM32F401RE Microcontroller Pin Descriptions}
+\author{Your Name}
+\date{\today}
+\maketitle
+
+\section*{Pin Descriptions for STM32F401RE (64-pin)}
+
+\begin{itemize}
+    \item \textbf{Pin 1: PA0 (GPIO/ADC)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin or analog input for ADC channel 0.
+        \item \textbf{Alternate Functions:} TIM2\_CH1, USART2\_CTS, WKUP.
+    \end{itemize}
+    
+    \item \textbf{Pin 2: PA1 (GPIO/ADC)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin or analog input for ADC channel 1.
+        \item \textbf{Alternate Functions:} TIM2\_CH2, USART2\_RTS, ETH\_REF\_CLK.
+    \end{itemize}
+
+    \item \textbf{Pin 3: PA2 (GPIO/USART)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin or USART2\_TX.
+        \item \textbf{Alternate Functions:} TIM2\_CH3, ETH\_MDIO.
+    \end{itemize}
+    
+    \item \textbf{Pin 4: PA3 (GPIO/USART)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin or USART2\_RX.
+        \item \textbf{Alternate Functions:} TIM2\_CH4, ETH\_MII\_COL.
+    \end{itemize}
+    
+    \item \textbf{Pin 5: PA4 (GPIO/SPI)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin or SPI1\_NSS.
+        \item \textbf{Alternate Functions:} DAC\_OUT1, TIM5\_CH1.
+    \end{itemize}
+    
+    \item \textbf{Pin 6: PA5 (GPIO/SPI)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin or SPI1\_SCK.
+        \item \textbf{Alternate Functions:} DAC\_OUT2, TIM2\_CH1.
+    \end{itemize}
+    
+    \item \textbf{Pin 7: PA6 (GPIO/SPI)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin or SPI1\_MISO.
+        \item \textbf{Alternate Functions:} TIM3\_CH1, TIM13\_CH1.
+    \end{itemize}
+    
+    \item \textbf{Pin 8: PA7 (GPIO/SPI)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin or SPI1\_MOSI.
+        \item \textbf{Alternate Functions:} TIM3\_CH2, TIM14\_CH1.
+    \end{itemize}
+    
+    \item \textbf{Pin 9: PB0 (GPIO)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin.
+        \item \textbf{Alternate Functions:} TIM3\_CH3, TIM8\_CH2N.
+    \end{itemize}
+    
+    \item \textbf{Pin 10: PB1 (GPIO)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin.
+        \item \textbf{Alternate Functions:} TIM3\_CH4, TIM8\_CH3N.
+    \end{itemize}
+
+    % Continue for remaining pins...
+
+    \item \textbf{Pin 64: PB15 (GPIO)} 
+    \begin{itemize}
+        \item \textbf{Description:} General-purpose I/O pin.
+        \item \textbf{Alternate Functions:} SPI2\_MOSI, TIM1\_CH3N.
+    \end{itemize}
+
+\end{itemize}
+
+\end{document}
